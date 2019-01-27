@@ -1,0 +1,17 @@
+// Display Flex
+
+@mixin d-flex($direction, $justify, $align){
+    display: flex;
+    flex-direction: $direction;
+
+    justify-content: $justify;
+    align-items: $align;
+}
+
+//Set Border Radius
+
+@mixin borderRadius($radius){
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    border-radius: $radius;
+}

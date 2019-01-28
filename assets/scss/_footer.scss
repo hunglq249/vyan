@@ -11,6 +11,16 @@ footer{
     .container{
         .row{
             .item{
+                svg{
+                    width: 97px;
+                    height: 90px;
+
+                    .shape, .text, .text-subtitle{
+                        fill: #fff;
+                    }
+                }
+
+
                 h5{
                     color: #fff;
 
@@ -19,11 +29,25 @@ footer{
 
                 ul{
                     li{
+                        margin-bottom: $padding-half;
+
                         a{
                             color: $gray-lightest;
 
                             &:hover{
                                 color: #fff;
+                            }
+                        }
+                    }
+                }
+
+                &:first-of-type{
+                    ul{
+                        li{
+                            margin-bottom: unset;
+
+                            a{
+                                font-size: 0.75rem;
                             }
                         }
                     }

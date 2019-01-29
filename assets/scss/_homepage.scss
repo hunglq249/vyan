@@ -503,3 +503,203 @@
         }
     }
 }
+
+//For Devices
+@media (max-width: 767.98px){
+    #homepage{
+        #slideHomepage{
+            .carousel-inner{
+                .carousel-item{
+                    .carousel-caption{
+                        width: 90%;
+
+                        h6{
+                            &.subtitle-md{
+                                position: relative;
+
+                                &:before{
+                                    width: 10%;
+                                }
+
+                                &:after{
+                                    width: 10%;
+                                }
+                            }
+                        }
+
+                        h3{
+                            text-shadow: 0 0 10px rgba(0,0,0,0.3);
+
+                            &.text-wrapper{
+                                height: 3.5em;
+                                -webkit-line-clamp: 3;
+                            }
+                        }
+
+                        .btn{
+                            @include translate(0, $padding-double * 4);
+                        }
+                    }
+                }
+            }
+        }
+
+        .section{
+            .section-intro{
+                width: 100%;
+                margin: 0 auto;
+            }
+
+            &.about{
+                height: auto;
+
+                .row{
+                    //height: 100%;
+
+                    .left{
+                        padding-bottom: 150px;
+
+                        background-image: url("../img/aboutus-doctors.png");
+                        background-position: center bottom;
+                        background-repeat: no-repeat;
+                        background-size: 75%;
+                    }
+
+                    .right{
+                        height: 300px;
+
+                        .slide{
+                            .carousel-inner {
+                                .carousel-item {
+                                    .carousel-caption {
+                                        width: 75%;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.services{
+                .container{
+                    .owl-carousel{
+                        margin-top: $padding-triple;
+                        margin-bottom: $padding-base;
+
+                        .item{
+                            text-align: center;
+
+                            .mask{
+                                width: 100px;
+                                height: 100px;
+
+                                margin: 0 auto $padding-base;
+                            }
+
+                            p{
+                                color: $primary-base;
+                            }
+                        }
+
+                        .owl-nav{
+                            padding-top: $padding-base;
+
+                            text-align: center;
+
+                            button{
+                                margin-left: $padding-base;
+                                margin-right: $padding-base;
+
+                                font-size: 1.5rem;
+                                color: $gray-base;
+                            }
+                        }
+                    }
+
+                    .section-footer{
+                        text-align: center;
+
+                        padding-bottom: $padding-double;
+                    }
+                }
+            }
+
+            &.whyus{
+                width: 100%;
+                height: 600px;
+
+                > .row{
+                    height: 100%;
+
+                    .left{
+                        position: relative;
+
+                        .mask{
+                            width: 100%;
+                            height: 100%;
+                        }
+
+                        .overlay{
+                            width: 100%;
+                            height: 100%;
+
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            z-index: 1;
+
+                            background: rgba(63,147,133,1);
+                            background: -moz-linear-gradient(-45deg, rgba(63,147,133,1) 0%, rgba(240,252,250,1) 100%);
+                            background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(63,147,133,1)), color-stop(100%, rgba(240,252,250,1)));
+                            background: -webkit-linear-gradient(-45deg, rgba(63,147,133,1) 0%, rgba(240,252,250,1) 100%);
+                            background: -o-linear-gradient(-45deg, rgba(63,147,133,1) 0%, rgba(240,252,250,1) 100%);
+                            background: -ms-linear-gradient(-45deg, rgba(63,147,133,1) 0%, rgba(240,252,250,1) 100%);
+                            background: linear-gradient(135deg, rgba(63,147,133,1) 0%, rgba(240,252,250,1) 100%);
+                            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3f9385', endColorstr='#f0fcfa', GradientType=1 );
+
+                            opacity: 0.85;
+                        }
+
+                        .wrapper{
+                            width: 100%;
+                            height: 100%;
+
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            z-index: 1;
+
+                            padding-left: $padding-double;
+                            padding-right: $padding-double;
+
+                            @include d-flex(row, normal, center);
+
+                            .row{
+                                color: #fff;
+                            }
+                        }
+                    }
+
+                    .right{
+                        .row{
+                            height: 100%;
+
+                            .item{
+                                width: 50% !important;
+                                height: 50%;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.story{
+            }
+
+            &.testimonial{
+
+            }
+        }
+    }
+}

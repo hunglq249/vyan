@@ -176,3 +176,6 @@
 
 <!-- Main script -->
 <script src="<?php echo site_url('assets/js/main.js') ?>"></script>
+
+<!-- BlockUI js -->
+<script src="<?php echo site_url('assets/lib/jquery.blockUI.js') ?>"></script>

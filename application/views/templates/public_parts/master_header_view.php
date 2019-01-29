@@ -114,19 +114,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						Beauty Surgeon
 					</a>
 
+					<span>
+						<i class="fas fa-caret-right"></i>
+					</span>
+
 					<ul>
+						<li>
+							<a href="#" class="back">
+								<i class="fas fa-caret-left"></i> Back
+							</a>
+						</li>
+
                         <?php for ($i = 0; $i < 4; $i++) { ?>
 							<li>
 								<a href="<?php echo base_url('') ?>">
 									Heading <?php echo $i+1 ?>
 								</a>
 
+								<span>
+									<i class="fas fa-caret-right"></i>
+								</span>
+
 								<ul>
+									<li>
+										<a href="#" class="back">
+											<i class="fas fa-caret-left"></i> Back
+										</a>
+									</li>
 									<!-- Testing Column Height -->
                                     <?php if ($i%2==0) { ?>
                                         <?php for ($j = 0; $j < 6; $j++) { ?>
 											<li>
-												<a href="<?php echo base_url('') ?>">
+												<a href="<?php echo base_url('postdetail') ?>">
 													Content Nav Category <?php echo $i+1 .'.'.$j+1 ?>
 												</a>
 											</li>
@@ -134,7 +153,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <?php } else { ?>
                                         <?php for ($j = 0; $j < 10; $j++) { ?>
 											<li>
-												<a href="<?php echo base_url('') ?>">
+												<a href="<?php echo base_url('postdetail') ?>">
 													Content Nav Category <?php echo $i+1 .'.'.$j+1  ?>
 												</a>
 											</li>
@@ -152,19 +171,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						Skincare & Spa
 					</a>
 
+					<span>
+						<i class="fas fa-caret-right"></i>
+					</span>
+
 					<ul>
+						<li>
+							<a href="#" class="back">
+								<i class="fas fa-caret-left"></i> Back
+							</a>
+						</li>
+
                         <?php for ($i = 0; $i < 4; $i++) { ?>
 							<li>
 								<a href="<?php echo base_url('') ?>">
 									Heading <?php echo $i+1 ?>
 								</a>
 
+								<span>
+									<i class="fas fa-caret-right"></i>
+								</span>
+
 								<ul>
+									<li>
+										<a href="#" class="back">
+											<i class="fas fa-caret-left"></i> Back
+										</a>
+									</li>
 									<!-- Testing Column Height -->
                                     <?php if ($i%2==0) { ?>
                                         <?php for ($j = 0; $j < 6; $j++) { ?>
 											<li>
-												<a href="<?php echo base_url('') ?>">
+												<a href="<?php echo base_url('postdetail') ?>">
 													Content Nav Category <?php echo $i+1 .'.'.$j+1 ?>
 												</a>
 											</li>
@@ -172,7 +210,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <?php } else { ?>
                                         <?php for ($j = 0; $j < 10; $j++) { ?>
 											<li>
-												<a href="<?php echo base_url('') ?>">
+												<a href="<?php echo base_url('postdetail') ?>">
 													Content Nav Category <?php echo $i+1 .'.'.$j+1  ?>
 												</a>
 											</li>

@@ -56,3 +56,16 @@ footer{
         }
     }
 }
+
+//For Devices
+@media (max-width: 767.98px){
+    footer {
+        .container {
+            .row {
+                .item {
+                    margin-bottom: $padding-base;
+                }
+            }
+        }
+    }
+}

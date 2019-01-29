@@ -61,6 +61,10 @@ header{
                         }
                     }
 
+                    > span{
+                        display: none;
+                    }
+
                     &:hover{
                         background-color: $primary-darker;
                     }
@@ -91,6 +95,10 @@ header{
                             padding-left: $padding-base;
                             padding-right: $padding-base;
 
+                            &:first-of-type{
+                                display: none;
+                            }
+
                             > a{
                                 font-size: 1.25rem;
 
@@ -104,10 +112,18 @@ header{
                                 @include d-flex(row, normal, normal);
                             }
 
+                            > span{
+                                display: none;
+                            }
+
                             > ul{
                                 > li{
                                     padding-top: $padding-half;
                                     padding-bottom: $padding-half;
+
+                                    &:first-of-type{
+                                        display: none;
+                                    }
 
                                     >a{
                                         color: #fff;
@@ -209,6 +225,8 @@ header{
         height: 70px;
 
         .container{
+            max-width: 100%;
+
             .nav-brand{
                 a{
                     svg{
@@ -230,7 +248,7 @@ header{
                 left: 100%;
                 z-index: 1;
 
-                ul{
+                > ul{
                     width: 75%;
                     height: calc(100vh - 70px);
 
@@ -251,20 +269,123 @@ header{
                         @include transition(300ms);
                     }
 
-                    li{
-                        >ul{
+                    > li{
+                        position: relative;
+
+                        > a{
+                            width: 100px;
+
+                            margin: 0 auto;
+
+                            color: $primary-darkest;
+                        }
+
+                        > span{
+                            color: #fff;
+
+                            display: inline-block;
+
+                            position: absolute;
+                            top: 50%;
+                            right: 15px;
+
+                            @include translate(0, -50%);
+                        }
+
+                        > ul{
                             width: 75%;
                             height: calc(100vh - 70px);
-
-                            overflow-x: hidden;
-                            overflow-y: scroll;
 
                             position: fixed;
                             top: 70px;
                             left: 100%;
                             z-index: 2;
 
-                            background-color: $primary-lighter;
+                            display: block;
+
+                            @include transition(300ms);
+
+                            &.active{
+                                left: 25%;
+
+                                @include transition(300ms);
+                            }
+
+                            > li{
+                                position: relative;
+
+                                &:first-of-type{
+                                    display: block;
+
+                                    a{
+                                        font-size: 0.75rem;
+
+                                        i{
+                                            @include translate(0, 3px);
+
+                                            margin-right: $padding-half;
+                                        }
+                                    }
+                                }
+
+                                &:last-of-type{
+                                    > a{
+                                        border-bottom: none;
+                                    }
+                                }
+
+                                > span{
+                                    color: $primary-darkest;
+
+                                    display: inline-block;
+
+                                    position: absolute;
+                                    top: 50%;
+                                    right: 15px;
+
+                                    @include translate(0, -50%);
+                                }
+
+                                > ul{
+                                    width: 75%;
+                                    height: calc(100vh - 70px);
+
+                                    padding: $padding-base;
+
+                                    background-color: $primary-lighter;
+
+                                    position: fixed;
+                                    top: 70px;
+                                    left: 100%;
+                                    z-index: 3;
+
+                                    @include transition(300ms);
+
+                                    &.active{
+                                        left: 25%;
+
+                                        @include transition(300ms);
+                                    }
+
+                                    > li{
+                                        &:first-of-type{
+                                            display: block;
+
+                                            a{
+                                                font-size: 0.75rem;
+
+                                                i{
+                                                    margin-right: $padding-half;
+                                                }
+                                            }
+                                        }
+
+                                        > a{
+                                            color: $primary-darkest;
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -278,3 +399,31 @@ header{
 }
 
 //For Devices
+@media (max-width: 767.98px){
+    header{
+        height: 70px;
+
+        .container{
+            .nav-brand{
+                a{
+                    svg{
+                        height: 50px;
+                    }
+                }
+            }
+
+            .nav-main{
+                width: 75%;
+                height: calc(100vh - 70px);
+
+                top: 70px;
+
+
+            }
+
+            .nav-control{
+                @include d-flex(row, center, center);
+            }
+        }
+    }
+}

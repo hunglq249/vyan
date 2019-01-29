@@ -142,3 +142,18 @@
         }
     }
 }
+
+//For Devices
+@media (max-width: 767.98px){
+    .post-detail{
+        .container{
+            &.post-content{
+                .row{
+                    > .left{
+                        margin-bottom: $padding-double;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,10 +1,9 @@
 <?php
-
+defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * 
  */
-class About_model extends MY_Model
-{
+class About_model extends Multiple_model{
 	public $table = 'about';
 	function __construct(){
 		parent::__construct();

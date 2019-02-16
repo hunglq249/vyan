@@ -38,7 +38,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script src="<?php echo site_url('node_modules/') ?>jquery/dist/jquery.min.js"></script>
 
 	<!-- Popper js -->
-	<script src="<?php echo site_url('node_modules/') ?>popper.js/dist/popper.min.js"></script>
+	<script src="<?php echo site_url('node_modules/') ?>popper.js/dist/umd/popper.min.js"></script>
 
 	<!-- Bootstrap 4 js -->
 	<script src="<?php echo site_url('node_modules/') ?>bootstrap/dist/js/bootstrap.min.js"></script>
@@ -243,12 +243,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</a>
 				</li>
 
+				<!--
 				<li>
 					<a href="<?php echo base_url('') ?>">
 						<img src="<?php echo site_url('assets/img/') ?>icon/ico-story-01.svg" alt="Image Customers Story">
 						Customers Story
 					</a>
 				</li>
+				-->
 
 				<li>
 					<a href="<?php echo base_url('') ?>">

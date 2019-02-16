@@ -1,25 +1,28 @@
 <div id="homepage">
 	<div id="slideHomepage" class="carousel slide carousel-fade" data-ride="carousel">
 		<ol class="carousel-indicators">
-            <?php for($i = 0; $i < 4; $i++) { ?>
-			<li data-target="#slideHomepage" data-slide-to="<?php echo $i ?>" class="<?php echo ($i == 0)? 'active' : '' ?>"></li>
+            <?php for ($i = 0; $i < 4; $i++) { ?>
+				<li data-target="#slideHomepage" data-slide-to="<?php echo $i ?>"
+					class="<?php echo ($i == 0) ? 'active' : '' ?>"></li>
             <?php } ?>
 		</ol>
 		<div class="carousel-inner">
 			<!-- Import Slider database Here -->
-			<?php for($i = 0; $i < 4; $i++) { ?>
-				<div class="carousel-item <?php echo ($i == 0)? 'active' : '' ?>">
+            <?php for ($i = 0; $i < 4; $i++) { ?>
+				<div class="carousel-item <?php echo ($i == 0) ? 'active' : '' ?>">
 					<div class="mask">
 						<!-- Test Slider -->
-						<?php if ($i%2==0) { ?>
-							<img src="https://images.unsplash.com/photo-1548101867-b873a20f90a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1525&q=80" alt="Image Slide <?php echo $i+1 ?>">
-						<?php } else { ?>
-							<img src="https://images.unsplash.com/photo-1548264382-09fe66eddf37?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80" alt="Image Slide <?php echo $i+1 ?>">
-						<?php } ?>
+                        <?php if ($i % 2 == 0) { ?>
+							<img src="https://images.unsplash.com/photo-1548101867-b873a20f90a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1525&q=80"
+								 alt="Image Slide <?php echo $i + 1 ?>">
+                        <?php } else { ?>
+							<img src="https://images.unsplash.com/photo-1548264382-09fe66eddf37?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
+								 alt="Image Slide <?php echo $i + 1 ?>">
+                        <?php } ?>
 					</div>
 
 					<div class="carousel-caption">
-                        <?php if ($i%2==0) { ?>
+                        <?php if ($i % 2 == 0) { ?>
 							<h6 class="subtitle-md">
 								Post Title
 							</h6>
@@ -38,7 +41,7 @@
 						</a>
 					</div>
 				</div>
-			<?php } ?>
+            <?php } ?>
 		</div>
 		<a class="carousel-control-prev" href="#slideHomepage" role="button" data-slide="prev">
 			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -59,7 +62,10 @@
 					</h5>
 
 					<p class="wow fadeInUp">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin condimentum non eros ac luctus. Nulla aliquam lobortis porttitor. Aenean non lobortis nulla. Donec at ligula ut justo pharetra elementum vitae a libero. Proin mattis, ligula quis aliquet posuere, tellus nibh mollis urna, quis dignissim quam diam eget purus.
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin condimentum non eros ac luctus.
+						Nulla aliquam lobortis porttitor. Aenean non lobortis nulla. Donec at ligula ut justo pharetra
+						elementum vitae a libero. Proin mattis, ligula quis aliquet posuere, tellus nibh mollis urna,
+						quis dignissim quam diam eget purus.
 					</p>
 				</div>
 			</div>
@@ -67,25 +73,28 @@
 			<div class="right col-xs-12 col-md-6">
 				<div id="slideAbout" class="carousel slide" data-ride="carousel">
 					<ol class="carousel-indicators">
-                        <?php for($i = 0; $i < 4; $i++) { ?>
-							<li data-target="#slideAbout" data-slide-to="<?php echo $i ?>" class="<?php echo ($i == 0)? 'active' : '' ?>"></li>
+                        <?php for ($i = 0; $i < 4; $i++) { ?>
+							<li data-target="#slideAbout" data-slide-to="<?php echo $i ?>"
+								class="<?php echo ($i == 0) ? 'active' : '' ?>"></li>
                         <?php } ?>
 					</ol>
 					<div class="carousel-inner">
 						<!-- Import Slider database Here -->
-                        <?php for($i = 0; $i < 4; $i++) { ?>
-							<div class="carousel-item <?php echo ($i == 0)? 'active' : '' ?>">
+                        <?php for ($i = 0; $i < 4; $i++) { ?>
+							<div class="carousel-item <?php echo ($i == 0) ? 'active' : '' ?>">
 								<div class="mask">
 									<!-- Test Slider -->
-                                    <?php if ($i%2==0) { ?>
-										<img src="https://images.unsplash.com/photo-1548101867-b873a20f90a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1525&q=80" alt="Image Slide <?php echo $i+1 ?>">
+                                    <?php if ($i % 2 == 0) { ?>
+										<img src="https://images.unsplash.com/photo-1548101867-b873a20f90a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1525&q=80"
+											 alt="Image Slide <?php echo $i + 1 ?>">
                                     <?php } else { ?>
-										<img src="https://images.unsplash.com/photo-1548264382-09fe66eddf37?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80" alt="Image Slide <?php echo $i+1 ?>">
+										<img src="https://images.unsplash.com/photo-1548264382-09fe66eddf37?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
+											 alt="Image Slide <?php echo $i + 1 ?>">
                                     <?php } ?>
 								</div>
 
 								<div class="carousel-caption">
-                                    <?php if ($i%2==0) { ?>
+                                    <?php if ($i % 2 == 0) { ?>
 										<h6>
 											Dr. Someone 1
 										</h6>
@@ -124,22 +133,26 @@
 				</h5>
 
 				<p class="wow fadeInUp">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin condimentum non eros ac luctus. Nulla aliquam lobortis porttitor. Aenean non lobortis nulla. Donec at ligula ut justo pharetra elementum vitae a libero. Proin mattis, ligula quis aliquet posuere, tellus nibh mollis urna, quis dignissim quam diam eget purus.
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin condimentum non eros ac luctus. Nulla
+					aliquam lobortis porttitor. Aenean non lobortis nulla. Donec at ligula ut justo pharetra elementum
+					vitae a libero. Proin mattis, ligula quis aliquet posuere, tellus nibh mollis urna, quis dignissim
+					quam diam eget purus.
 				</p>
 			</div>
 
 			<div class="owl-carousel services">
-				<?php for ($i = 0; $i < 4; $i++) { ?>
+                <?php for ($i = 0; $i < 4; $i++) { ?>
 					<div class="item">
 						<div class="mask mask-circle">
-							<img src="https://images.unsplash.com/photo-1548365278-2ee092b7bb18?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80" alt="Image of Service <?php echo $i+1 ?>">
+							<img src="https://images.unsplash.com/photo-1548365278-2ee092b7bb18?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"
+								 alt="Image of Service <?php echo $i + 1 ?>">
 						</div>
 
 						<p>
-							Service <?php echo $i+1 ?>
+							Service <?php echo $i + 1 ?>
 						</p>
 					</div>
-				<?php } ?>
+                <?php } ?>
 			</div>
 
 			<div class="section-footer">
@@ -169,7 +182,8 @@
 
 						<div class="desc col-xs-12 col-md-6">
 							<p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris varius lacus in mollis vestibulum.
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris varius lacus in mollis
+								vestibulum.
 							</p>
 						</div>
 					</div>
@@ -178,7 +192,7 @@
 			<div class="right col-xs-12 col-md-6">
 				<div class="row no-gutters">
 					<!-- Must be 4 items -->
-					<?php for ($i = 0; $i < 4; $i++) { ?>
+                    <?php for ($i = 0; $i < 4; $i++) { ?>
 						<div class="item col-xs-12 col-md-6">
 							<a href="<?php echo base_url('') ?>">
 								<div class="content">
@@ -186,8 +200,9 @@
 									<svg class="hospital"
 										 version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
 										 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-										 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-								<path class="line" d="M326.791,497.041h-141.58v-86.485c0-17.732,14.376-32.108,32.108-32.108h77.363
+										 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
+										 xml:space="preserve">
+										<path class="line" d="M326.791,497.041h-141.58v-86.485c0-17.732,14.376-32.108,32.108-32.108h77.363
 		c17.732,0,32.108,14.376,32.108,32.108v86.485L326.791,497.041L326.791,497.041z"/>
 										<path class="line" d="M326.79,512H185.21c-8.262,0-14.959-6.697-14.959-14.959v-86.485
 			c0-25.954,21.114-47.067,47.067-47.067h77.364c25.952,0,47.067,21.115,47.067,47.067v86.485
@@ -228,7 +243,7 @@
 								</div>
 							</a>
 						</div>
-					<?php } ?>
+                    <?php } ?>
 				</div>
 			</div>
 		</div>
@@ -242,24 +257,14 @@
 				</h5>
 			</div>
 
-			<div class="owl-carousel posts">
+			<div class="slicker">
                 <?php for ($i = 0; $i < 6; $i++) { ?>
 					<div class="item">
-						<h6 class="subtitle-sm">
-							Category Title
-						</h6>
-						<h5 class="text-wrapper">
-							<a href="<?php echo base_url('') ?>">
-								Post <?php echo $i+1 ?> Title here, limits to 3 lines.
-							</a>
-						</h5>
 						<div class="mask">
-							<a href="<?php echo base_url('') ?>">
-								<img src="https://images.unsplash.com/photo-1548365278-2ee092b7bb18?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80" alt="Image of Service <?php echo $i+1 ?>">
-							</a>
+							<img src="https://images.unsplash.com/photo-1548365278-2ee092b7bb18?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80" alt="Image of Service <?php echo $i + 1 ?>">
 						</div>
 					</div>
-                <?php } ?>
+				<?php } ?>
 			</div>
 
 			<div class="section-footer">
@@ -271,7 +276,8 @@
 	</div>
 
 	<div class="section testimonial">
-		<div class="background-image" style="background-image: url('https://images.unsplash.com/photo-1548358520-2ef49c127e51?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80')"></div>
+		<div class="background-image"
+			 style="background-image: url('https://images.unsplash.com/photo-1548358520-2ef49c127e51?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80')"></div>
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="section-intro">
@@ -284,14 +290,18 @@
                 <?php for ($i = 0; $i < 6; $i++) { ?>
 					<div class="item">
 						<div class="mask mask-circle">
-							<img src="https://images.unsplash.com/photo-1548365278-2ee092b7bb18?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80" alt="Image of Service <?php echo $i+1 ?>">
+							<img src="https://images.unsplash.com/photo-1548365278-2ee092b7bb18?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"
+								 alt="Image of Service <?php echo $i + 1 ?>">
 						</div>
 
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin condimentum non eros ac luctus. Nulla aliquam lobortis porttitor. Aenean non lobortis nulla. Donec at ligula ut justo pharetra elementum vitae a libero. Proin mattis, ligula quis aliquet posuere, tellus nibh mollis urna, quis dignissim quam diam eget purus.
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin condimentum non eros ac
+							luctus. Nulla aliquam lobortis porttitor. Aenean non lobortis nulla. Donec at ligula ut
+							justo pharetra elementum vitae a libero. Proin mattis, ligula quis aliquet posuere, tellus
+							nibh mollis urna, quis dignissim quam diam eget purus.
 						</p>
 						<h6 class="subtitle-sm">
-							Client <?php echo $i+1 ?>
+							Client <?php echo $i + 1 ?>
 						</h6>
 					</div>
                 <?php } ?>
@@ -303,6 +313,10 @@
 <!-- animate.css -->
 <link rel="stylesheet" href="<?php echo site_url('node_modules/') ?>animate.css/animate.min.css">
 
+<!-- slick css -->
+<link rel="stylesheet" href="<?php echo site_url('node_modules/') ?>slick-carousel/slick/slick.css">
+<link rel="stylesheet" href="<?php echo site_url('node_modules/') ?>slick-carousel/slick/slick-theme.css">
+
 <!-- owl carousel css -->
 <link rel="stylesheet" href="<?php echo site_url('assets/lib/') ?>OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css">
 <link rel="stylesheet" href="<?php echo site_url('assets/lib/') ?>OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css">
@@ -313,40 +327,26 @@
 <!-- owl carousel js -->
 <script src="<?php echo site_url('assets/lib/') ?>OwlCarousel2-2.3.4/dist/owl.carousel.min.js"></script>
 
+<!-- slick js -->
+<script src="<?php echo site_url('node_modules/') ?>slick-carousel/slick/slick.js"></script>
+
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $(".owl-carousel.services").owlCarousel({
-			loop: true,
+            loop: true,
             center: true,
-            margin:15,
-			dots: true,
-            responsive:{
-                0:{
+            margin: 15,
+            dots: true,
+            responsive: {
+                0: {
                     items: 1,
-					nav: true
+                    nav: true
                 },
-				768:{
+                768: {
                     items: 3
-				},
-				1200:{
+                },
+                1200: {
                     items: 6
-				}
-
-            }
-		});
-
-        $(".owl-carousel.posts").owlCarousel({
-            margin:15,
-            mouseDrag: false,
-            responsive:{
-                0:{
-                    items: 1
-                },
-                768:{
-                    items: 2
-                },
-                1200:{
-                    items: 4
                 }
 
             }
@@ -354,13 +354,39 @@
 
         $(".owl-carousel.comments").owlCarousel({
             loop: true,
-			center: true,
+            center: true,
             mouseDrag: false,
-			items: 1,
-			nav: true,
-			dots: false
+            items: 1,
+            nav: true,
+            dots: false
         });
 
         new WOW().init();
+
+        $('.slicker').slick({
+            centerMode: true,
+            centerPadding: '60px',
+            slidesToShow: 3,
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 3
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 1
+                    }
+                }
+            ]
+        });
     });
 </script>

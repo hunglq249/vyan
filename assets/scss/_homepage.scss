@@ -342,6 +342,30 @@
         }
 
         &.story{
+            .container{
+                .slicker{
+                    .item{
+                        .mask{
+                            padding: $padding-base;
+                        }
+                    }
+
+                    &.slick-slider{
+                        .slick-slide{
+                            &.slick-active{
+                                &.slick-current{
+                                    .item{
+                                        .mask{
+                                            padding: 0;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
             .owl-carousel{
                 .item{
                     h6{

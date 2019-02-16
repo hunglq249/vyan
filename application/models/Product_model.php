@@ -3,7 +3,7 @@
 /**
 * 
 */
-class Product_model extends MY_Model{
+class Product_model extends Multiple_model{
 	
 	public $table = 'product';
 	public function get_by_parent_id($parent_id, $order = 'desc',$lang = ''){

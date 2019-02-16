@@ -3,7 +3,7 @@
 /**
 * 
 */
-class Floor_model extends MY_Model{
+class Floor_model extends Multiple_model{
 	
 	public $table = 'floor';
     public function count_total_rows($keyword = ''){

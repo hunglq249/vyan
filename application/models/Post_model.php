@@ -3,7 +3,7 @@
 /**
 * 
 */
-class Post_model extends MY_Model{
+class Post_model extends Multiple_model{
 	
 	public $table = 'post';
     public function get_by_post_category_id($post_category_id = array(), $select = array(), $lang = '', $order = 'desc') {

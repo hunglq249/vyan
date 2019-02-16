@@ -3,7 +3,7 @@
 /**
 * 
 */
-class Client_gmail_model extends MY_Model{
+class Client_gmail_model extends Multiple_model{
 	
 	public $table = 'client_gmail';
     public function count_total_rows($keyword = ''){

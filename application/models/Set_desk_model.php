@@ -3,7 +3,7 @@
 /**
 * 
 */
-class Set_desk_model extends MY_Model{
+class Set_desk_model extends Multiple_model{
 	
 	public $table = 'set_desk';
     public function count_total_rows($keyword = '',$status,$date=array()){

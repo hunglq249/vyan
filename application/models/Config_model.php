@@ -3,7 +3,7 @@
 /**
 * 
 */
-class Config_model extends MY_Model{
+class Config_model extends Multiple_model{
 	
 	public $table = 'config';
     public function find_name($name){

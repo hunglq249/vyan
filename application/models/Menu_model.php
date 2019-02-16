@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Menu_model extends MY_Model {
+class Menu_model extends Multiple_model {
 
 	public $table = 'menu';
 	

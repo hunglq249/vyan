@@ -3,7 +3,7 @@
 /**
 * 
 */
-class Post_category_model extends MY_Model{
+class Post_category_model extends Multiple_model{
 	
 	public $table = 'post_category';
 

@@ -42,6 +42,10 @@ $(document).ready(function(){
         external_plugins: {"filemanager": HOSTNAME + "filemanager/plugin.min.js"}
     });
 
+    $('#title').change(function(){
+        $('#slug').val(to_slug($('#title').val()));
+    });
+
     $('#title_vi').change(function(){
         $('#slug_shared').val(to_slug($('#title_vi').val()));
     });

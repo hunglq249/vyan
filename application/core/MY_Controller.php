@@ -75,88 +75,99 @@ class Admin_Controller extends MY_Controller {
         );
     }
 
+    /**
+     * [render description]
+     * @param  [type] $the_view [description]
+     * @param  string $template [description]
+     * @return [type]           [description]
+     */
     protected function render($the_view = NULL, $template = 'admin_master') {
         parent::render($the_view, $template);
     }
 
-    protected function upload_image($image_input_id, $image_name, $upload_path, $upload_thumb_path = '', $thumbs_with = 500, $thumbs_height = 500) {
+    /**
+     * [upload_image description]
+     * @param  [type] $image_input_id [description]
+     * @param  string $upload_path    [description]
+     * @param  string $image_name     [description]
+     * @return [type]                 [description]
+     */
+    protected function upload_image($image_input_id ,$upload_path = '', $image_name = '' ) {
         $image = '';
         if (!empty($image_name)) {
-            $config['upload_path'] = $upload_path;
-            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config = $this->config_file($upload_path);
             $config['file_name'] = $image_name;
-            $config['max_size'] = '1200';
-            $config['encrypt_name'] = TRUE;
-
             $this->load->library('upload', $config);
             $this->upload->initialize($config);
 
             if ($this->upload->do_upload($image_input_id)) {
                 $upload_data = $this->upload->data();
                 $image = $upload_data['file_name'];
-
-                $config_thumb['source_image'] = $upload_path . '/' . $image;
-                $config_thumb['create_thumb'] = TRUE;
-                $config_thumb['maintain_ratio'] = TRUE;
-                $config_thumb['new_image'] = $upload_thumb_path;
-                $config_thumb['width'] = $thumbs_with;
-                $config_thumb['height'] = $thumbs_height;
-
-                $this->load->library('image_lib', $config_thumb);
-
-                $this->image_lib->resize();
             }
         }
+
         return $image;
     }
 
-    protected function upload_file($upload_path = '', $file_name = '', $upload_thumb_path = '', $thumbs_with = 500, $thumbs_height = 500) {
+    /**
+     * [upload_multiple_image description]
+     * @param  string $upload_path [description]
+     * @param  string $file_name   [description]
+     * @return [type]              [description]
+     */
+    protected function upload_multiple_image($upload_path = '', $file_name = '') {
         $config = $this->config_file($upload_path);
+
         $image = '';
         $file = $_FILES[$file_name];
         $count = count($file['name']);
         $image_list = array();
         $config_thumb = array();
+
         for ($i = 0; $i < $count; $i++) {
+
             $_FILES['userfile']['name'] = $file['name'][$i];
             $_FILES['userfile']['type'] = $file['type'][$i];
             $_FILES['userfile']['tmp_name'] = $file['tmp_name'][$i];
             $_FILES['userfile']['error'] = $file['error'][$i];
             $_FILES['userfile']['size'] = $file['size'][$i];
+
             $this->load->library('upload', $config);
+
             if ($this->upload->do_upload()) {
                 $data = $this->upload->data();
                 $image_list[] = $data['file_name'];
                 $image = $data['file_name'];
-                $this->load->library('image_lib');
-                $config['image_library'] = 'gd2';
-                $config_thumb['source_image'] = $upload_path . '/' . $image;
-                $config_thumb['create_thumb'] = TRUE;
-                $config_thumb['maintain_ratio'] = TRUE;
-                $config_thumb['new_image'] = $upload_thumb_path;
-                $config_thumb['width'] = $thumbs_with;
-                $config_thumb['height'] = $thumbs_height;
-                $this->image_lib->initialize($config_thumb);
-                $this->image_lib->resize();
-                $this->image_lib->clear();
-                $this->image_lib->resize($image);
+                
             }
         }
         return $image_list;
     }
 
+    /**
+     * [config_file description]
+     * @param  string $upload_path [description]
+     * @return [type]              [description]
+     */
     function config_file($upload_path = '') {
         $config = array();
         $config['upload_path'] = $upload_path;
         $config['allowed_types'] = 'jpg|jpeg|png|gif';
         $config['max_size'] = '1200';
         $config['encrypt_name'] = TRUE;
-//        $config['max_width']     = '1028';
-//        $config['max_height']    = '1028';
-
+       // $config['max_width']     = '1028';
+       // $config['max_height']    = '1028';
         return $config;
     }
 
+    /**
+     * [return_api description]
+     * @param  [type]  $status    [description]
+     * @param  string  $message   [description]
+     * @param  [type]  $data      [description]
+     * @param  boolean $isExisted [description]
+     * @return [type]             [description]
+     */
     function return_api($status, $message='', $data = null,$isExisted= true){
         return $this->output
             ->set_content_type('application/json')
@@ -170,10 +181,6 @@ class Public_Controller extends MY_Controller {
         parent::__construct();
         $this->load->helper('form');
         $this->load->library('session');
-        $this->load->model('about_model');
-        $this->load->model('product_category_model');
-        $this->load->model('post_category_model');
-        $this->load->model('contact_model');
         date_default_timezone_set('Asia/Ho_Chi_Minh');
 
         $this->langAbbreviation = $this->session->userdata('langAbbreviation') ? $this->session->userdata('langAbbreviation') : 'vi';
@@ -194,28 +201,9 @@ class Public_Controller extends MY_Controller {
             $this->session->set_userdata("langAbbreviation",'en');
             $this->lang->load('english_lang', 'english');
         }
-        $this->data['about_menu'] = $this->fetch_about();
-        $this->data['category_menu'] = $this->fetch_menu();
-        $this->data['blog_menu'] = $this->fetch_blog();
-        $this->data['contact'] = $this->fetch_contact();
     }
 
     protected function render($the_view = NULL, $template = 'master') {
         parent::render($the_view, $template);
-    }
-
-    private function fetch_about(){
-        return $this->about_model->get_all_with_pagination_search('desc', $this->session->userdata('langAbbreviation'), 3);
-    }
-
-    private function fetch_menu(){
-        return $this->product_category_model->get_all_with_pagination_search('asc', $this->session->userdata('langAbbreviation'), 5);
-    }
-    private function fetch_blog(){
-        return $this->post_category_model->get_all_with_pagination_search('desc', $this->session->userdata('langAbbreviation'), 5);
-    }
-
-    private function fetch_contact(){
-        return $this->contact_model->find(1);
     }
 }

@@ -47,6 +47,18 @@ class MY_Model extends CI_Model {
         }
         return false;
     }
+
+    /**
+     * [update description]
+     * @param  [type] $id   [description]
+     * @param  [type] $data [description]
+     * @return [type]       [description]
+     */
+    public function update($id, $data){
+         $this->db->where('id', $id);
+
+        return $this->db->update($this->table, $data);
+    }
 }
 
 
@@ -132,7 +144,7 @@ class Multiple_model extends MY_Model {
         $this->db->from($this->table);
         $this->db->join($this->table_lang, $this->table_lang .'.'. $this->table .'_id = '. $this->table .'.id');
         $this->db->where($this->table .'.is_deleted', 0);
-        $this->db->where($this->table .'.is_activated', 0);
+        $this->db->where($this->table .'.is_active', 0);
         if($lang != ''){
             $this->db->where($this->table_lang .'.language', $lang);
         }
@@ -158,7 +170,7 @@ class Multiple_model extends MY_Model {
         $this->db->join($this->table .'_category_lang', ''. $this->table .'_category_lang.'. $this->table .'_category_id = '. $this->table .'.'. $this->table .'_category_id');
         $this->db->like($this->table_lang .'.title', $keywords);
         $this->db->where($this->table .'.is_deleted', 0);
-        $this->db->where($this->table .'.is_activated', 0);
+        $this->db->where($this->table .'.is_active', 0);
         $this->db->where($this->table .'.isspecial', 1);
         if($lang != ''){
             $this->db->where($this->table_lang .'.language', $lang);
@@ -309,7 +321,7 @@ class Multiple_model extends MY_Model {
      * @return [type] [description]
      */
     public function count_active(){
-        $query = $this->db->from($this->table)->where('is_activated', 1)->get();
+        $query = $this->db->from($this->table)->where('is_active', 1)->get();
         return $query->num_rows();
     }
 
@@ -421,7 +433,7 @@ class Single_model extends MY_Model {
         $this->db->select('*');
         $this->db->from($this->table);
         $this->db->where('is_deleted', 0);
-        $this->db->where('is_activated', 0);
+        $this->db->where('is_active', 0);
         $this->db->order_by('id', $order);
 
         return $result = $this->db->get()->result_array();
@@ -436,11 +448,7 @@ class Single_model extends MY_Model {
         $this->db->select('*');
         $this->db->from($this->table);
         $this->db->like('title', $keyword);
-        if($lang != ''){
-            $this->db->where($this->table_lang .'.language', $lang);
-        }
-        $this->db->group_by($this->table_lang .'.'.$this->table.'_id');
-        $this->db->where($this->table .'.is_deleted', 0);
+        $this->db->where('is_deleted', 0);
 
         return $result = $this->db->get()->num_rows();
     }
@@ -457,26 +465,29 @@ class Single_model extends MY_Model {
     }
 
     /**
-     * [update description]
-     * @param  [type] $id   [description]
-     * @param  [type] $data [description]
-     * @return [type]       [description]
-     */
-    public function update($id, $data){
-         $this->db->where('id', $id);
-
-        return $this->db->update($this->table, $data);
-    }
-
-    /**
      * [count_active description]
      * @return [type] [description]
      */
     public function count_active(){
         $this->db->from($this->table);
-        $this->db->where('is_activated', 1);
+        $this->db->where('is_active', 1);
         $this->db->get();
         return $this->db->num_rows();
+    }
+
+
+    public function get_by_parent_id_when_active($parent_id, $order = 'desc'){
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where('is_deleted', 0);
+        $this->db->where('is_active', 0);
+        if(is_numeric($parent_id)){
+            $this->db->where('parent_id', $parent_id);
+        }
+        
+        $this->db->order_by("id", $order);
+
+        return $result = $this->db->get()->result_array();
     }
 
     /*================================

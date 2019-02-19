@@ -120,3 +120,65 @@ $('#parent_id').change(function(){
         }
     });
 });
+
+$('.btn-deactive').click(function(){
+    id = $(this).data('id');
+    if (confirm('Chắc chắn hủy kích hoạt?')) {
+        $.ajax({
+            method: "get",
+            url: HOSTNAMEADMIN + '/service_category/deactive',
+            data: {
+                id : id
+            },
+            success: function(response){
+                location.reload();
+            },
+            error: function(jqXHR, exception){
+                console.log(errorHandle(jqXHR, exception));
+            }
+        });
+    }
+});
+
+$('.btn-active').click(function(){
+    id = $(this).data('id');
+    if (confirm('Chắc chắn hủy kích hoạt?')) {
+        $.ajax({
+            method: "get",
+            url: HOSTNAMEADMIN + '/service_category/active',
+            data: {
+                id : id
+            },
+            success: function(response){
+                location.reload();
+            },
+            error: function(jqXHR, exception){
+                console.log(errorHandle(jqXHR, exception));
+            }
+        });
+    }
+});
+
+$('.btn-remove').click(function(){
+    id = $(this).data('id');
+    if (confirm('Chắc chắn xóa?')) {
+        $.ajax({
+            method: "get",
+            url: HOSTNAMEADMIN + '/service_category/remove',
+            data: {
+                id : id
+            },
+            success: function(response){
+                if (response.result == true) {
+                    alert('Xóa thành công!');
+                }else{
+                    alert('Xóa thất bại do danh mục này có chứa các danh mục con!');
+                }
+                location.reload();
+            },
+            error: function(jqXHR, exception){
+                console.log(errorHandle(jqXHR, exception));
+            }
+        });
+    }
+});

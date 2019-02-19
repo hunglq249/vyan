@@ -104,57 +104,129 @@ class Service_category extends Admin_Controller{
         $this->form_validation->set_rules('title', 'Tiêu đề', 'required');
 
         if ($this->form_validation->run() == FALSE) {
-                $this->render('admin/service_category/edit');
-            }else{
-                if ($this->input->post()) {
-                    if(!empty($_FILES['image']['name'])){
-                        $this->check_img($_FILES['image']['name'], $_FILES['image']['size']);
-                    }
+            $this->render('admin/service_category/edit');
+        }else{
+            if ($this->input->post()) {
+                if(!empty($_FILES['image']['name'])){
+                    $this->check_img($_FILES['image']['name'], $_FILES['image']['size']);
+                }
 
-                    $slug = $this->input->post('slug');
-                    $unique_slug = $detail['slug'];
-                    if ($slug != $unique_slug) {
-                        $unique_slug = $this->service_category_model->build_unique_slug($slug);
-                        if(file_exists('assets/upload/service_category/' . $detail['slug'])) {
-                            chmod('assets/upload/service_category/' . $detail['slug'], 0777);
-                            rename('assets/upload/service_category/' . $detail['slug'], 'assets/upload/service_category/' . $unique_slug);
-                        }
-                    }
-                    
-                    if ( !empty($_FILES['image']['name']) ) {
-                        chmod('assets/upload/service_category/' . $unique_slug, 0777);
-                        $images = $this->upload_image('image', 'assets/upload/service_category/' . $unique_slug, $_FILES['image']['name']);
-                    }
-
-                    $data = array(
-                        'slug' => $unique_slug,
-	                    'title' => $this->input->post('title'),
-	                    'parent_id' => 0,
-                        'level' => 0,
-	                    'meta_keywords' => $this->input->post('meta_keywords'),
-	                    'meta_description' => $this->input->post('meta_description'),
-	                    'description' => $this->input->post('description'),
-                    );
-                    if ( !empty($_FILES['image']['name']) ) {
-                        $data['image'] = $images;
-                    }
-                    $update = $this->service_category_model->update($id,array_merge($data, $this->author_data));
-                    if ($update) {
-                        chmod('assets/upload/service_category/' . $unique_slug, 0755);
-                        $this->session->set_flashdata('message_success', MESSAGE_EDIT_SUCCESS);
-                        if(isset($images) && $images != $detail['image'] && file_exists('assets/upload/service_category/'.$unique_slug.'/'.$detail['image'])){
-                            unlink('assets/upload/service_category/'.$unique_slug.'/'.$detail['image']);
-                        }
-                        redirect('admin/service_category/index', 'refresh');
-                    }else{
-                        $this->session->set_flashdata('message_error', MESSAGE_EDIT_ERROR);
-                        redirect('admin/service_category/edit/' . $id);
+                $slug = $this->input->post('slug');
+                $unique_slug = $detail['slug'];
+                if ($slug != $unique_slug) {
+                    $unique_slug = $this->service_category_model->build_unique_slug($slug);
+                    if(file_exists('assets/upload/service_category/' . $detail['slug'])) {
+                        chmod('assets/upload/service_category/' . $detail['slug'], 0777);
+                        rename('assets/upload/service_category/' . $detail['slug'], 'assets/upload/service_category/' . $unique_slug);
                     }
                 }
-            }
+                
+                if ( !empty($_FILES['image']['name']) ) {
+                    chmod('assets/upload/service_category/' . $unique_slug, 0777);
+                    $images = $this->upload_image('image', 'assets/upload/service_category/' . $unique_slug, $_FILES['image']['name']);
+                }
 
-		
+                $data = array(
+                    'slug' => $unique_slug,
+                    'title' => $this->input->post('title'),
+                    'parent_id' => 0,
+                    'level' => 0,
+                    'meta_keywords' => $this->input->post('meta_keywords'),
+                    'meta_description' => $this->input->post('meta_description'),
+                    'description' => $this->input->post('description'),
+                );
+                if ( !empty($_FILES['image']['name']) ) {
+                    $data['image'] = $images;
+                }
+                $update = $this->service_category_model->update($id,array_merge($data, $this->author_data));
+                if ($update) {
+                    chmod('assets/upload/service_category/' . $unique_slug, 0755);
+                    $this->session->set_flashdata('message_success', MESSAGE_EDIT_SUCCESS);
+                    if(isset($images) && $images != $detail['image'] && file_exists('assets/upload/service_category/'.$unique_slug.'/'.$detail['image'])){
+                        unlink('assets/upload/service_category/'.$unique_slug.'/'.$detail['image']);
+                    }
+                    redirect('admin/service_category/index', 'refresh');
+                }else{
+                    $this->session->set_flashdata('message_error', MESSAGE_EDIT_ERROR);
+                    redirect('admin/service_category/edit/' . $id);
+                }
+            }
+        }
 	}
+
+    public function deactive(){
+        $id = $this->input->get('id');
+        $detail = $this->service_category_model->get_by_id($id);
+        switch ($detail['level']) {
+            case 1:
+                $category = $this->service_category_model->get_by_node_path($id, array(2, 3));
+                break;
+
+            case 2:
+                $category = $this->service_category_model->get_by_node_path($id, array(3));
+                break;
+            case 3:
+                $category = $this->service_category_model->get_by_node_path($id);
+                break;
+            default:
+                
+                break;
+        }
+        $ids = array($id);
+        $data = array(
+            'is_active' => 0
+        );
+        foreach ($category as $key => $value) {
+            $ids[] = $value['id'];
+        }
+        foreach ($ids as $key => $value) {
+            $this->service_category_model->update($value, $data);
+        }
+    }
+
+    public function active(){
+        $id = $this->input->get('id');
+        $data = array(
+            'is_active' => 1
+        );
+        $this->service_category_model->update($id, $data);
+
+    }
+
+    public function remove(){
+        $id = $this->input->get('id');
+        $detail = $this->service_category_model->get_by_id($id);
+        $data = array(
+            'is_deleted' => 1
+        );
+        switch ( $detail['level'] ) {
+            case 1:
+                $total = $this->service_category_model->count_by_node_path($id, array(2, 3));
+                break;
+            case 2:
+                $total = $this->service_category_model->count_by_node_path($id, array(3));
+                break;
+            default:
+                break;
+        }
+        if ( $total > 0 ) {
+            return $this->output
+                ->set_content_type('application/json')
+                ->set_status_header(HTTP_SUCCESS)
+                ->set_output(json_encode(array('status' => HTTP_SUCCESS, 'result' => false)));
+        }else{
+            $update = $this->service_category_model->update($id, $data);
+            if ($update) {
+                return $this->output
+                    ->set_content_type('application/json')
+                    ->set_status_header(HTTP_SUCCESS)
+                    ->set_output(json_encode(array('status' => HTTP_SUCCESS, 'result' => true)));
+            }
+            
+        }
+        
+
+    }
 
 	protected function check_img($filename, $filesize){
         $reponse = array(

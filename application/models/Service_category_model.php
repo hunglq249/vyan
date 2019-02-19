@@ -11,7 +11,7 @@ class Service_category_model extends Single_model{
 	 * [$table description]
 	 * @var string
 	 */
-	public $table = 'Service_category';
+	public $table = 'service_category';
 
 	function __construct(){
 		parent::__construct();

@@ -521,6 +521,65 @@ class Single_model extends MY_Model {
     }
     
     /*=====  End of Muntiple Ids ======*/
+
+    /*=============================
+    =            Level            =
+    =============================*/
+    
+    /**
+     * [get_by_level description]
+     * @param  [type] $level [description]
+     * @return [type]        [description]
+     */
+    public function get_by_level($level){
+        $this->db->select('*');
+        
+        $this->db->from($this->table);
+        $this->db->where('is_deleted', 0);
+        $this->db->where('level', $level);
+        
+        return $this->db->get()->result_array();
+    }
+
+    /**
+     * [get_all_with_pagination_search_by_level description]
+     * @param  [type] $level    [description]
+     * @param  string $order    [description]
+     * @param  [type] $limit    [description]
+     * @param  [type] $start    [description]
+     * @param  string $keywords [description]
+     * @return [type]           [description]
+     */
+    public function get_all_with_pagination_search_by_level($level, $order = 'desc', $limit = NULL, $start = NULL, $keywords = '') {
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->like('title', $keywords);
+        $this->db->where('is_deleted', 0);
+        $this->db->where('level', $level);
+        $this->db->limit($limit, $start);
+        $this->db->order_by('id', $order);
+
+        return $result = $this->db->get()->result_array();
+    }
+
+    /**
+     * [count_search_by_level description]
+     * @param  [type] $level   [description]
+     * @param  string $keyword [description]
+     * @return [type]          [description]
+     */
+    public function count_search_by_level($level, $keyword = ''){
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->like('title', $keyword);
+        $this->db->where('is_deleted', 0);
+        $this->db->where('level', $level);
+
+        return $result = $this->db->get()->num_rows();
+    }
+    
+    /*=====  End of Level  ======*/
+    
 }
 
 /*=====  End of Single Language  ======*/

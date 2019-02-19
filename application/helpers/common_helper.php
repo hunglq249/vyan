@@ -51,7 +51,7 @@ if (!function_exists('handle_common_author_data')) {
 //build array for dropdown form template
 if (!function_exists('handle_common_author_data')) {
     function build_array_for_dropdown($data = array(), $id = null){
-        $new_data = array(0 => 'Danh mục gốc');
+        $new_data = array(NULL => 'Chọn danh mục');
         foreach ($data as $key => $value) {
             $new_data[$value['id']] = $value['title'];
 

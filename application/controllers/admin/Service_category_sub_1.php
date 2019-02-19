@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * 
  */
-class Service_category extends Admin_Controller{
+class Service_category_sub_1 extends Admin_Controller{
 	
 	function __construct(){
 		parent::__construct();
@@ -15,15 +15,19 @@ class Service_category extends Admin_Controller{
 	}
 
 	public function index(){
+        $category = $this->service_category_model->get_by_level(0);
+        $category = build_array_for_dropdown($category);
+        $this->data['category'] = $category;
+
 		$keywords = '';
         if($this->input->get('search')){
             $keywords = $this->input->get('search');
         }
         $this->data['keywords'] = $keywords;
-        $total_rows  = $this->service_category_model->count_search_by_level(0, $keywords);
+        $total_rows  = $this->service_category_model->count_search_by_level(1, $keywords);
         $this->load->library('pagination');
         $config = array();
-        $base_url = base_url('admin/service_category/index');
+        $base_url = base_url('admin/service_category_sub_1/index');
         $per_page = 10;
         $uri_segment = 4;
         foreach ($this->pagination_config($base_url, $total_rows, $per_page, $uri_segment) as $key => $value) {
@@ -32,21 +36,27 @@ class Service_category extends Admin_Controller{
         $this->data['page'] = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
         $this->pagination->initialize($config);
         $this->data['page_links'] = $this->pagination->create_links();
-        $result = $this->service_category_model->get_all_with_pagination_search_by_level(0, 'desc', $per_page, $this->data['page'], $keywords);
+        $result = $this->service_category_model->get_all_with_pagination_search_by_level(1, 'desc', $per_page, $this->data['page'], $keywords);
         $this->data['result'] = $result;
 
-		$this->render('admin/service_category/index');
+		$this->render('admin/service_category_sub_1/index');
 	}
 
 	public function create(){
 		$this->load->helper('form');
         $this->load->library('form_validation');
 
+        $category = $this->service_category_model->get_by_level(0);
+        $category = build_array_for_dropdown($category);
+        unset($category[0]);
+        $this->data['category'] = $category;
+
         $this->form_validation->set_rules('title', 'Tiêu đề', 'required');
+        $this->form_validation->set_rules('parent_id', 'Danh mục', 'required');
         $this->form_validation->set_rules('image', 'Hình ảnh', 'callback_check_file');
 
         if ($this->form_validation->run() == FALSE) {
-        	$this->render('admin/service_category/create');
+        	$this->render('admin/service_category_sub_1/create');
         } else {
         	if ($this->input->post()) {
                 if(!empty($_FILES['image']['name'])){
@@ -54,35 +64,36 @@ class Service_category extends Admin_Controller{
                 }
                 $slug = $this->input->post('slug');
                 $unique_slug = $this->service_category_model->build_unique_slug($slug);
-                if(!file_exists('assets/upload/service_category/' . $unique_slug)){
-                    mkdir('assets/upload/service_category/' . $unique_slug, 0777);
+                if(!file_exists('assets/upload/service_category_sub_1/' . $unique_slug)){
+                    mkdir('assets/upload/service_category_sub_1/' . $unique_slug, 0777);
                 }
                 if ( !empty($_FILES['image']['name']) ) {
-                    chmod('assets/upload/service_category/' . $unique_slug, 0777);
-                    $images = $this->upload_image('image', 'assets/upload/service_category/' . $unique_slug, $_FILES['image']['name']);
+                    chmod('assets/upload/service_category_sub_1/' . $unique_slug, 0777);
+                    $images = $this->upload_image('image', 'assets/upload/service_category_sub_1/' . $unique_slug, $_FILES['image']['name']);
                 }
                 $data = array(
                     'image' => $images,
                     'slug' => $unique_slug,
                     'title' => $this->input->post('title'),
-                    'parent_id' => 0,
-                    'level' => 0,
+                    'parent_id' => $this->input->post('parent_id'),
+                    'level' => 1,
                     'meta_keywords' => $this->input->post('meta_keywords'),
                     'meta_description' => $this->input->post('meta_description'),
                     'description' => $this->input->post('description'),
                 );
                 $insert = $this->service_category_model->insert(array_merge($data, $this->author_data));
                 if ($insert) {
-                	$data = array(
-                		'node_path' => '0/' . $insert . '/'
-                	);
+                	$parent_detail = $this->service_category_model->get_by_id($this->input->post('parent_id'));
+                    $data = array(
+                        'node_path' => $parent_detail['node_path'] . $insert . '/'
+                    );
                 	$this->service_category_model->update($insert, $data);
-                    chmod('assets/upload/service_category/' . $unique_slug, 0755);
+                    chmod('assets/upload/service_category_sub_1/' . $unique_slug, 0755);
                     $this->session->set_flashdata('message_success', MESSAGE_CREATE_SUCCESS);
-                    redirect('admin/service_category', 'refresh');
+                    redirect('admin/service_category_sub_1', 'refresh');
                 }else{
                     $this->session->set_flashdata('message_error', MESSAGE_CREATE_ERROR);
-                    redirect('admin/service_category/create');
+                    redirect('admin/service_category_sub_1/create');
                 }
             }
         }
@@ -90,21 +101,27 @@ class Service_category extends Admin_Controller{
 
 	public function detail($id){
         $detail = $this->service_category_model->get_by_id($id);
+        $category = $this->service_category_model->get_by_id($detail['parent_id']);
+        $detail['category'] = $category['title'];
         $this->data['detail'] = $detail;
-        $this->render('admin/service_category/detail');
+        $this->render('admin/service_category_sub_1/detail');
     }
 
 	public function edit($id){
 		$this->load->helper('form');
         $this->load->library('form_validation');
 
+        $category = $this->service_category_model->get_by_level(0);
+        $category = build_array_for_dropdown($category);
+        unset($category[0]);
+        $this->data['category'] = $category;
         $detail = $this->service_category_model->get_by_id($id);
         $this->data['detail'] = $detail;
 
         $this->form_validation->set_rules('title', 'Tiêu đề', 'required');
 
         if ($this->form_validation->run() == FALSE) {
-                $this->render('admin/service_category/edit');
+                $this->render('admin/service_category_sub_1/edit');
             }else{
                 if ($this->input->post()) {
                     if(!empty($_FILES['image']['name'])){
@@ -115,40 +132,42 @@ class Service_category extends Admin_Controller{
                     $unique_slug = $detail['slug'];
                     if ($slug != $unique_slug) {
                         $unique_slug = $this->service_category_model->build_unique_slug($slug);
-                        if(file_exists('assets/upload/service_category/' . $detail['slug'])) {
-                            chmod('assets/upload/service_category/' . $detail['slug'], 0777);
-                            rename('assets/upload/service_category/' . $detail['slug'], 'assets/upload/service_category/' . $unique_slug);
+                        if(file_exists('assets/upload/service_category_sub_1/' . $detail['slug'])) {
+                            chmod('assets/upload/service_category_sub_1/' . $detail['slug'], 0777);
+                            rename('assets/upload/service_category_sub_1/' . $detail['slug'], 'assets/upload/service_category_sub_1/' . $unique_slug);
                         }
                     }
                     
                     if ( !empty($_FILES['image']['name']) ) {
-                        chmod('assets/upload/service_category/' . $unique_slug, 0777);
-                        $images = $this->upload_image('image', 'assets/upload/service_category/' . $unique_slug, $_FILES['image']['name']);
+                        chmod('assets/upload/service_category_sub_1/' . $unique_slug, 0777);
+                        $images = $this->upload_image('image', 'assets/upload/service_category_sub_1/' . $unique_slug, $_FILES['image']['name']);
                     }
 
                     $data = array(
                         'slug' => $unique_slug,
 	                    'title' => $this->input->post('title'),
-	                    'parent_id' => 0,
-                        'level' => 0,
+	                    'parent_id' => $this->input->post('parent_id'),
+                        'level' => 1,
 	                    'meta_keywords' => $this->input->post('meta_keywords'),
 	                    'meta_description' => $this->input->post('meta_description'),
 	                    'description' => $this->input->post('description'),
                     );
+                    $parent_detail = $this->service_category_model->get_by_id($this->input->post('parent_id'));
+                    $data['node_path'] = $parent_detail['node_path'] . $id . '/';
                     if ( !empty($_FILES['image']['name']) ) {
                         $data['image'] = $images;
                     }
                     $update = $this->service_category_model->update($id,array_merge($data, $this->author_data));
                     if ($update) {
-                        chmod('assets/upload/service_category/' . $unique_slug, 0755);
+                        chmod('assets/upload/service_category_sub_1/' . $unique_slug, 0755);
                         $this->session->set_flashdata('message_success', MESSAGE_EDIT_SUCCESS);
-                        if(isset($images) && $images != $detail['image'] && file_exists('assets/upload/service_category/'.$unique_slug.'/'.$detail['image'])){
-                            unlink('assets/upload/service_category/'.$unique_slug.'/'.$detail['image']);
+                        if(isset($images) && $images != $detail['image'] && file_exists('assets/upload/service_category_sub_1/'.$unique_slug.'/'.$detail['image'])){
+                            unlink('assets/upload/service_category_sub_1/'.$unique_slug.'/'.$detail['image']);
                         }
-                        redirect('admin/service_category/index', 'refresh');
+                        redirect('admin/service_category_sub_1/index', 'refresh');
                     }else{
                         $this->session->set_flashdata('message_error', MESSAGE_EDIT_ERROR);
-                        redirect('admin/service_category/edit/' . $id);
+                        redirect('admin/service_category_sub_1/edit/' . $id);
                     }
                 }
             }
@@ -164,15 +183,14 @@ class Service_category extends Admin_Controller{
         $fileextension = substr($filename, $map,(strlen($filename)-$map));
         if(!($fileextension == 'jpg' || $fileextension == 'jpeg' || $fileextension == 'png' || $fileextension == 'gif'  || $filesize > 1228800)){
             $this->session->set_flashdata('message_error', sprintf(MESSAGE_PHOTOS_ERROR, 1200));
-            redirect('admin/service_category');
+            redirect('admin/service_category_sub_1');
         }
     }
-
     public function check_file(){
         $this->form_validation->set_message(__FUNCTION__, 'Vui lòng chọn ảnh.');
         if (!empty($_FILES['image']['name'][0])) {
             return true;
         }
         return false;
-    }
+    }  
 }

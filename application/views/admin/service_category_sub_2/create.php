@@ -4,13 +4,13 @@
         <h1>
             Thêm mới
             <small>
-                Danh mục gốc cho dịch vụ
+                Danh mục cấp 3 cho dịch vụ
             </small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="<?= base_url('admin') ?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="<?= base_url('admin/service_category') ?>"><i class="fa fa-dashboard"></i> Danh sách danh mục gốc cho dịch vụ</a></li>
-            <li class="active">Thêm mới danh mục gốc cho dịch vụ</li>
+            <li><a href="<?= base_url('admin/service_category_sub_2') ?>"><i class="fa fa-dashboard"></i> Danh sách danh mục cấp 3 cho dịch vụ</a></li>
+            <li class="active">Thêm mới danh mục cấp 3 cho dịch vụ</li>
         </ol>
     </section>
 
@@ -46,18 +46,26 @@
                             </div>
                             <br>
                         </div>
-
-                        <!-- <div class="form-group col-xs-12">
-                            <div class="form-group col-xs-12">
+                        <input type="hidden" name="parent_id_hidden" id="parent_id_hidden" value="">
+                        <div class="form-group col-xs-12" style="padding-right: 0px;">
+                            <div class="form-group col-xs-12" style="padding-right: 0px;">
                                 <?php
-                                echo form_label('Danh mục', 'parent_id');
+                                echo form_label('Danh mục cấp 1', 'parent_id');
                                 echo form_error('parent_id');
+                                echo form_dropdown('parent_id', $category, 0,'class="form-control" id="parent_id"');
                                 ?>
-                                <select name="parent_id" class="form-control">
-                                    <option value="0">Danh mục gốc</option>
-                                    </select>
                             </div>
-                        </div> -->
+                        </div>
+
+                        <div class="form-group col-xs-12" style="padding-right: 0px;">
+                            <div class="form-group col-xs-12" style="padding-right: 0px;">
+                                <?php
+                                echo form_label('Danh mục cấp 2', 'parent_id_1');
+                                echo form_error('parent_id_1');
+                                echo form_dropdown('parent_id_1', array(), 0,'class="form-control" id="parent_id_1"');
+                                ?>
+                            </div>
+                        </div>
 
 
                         <div class="form-group col-xs-12" style="padding-right: 0px;">

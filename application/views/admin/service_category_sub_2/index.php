@@ -5,12 +5,12 @@
         <h1>
             Danh sách
             <small>
-                Danh mục gốc cho dịch vụ
+                Danh mục cấp 3 cho dịch vụ
             </small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="<?= base_url('admin') ?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="<?= base_url('admin/service_category') ?>"><i class="fa fa-dashboard"></i> Danh sách danh mục gốc cho dịch vụ</a></li>
+            <li><a href="<?= base_url('admin/service_category_sub_2') ?>"><i class="fa fa-dashboard"></i> Danh sách danh mục cấp 3 cho dịch vụ</a></li>
         </ol>
     </section>
 
@@ -42,10 +42,10 @@
 
                     <div class="row" style="padding: 10px;">
                         <div class="col-md-6">
-                            <a href="<?php echo base_url('admin/service_category/create') ?>" class="btn btn-primary"  >Thêm mới</a>
+                            <a href="<?php echo base_url('admin/service_category_sub_2/create') ?>" class="btn btn-primary"  >Thêm mới</a>
                         </div>
                         <div class="col-md-6">
-                            <form action="<?php echo base_url('admin/service_category/index') ?>" method="get">
+                            <form action="<?php echo base_url('admin/service_category_sub_2/index') ?>" method="get">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Tìm kiếm ..." name="search" value="<?php echo $keywords ?>">
                                     <span class="input-group-btn">
@@ -79,11 +79,13 @@
                                                 <td><?= $serial ?></td>
                                                 <td>
                                                     <div class="mask_sm">
-                                                        <img src="<?= base_url('assets/upload/service_category/' . $value['slug'] . '/' . $value['image']) ?>"  width=150px height=100px>
+                                                        <img src="<?= base_url('assets/upload/service_category_sub_2/' . $value['slug'] . '/' . $value['image']) ?>"  width=150px height=100px>
                                                     </div>
                                                 </td>
                                                 <td><?= $value['title'] ?></td>
-                                                <td>Danh mục gốc</td>
+                                                <td>
+                                                    <?php echo $value['parent_root'] . ' &nbsp; &nbsp;&nbsp;<i class="fa fa-long-arrow-right" aria-hidden="true"></i>&nbsp; &nbsp;&nbsp; ' . $value['parent'] ?>
+                                                </td>
                                                 <td class="is-active-<?= $value['id'] ?>">
                                                     <?php
                                                         if ($value['is_active'] == 0) {
@@ -94,24 +96,24 @@
                                                     ?>
                                                 </td>
                                                 <td>
-                                                    <a href="<?= base_url('admin/service_category/detail/' . $value['id'] ) ?>" title="Xem chi tiết">
+                                                    <a href="<?= base_url('admin/service_category_sub_2/detail/' . $value['id'] ) ?>" title="Xem chi tiết">
                                                         <i class="fa fa-eye" aria-hidden="true"></i>
                                                     </a>
                                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                    <a href="<?= base_url('admin/service_category/edit/' . $value['id'] ) ?>" style="color: #f0ad4e" title="Cập nhật">
+                                                    <a href="<?= base_url('admin/service_category_sub_2/edit/' . $value['id'] ) ?>" style="color: #f0ad4e" title="Cập nhật">
                                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                     </a>
                                                         <?php //if (handle_common_permission_active_and_remove()): ?>
                                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <a href="javascript:void(0)" class="btn-remove" data-id="<?= $value['id'] ?>" data-url="<?= base_url('admin/service_category/remove' ) ?>" data-name="danh mục"  style="color: #d9534f" title="Xóa">
+                                                        <a href="javascript:void(0)" class="btn-remove" data-id="<?= $value['id'] ?>" data-url="<?= base_url('admin/service_category_sub_2/remove' ) ?>" data-name="danh mục"  style="color: #d9534f" title="Xóa">
                                                             <i class="fa fa-trash-o" aria-hidden="true"></i>
                                                         </a>
                                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <a href="javascript:void(0)" class="btn-active" title="Duyệt bài" data-id="<?= $value['id'] ?>" data-name="danh mục"  data-is_active = "<?= $value['is_active'] ;?>" data-url="<?= base_url('admin/service_category/active' ) ?>" style="color: #00a65a" >
+                                                        <a href="javascript:void(0)" class="btn-active" title="Duyệt bài" data-id="<?= $value['id'] ?>" data-name="danh mục"  data-is_active = "<?= $value['is_active'] ;?>" data-url="<?= base_url('admin/service_category_sub_2/active' ) ?>" style="color: #00a65a" >
                                                             <i class="fa fa-check" aria-hidden="true"></i>
                                                         </a>
                                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <a href="javascript:void(0)" class="btn-deactive" title="Tắt danh mục" data-id="<?= $value['id'] ?>" data-name="danh mục"  data-is_active = "<?= $value['is_active'] ;?>" data-url="<?= base_url('admin/service_category/deactive' ) ?>" style="color: #f0ad4e">
+                                                        <a href="javascript:void(0)" class="btn-deactive" title="Tắt danh mục" data-id="<?= $value['id'] ?>" data-name="danh mục"  data-is_active = "<?= $value['is_active'] ;?>" data-url="<?= base_url('admin/service_category_sub_2/deactive' ) ?>" style="color: #f0ad4e">
                                                             <i class="fa fa-times" aria-hidden="true"></i>
                                                         </a>
                                                         <?php //endif ?>

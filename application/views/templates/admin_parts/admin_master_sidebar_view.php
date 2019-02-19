@@ -28,20 +28,23 @@ if($this->ion_auth->logged_in()) {
                         <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                     </a>
                 </li>
-                <li class="treeview post" style="border-bottom: none;">
+                <li class="treeview <?php echo ($this->uri->segment(2) == 'service_category' || $this->uri->segment(2) == 'service_category_sub_1' || $this->uri->segment(2) == 'service_category_sub_2' )? 'active' : '' ?>" style="border-bottom: none;">
                     <a href="">
                         <i class="fa fa-bars"></i>
-                        <span>Quản lý bài viết</span>
+                        <span>Quản Lý Danh Mục</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li>
-                            <a href="<?php echo base_url('admin/post_category') ?>"><i class="fa fa-inbox"></i> <span>Danh Mục Bài Viết</span></a>
+                        <li class="<?php echo ( $this->uri->segment(2) == 'service_category' )? 'active' : '' ?>" >
+                            <a href="<?php echo base_url('admin/service_category') ?>"><i class="fa fa-calendar-o" aria-hidden="true"></i> <span>Danh Mục Gốc</span></a>
                         </li>
-                        <li>
-                            <a href="<?php echo base_url('admin/post') ?>"><i class="fa fa-envelope-o"></i> <span>Bài Viết</span></a>
+                        <li class="<?php echo ( $this->uri->segment(2) == 'service_category_sub_1' )? 'active' : '' ?>" >
+                            <a href="<?php echo base_url('admin/service_category_sub_1') ?>"><i class="fa fa-calendar-o" aria-hidden="true"></i> <span>Danh Mục Cấp 2</span></a>
+                        </li>
+                        <li class="<?php echo ( $this->uri->segment(2) == 'service_category_sub_2' )? 'active' : '' ?>" >
+                            <a href="<?php echo base_url('admin/service_category_sub_2') ?>"><i class="fa fa-calendar-o" aria-hidden="true"></i> <span>Danh Mục Cấp 3</span></a>
                         </li>
                     </ul>
                 </li>
@@ -55,10 +58,13 @@ if($this->ion_auth->logged_in()) {
                     </a>
                     <ul class="treeview-menu">
                         <li>
-                            <a href="<?php echo base_url('admin/product_category') ?>"><i class="fa fa-inbox"></i> <span>Danh Mục Thực Đơn</span></a>
+                            <a href="<?php echo base_url('admin/service_category') ?>"><i class="fa fa-calendar-o" aria-hidden="true"></i> <span>Danh Mục Thực Đơn</span></a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url('admin/product') ?>"><i class="fa fa-envelope-o"></i> <span>Thực Đơn</span></a>
+                            <a href="<?php echo base_url('admin/service_category_sub_1') ?>"><i class="fa fa-calendar-o" aria-hidden="true"></i> <span>Danh Mục Cấp 2</span></a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url('admin/service_category_sub_2') ?>"><i class="fa fa-calendar-o" aria-hidden="true"></i> <span>Danh Mục Cấp 3</span></a>
                         </li>
                     </ul>
                 </li>

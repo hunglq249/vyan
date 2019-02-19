@@ -2,15 +2,15 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Thêm mới
+            Cập nhật
             <small>
-                Danh mục gốc cho dịch vụ
+                Danh mục cấp 2 cho dịch vụ
             </small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="<?= base_url('admin') ?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="<?= base_url('admin/service_category') ?>"><i class="fa fa-dashboard"></i> Danh sách danh mục gốc cho dịch vụ</a></li>
-            <li class="active">Thêm mới danh mục gốc cho dịch vụ</li>
+            <li><a href="<?= base_url('admin/service_category_sub_1') ?>"><i class="fa fa-dashboard"></i> Danh sách danh mục cấp 2 cho dịch vụ</a></li>
+            <li class="active">Cập nhật danh mục cấp 2 cho dịch vụ</li>
         </ol>
     </section>
 
@@ -36,6 +36,16 @@
                         <div class="row">
                             <span><?php echo $this->session->flashdata('message'); ?></span>
                         </div>
+                        <div class="form-group col-xs-12">
+                            <div class="form-group col-xs-12">
+                                <label for="image">Hình ảnh đang sử dụng</label><br />
+                                <?php if ( $detail['image'] ): ?>
+                                    <img src="<?php echo base_url('assets/upload/service_category_sub_1/' . $detail['slug'] . '/' . $detail['image']) ?>" width="150">
+                                <?php else: ?>
+                                    Hiện chưa có hình ảnh cho danh mục món ăn
+                                <?php endif ?>
+                            </div>
+                        </div>
                         <div class="form-group col-xs-12" style="padding-right: 0px;">
                             <div class="form-group col-xs-12" style="padding-right: 0px;">
                                 <?php
@@ -47,17 +57,15 @@
                             <br>
                         </div>
 
-                        <!-- <div class="form-group col-xs-12">
-                            <div class="form-group col-xs-12">
+                        <div class="form-group col-xs-12" style="padding-right: 0px;">
+                            <div class="form-group col-xs-12" style="padding-right: 0px;">
                                 <?php
                                 echo form_label('Danh mục', 'parent_id');
                                 echo form_error('parent_id');
+                                echo form_dropdown('parent_id', $category, $detail['parent_id'],'class="form-control" id="parent_id"');
                                 ?>
-                                <select name="parent_id" class="form-control">
-                                    <option value="0">Danh mục gốc</option>
-                                    </select>
                             </div>
-                        </div> -->
+                        </div>
 
 
                         <div class="form-group col-xs-12" style="padding-right: 0px;">
@@ -65,7 +73,7 @@
                                 <?php
                                 echo form_label('Tiêu đề', 'title');
                                 echo form_error('title');
-                                echo form_input('title', set_value('title'), 'class="form-control" id="title"');
+                                echo form_input('title', set_value('title', $detail['title']), 'class="form-control" id="title"');
                                 ?>
                             </div>
                         </div>
@@ -75,7 +83,7 @@
                                 <?php
                                 echo form_label('Slug', 'slug');
                                 echo form_error('slug');
-                                echo form_input('slug', set_value('slug'), 'class="form-control" id="slug" readonly');
+                                echo form_input('slug', set_value('slug', $detail['slug']), 'class="form-control" id="slug" readonly');
                                 ?>
                             </div>
                         </div>
@@ -84,7 +92,7 @@
                             <?php
                             echo form_label('Meta Keywords', 'meta_keywords');
                             echo form_error('meta_keywords');
-                            echo form_textarea('meta_keywords', set_value('meta_keywords'), 'class="form-control" id="meta_keywords"');
+                            echo form_textarea('meta_keywords', set_value('meta_keywords', $detail['meta_keywords']), 'class="form-control" id="meta_keywords"');
                             ?>
                         </div>
 
@@ -92,7 +100,7 @@
                             <?php
                             echo form_label('Meta Description', 'meta_description');
                             echo form_error('meta_description');
-                            echo form_textarea('meta_description', set_value('meta_description'), 'class="form-control" id="meta_description"');
+                            echo form_textarea('meta_description', set_value('meta_description', $detail['meta_description']), 'class="form-control" id="meta_description"');
                             ?>
                         </div>
 
@@ -100,13 +108,13 @@
                             <?php
                             echo form_label('Giới thiệu', 'description');
                             echo form_error('description');
-                            echo form_textarea('description', set_value('description'), 'class="form-control tinymce-area" id="description"');
+                            echo form_textarea('description', set_value('description', $detail['description']), 'class="form-control tinymce-area" id="description"');
                             ?>
                         </div>
 
                         <div class="form-group col-xs-12">
                             <a href="javascript:history.back()" class="btn btn-default">Quay lại</a>
-                            <?php echo form_submit('submit', 'Thêm mới', 'class="btn btn-primary pull-right margin-right-xs" '); ?>
+                            <?php echo form_submit('submit', 'Cập nhật', 'class="btn btn-primary pull-right margin-right-xs" '); ?>
                         </div>
                         <?php echo form_close(); ?>
                     </div>

@@ -1,16 +1,16 @@
 switch(window.location.origin){
-    case 'http://teddy.com':
-        var HOSTNAME = 'http://teddy.com/';
+    case 'http://vyan.com':
+        var HOSTNAME = 'http://vyan.com/';
         break;
     default:
-        var HOSTNAME = 'http://localhost/teddy/';
+        var HOSTNAME = 'http://localhost/vyan/';
 }
 switch(window.location.origin){
-    case 'http://teddy.com':
-        var HOSTNAMEADMIN = 'http://teddy.com/admin';
+    case 'http://vyan.com':
+        var HOSTNAMEADMIN = 'http://vyan.com/admin';
         break;
     default:
-        var HOSTNAMEADMIN = 'http://localhost/teddy/admin';
+        var HOSTNAMEADMIN = 'http://localhost/vyan/admin';
 } 
 $(document).ready(function(){
     "use strict";
@@ -65,22 +65,58 @@ $(window).scroll(function () {
 });
 
 
+$('#parent_id').each(function(){
+    category = $('#parent_id_hidden').val();
+    id = $(this).val();
+    $.ajax({
+        method: "get",
+        url: HOSTNAMEADMIN + '/service_category_sub_2/get_service_category',
+        data: {
+            id : id
+        },
+        success: function(response){
+            html = '';
+            if(response.status == 200){
+                if (response.result.length > 0) {
+                    $.each(response.result, function(index, value){
+                        selected = (value.id == category)? "selected" : "";
+                        html += '<option value="'+ value.id +'" ' + selected + ' >'+ value.title +'</option>';
+                    });
+                }else{
+                    html = '<option value="">Không có danh mục</option>';
+                }
+                $('#parent_id_1').html(html);
+            }
+        },
+        error: function(jqXHR, exception){
+            console.log(errorHandle(jqXHR, exception));
+        }
+    });
+});
 
-
-// $(document).ready(function(){
-//     "use strict";
-
-// });
-
-// $(window).scroll(function () {
-//     //if you hard code, then use console
-//     //.log to determine when you want the
-//     //nav bar to stick.
-//     'use strict';
-//     if ($(window).scrollTop() > 150) {
-//         $('.nav_side').addClass('nav_side_fix');
-//     }
-//     if ($(window).scrollTop() < 150) {
-//         $('.nav_side').removeClass('nav_side_fix');
-//     }
-// });
+$('#parent_id').change(function(){
+    id = $(this).val();
+    $.ajax({
+        method: "get",
+        url: HOSTNAMEADMIN + '/service_category_sub_2/get_service_category',
+        data: {
+            id : id
+        },
+        success: function(response){
+            html = '';
+            if(response.status == 200){
+                if (response.result.length > 0) {
+                    $.each(response.result, function(index, value){
+                        html += '<option value="'+ value.id +'">'+ value.title +'</option>';
+                    });
+                }else{
+                    html = '<option value="">Không có danh mục</option>';
+                }
+                $('#parent_id_1').html(html);
+            }
+        },
+        error: function(jqXHR, exception){
+            console.log(errorHandle(jqXHR, exception));
+        }
+    });
+});

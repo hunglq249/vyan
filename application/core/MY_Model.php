@@ -490,6 +490,43 @@ class Single_model extends MY_Model {
         return $result = $this->db->get()->result_array();
     }
 
+    public function get_by_node_path($id, $level = array()){
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where('is_deleted', 0);
+        if ( !empty($level) ) {
+            $this->db->where_in('level', $level);
+        }
+        $this->db->like('node_path', '/' . $id . '/');
+
+        return $result = $this->db->get()->result_array();
+    }
+
+    public function count_by_node_path($id, $level = array()){
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where('is_deleted', 0);
+        if ( !empty($level) ) {
+            $this->db->where_in('level', $level);
+        }
+        $this->db->like('node_path', '/' . $id . '/');
+
+        return $result = $this->db->get()->num_rows();
+    }
+    
+    public function get_by_node_path_when_active($id, $level = array()){
+            $this->db->select('*');
+            $this->db->from($this->table);
+            $this->db->where('is_deleted', 0);
+            $this->db->where('is_active', 0);
+            if ( !empty($level) ) {
+                $this->db->where_in('level', $level);
+            }
+            $this->db->like('node_path', '/' . $id . '/');
+
+            return $result = $this->db->get()->result_array();
+        }
+
     /*================================
     =            Muntiple Ids            =
     ================================*/
@@ -512,7 +549,7 @@ class Single_model extends MY_Model {
     public function update_multiple_by_ids($ids = array(), $data) {
         $this->db->where_in('id', $ids);
 
-        return $this->db->update($this->table, $data);
+        return $this->db->update_batch($this->table, $data, 'status');
     }
 
     public function insert_multiple_by_ids($data){

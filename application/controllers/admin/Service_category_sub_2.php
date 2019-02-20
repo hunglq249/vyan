@@ -132,7 +132,11 @@ class Service_category_sub_2 extends Admin_Controller{
         $this->data['detail'] = $detail;
         $parent = $this->service_category_model->get_by_id($detail['parent_id']);
         $category_root = $this->service_category_model->get_by_id($parent['parent_id']);
+        $category_1 = $this->service_category_model->get_by_parent_id_when_active($category_root['id']);
+        $category_1 = build_array_for_dropdown($category_1);
         $this->data['category_root'] = $category_root;
+        $this->data['category_1'] = $category_1;
+
 
         $this->form_validation->set_rules('title', 'Tiêu đề', 'required');
         $this->form_validation->set_rules('parent_id', 'Danh mục cấp 1', 'required');

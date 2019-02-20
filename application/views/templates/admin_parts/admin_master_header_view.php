@@ -26,6 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="<?php echo site_url('assets/lib/') ?>iCheck/square/blue.css">
     <link rel="stylesheet" href="<?php echo site_url('assets/lib/') ?>dist/css/skins/skin-black-light.css">
     <link rel="stylesheet" href="<?php echo site_url('assets/') ?>sass/pikaday.css">
+    <link rel="stylesheet" href="<?php echo site_url('assets/lib/bootstrap-tagsinput-latest/dist/bootstrap-tagsinput.css') ?>">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -45,6 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="<?php echo site_url('assets/lib/') ?>bootstrap/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="<?php echo site_url('') ?>tinymce/tinymce.min.js"></script>
+    <script type="text/javascript" src="<?php echo site_url('assets/lib/bootstrap-tagsinput-latest/dist/bootstrap-tagsinput.js') ?>"></script>
 
 
 

@@ -33,7 +33,7 @@
                             </div>
                         <?php endif ?>
                         <?php
-                        echo form_open_multipart('', array('class' => 'form-horizontal'));
+                        echo form_open_multipart('', array('class' => 'form-horizontal', 'id' => 'bootstrapTagsInputForm'));
                         ?>
                         <div class="col-xs-12" style="padding: 0px;">
                             <h4 class="box-title">Thông tin cơ bản</h4>
@@ -45,7 +45,7 @@
                             <div class="form-group col-xs-12" style="padding-right: 0px;">
                                 <?php
                                     echo form_label('Hình ảnh (Dung lượng ảnh phải nhỏ hơn 1.2Mb)', 'image');
-                                    echo form_error('image');
+                                    echo form_error('image', '<div class="error">', '</div>');
                                     echo form_upload('image', set_value('image'), 'class="form-control"');
                                 ?>
                             </div>
@@ -56,7 +56,7 @@
                             <div class="form-group col-xs-12" style="padding-right: 0px;">
                                 <?php
                                 echo form_label('Danh mục cấp 1', 'parent_id');
-                                echo form_error('parent_id');
+                                echo form_error('parent_id', '<div class="error">', '</div>');
                                 echo form_dropdown('parent_id', $category, 0,'class="form-control" id="parent_id"');
                                 ?>
                             </div>
@@ -66,8 +66,8 @@
                             <div class="form-group col-xs-12" style="padding-right: 0px;">
                                 <?php
                                 echo form_label('Danh mục cấp 2', 'parent_id_1');
-                                echo form_error('parent_id_1');
-                                echo form_dropdown('parent_id_1', array(), 0,'class="form-control" id="parent_id_1"');
+                                echo form_error('parent_id_1', '<div class="error">', '</div>');
+                                echo form_dropdown('parent_id_1', array('' => 'Chọn danh mục'), 0,'class="form-control" id="parent_id_1"');
                                 ?>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                             <div class="form-group col-xs-12" style="padding-right: 0px;">
                                 <?php
                                 echo form_label('Danh mục cấp 3', 'parent_id_2');
-                                echo form_error('parent_id_2');
+                                echo form_error('parent_id_2', '<div class="error">', '</div>');
                                 echo form_dropdown('parent_id_2', array('' => 'Chọn danh mục'), 0,'class="form-control" id="parent_id_2"');
                                 ?>
                             </div>
@@ -87,7 +87,7 @@
                             <div class="form-group col-xs-12" style="padding-right: 0px;">
                                 <?php
                                 echo form_label('Tiêu đề', 'title');
-                                echo form_error('title');
+                                echo form_error('title', '<div class="error">', '</div>');
                                 echo form_input('title', set_value('title'), 'class="form-control" id="title"');
                                 ?>
                             </div>
@@ -97,7 +97,7 @@
                             <div class="form-group col-xs-12" style="padding-right: 0px;">
                                 <?php
                                 echo form_label('Slug', 'slug');
-                                echo form_error('slug');
+                                echo form_error('slug', '<div class="error">', '</div>');
                                 echo form_input('slug', set_value('slug'), 'class="form-control" id="slug" readonly');
                                 ?>
                             </div>
@@ -106,8 +106,8 @@
                         <div class="form-group col-xs-12" style="padding-right: 0px;">
                             <div class="form-group col-xs-12" style="padding-right: 0px;">
                                 <?php
-                                echo form_label('Thuộc tính', 'tag');
-                                echo form_error('tag');
+                                echo form_label('Điểm nổi bật (Tối đa 4 Điểm nổi bật)', 'tag');
+                                echo form_error('tag', '<div class="error">', '</div>');
                                 echo form_input('tag', set_value('tag'), 'class="form-control" id="tag" data-role="tagsinput"');
                                 ?>
                             </div>
@@ -116,7 +116,7 @@
                         <div class="form-group col-md-12">
                             <?php
                             echo form_label('Meta Keywords', 'meta_keywords');
-                            echo form_error('meta_keywords');
+                            echo form_error('meta_keywords', '<div class="error">', '</div>');
                             echo form_textarea('meta_keywords', set_value('meta_keywords'), 'class="form-control" id="meta_keywords"');
                             ?>
                         </div>
@@ -124,7 +124,7 @@
                         <div class="form-group col-md-12">
                             <?php
                             echo form_label('Meta Description', 'meta_description');
-                            echo form_error('meta_description');
+                            echo form_error('meta_description', '<div class="error">', '</div>');
                             echo form_textarea('meta_description', set_value('meta_description'), 'class="form-control" id="meta_description"');
                             ?>
                         </div>
@@ -132,7 +132,7 @@
                         <div class="form-group col-md-12">
                             <?php
                             echo form_label('Iframe Youtube', 'iframe');
-                            echo form_error('iframe');
+                            echo form_error('iframe', '<div class="error">', '</div>');
                             echo form_textarea('iframe', set_value('iframe'), 'class="form-control" id="iframe"');
                             ?>
                         </div>
@@ -140,7 +140,7 @@
                         <div class="form-group col-md-12">
                             <?php
                             echo form_label('Giới thiệu', 'description');
-                            echo form_error('description');
+                            echo form_error('description', '<div class="error">', '</div>');
                             echo form_textarea('description', set_value('description'), 'class="form-control tinymce-area" id="description"');
                             ?>
                         </div>
@@ -148,7 +148,7 @@
                         <div class="form-group col-md-12">
                             <?php
                             echo form_label('Giới thiệu', 'Nội dung');
-                            echo form_error('body');
+                            echo form_error('body', '<div class="error">', '</div>');
                             echo form_textarea('body', set_value('body'), 'class="form-control tinymce-area" id="body"');
                             ?>
                         </div>
@@ -164,5 +164,34 @@
         </div>
     </section>
 </div>
-<script src="<?php echo base_url('assets/js/admin/');?>admin.js" type="text/javascript" charset="utf-8" async defer></script>
+<script type="text/javascript">
+    $('#parent_id').each(function(){
+        category = $('#parent_id_hidden').val();
+        id = $(this).val();
+        $.ajax({
+            method: "get",
+            url: HOSTNAMEADMIN + '/service_category_sub_2/get_service_category',
+            data: {
+                id : id
+            },
+            success: function(response){
+                html = '<option value="">Chọn danh mục</option>';
+                if(response.status == 200){
+                    if (response.result.length > 0) {
+                        $.each(response.result, function(index, value){
+                            selected = (value.id == category)? "selected" : "";
+                            html += '<option value="'+ value.id +'" ' + selected + ' >'+ value.title +'</option>';
+                        });
+                    }else{
+                        html = '<option value="">Không có danh mục</option>';
+                    }
+                    $('#parent_id_1').html(html);
+                }
+            },
+            error: function(jqXHR, exception){
+                console.log(errorHandle(jqXHR, exception));
+            }
+        });
+    });
+</script>
 

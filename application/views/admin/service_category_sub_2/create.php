@@ -123,5 +123,34 @@
         </div>
     </section>
 </div>
-<script src="<?php echo base_url('assets/js/admin/');?>admin.js" type="text/javascript" charset="utf-8" async defer></script>
 
+<script type="text/javascript">
+    $('#parent_id').each(function(){
+        category = $('#parent_id_hidden').val();
+        id = $(this).val();
+        $.ajax({
+            method: "get",
+            url: HOSTNAMEADMIN + '/service_category_sub_2/get_service_category',
+            data: {
+                id : id
+            },
+            success: function(response){
+                html = '<option value="">Chọn danh mục</option>';
+                if(response.status == 200){
+                    if (response.result.length > 0) {
+                        $.each(response.result, function(index, value){
+                            selected = (value.id == category)? "selected" : "";
+                            html += '<option value="'+ value.id +'" ' + selected + ' >'+ value.title +'</option>';
+                        });
+                    }else{
+                        html = '<option value="">Không có danh mục</option>';
+                    }
+                    $('#parent_id_1').html(html);
+                }
+            },
+            error: function(jqXHR, exception){
+                console.log(errorHandle(jqXHR, exception));
+            }
+        });
+    });
+</script>

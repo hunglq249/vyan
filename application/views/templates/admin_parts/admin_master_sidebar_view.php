@@ -23,7 +23,7 @@ if($this->ion_auth->logged_in()) {
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
-                <li class="active">
+                <li class="<?php echo ($this->uri->segment(2) == 'dashboard')? 'active' : '' ?>">
                     <a href="<?php echo base_url('admin') ?>">
                         <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                     </a>
@@ -31,7 +31,7 @@ if($this->ion_auth->logged_in()) {
                 <li class="treeview <?php echo ($this->uri->segment(2) == 'service_category' || $this->uri->segment(2) == 'service_category_sub_1' || $this->uri->segment(2) == 'service_category_sub_2' )? 'active' : '' ?>" style="border-bottom: none;">
                     <a href="">
                         <i class="fa fa-bars"></i>
-                        <span>Quản Lý Danh Mục</span>
+                        <span>Danh Mục Dịch Vụ</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
@@ -47,6 +47,11 @@ if($this->ion_auth->logged_in()) {
                             <a href="<?php echo base_url('admin/service_category_sub_2') ?>"><i class="fa fa-calendar-o" aria-hidden="true"></i> <span>Danh Mục Cấp 3</span></a>
                         </li>
                     </ul>
+                </li>
+                <li class="<?php echo ($this->uri->segment(2) == 'service')? 'active' : '' ?>">
+                    <a href="<?php echo base_url('admin/service') ?>">
+                        <i class="fa fa-shopping-bag" aria-hidden="true"></i> <span>Dịch Vụ</span>
+                    </a>
                 </li>
                 <li class="treeview product">
                     <a href="">

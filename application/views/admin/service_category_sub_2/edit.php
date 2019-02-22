@@ -133,5 +133,4 @@
         </div>
     </section>
 </div>
-<script src="<?php echo base_url('assets/js/admin/');?>admin.js" type="text/javascript" charset="utf-8" async defer></script>
 

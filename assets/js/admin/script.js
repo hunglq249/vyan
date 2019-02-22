@@ -1,26 +1,15 @@
-switch(window.location.origin){
-    case 'http://vyan.com':
-        var HOSTNAME = 'http://vyan.com/';
-        break;
-    default:
-        var HOSTNAME = 'http://localhost/vyan/';
-}
-switch(window.location.origin){
-    case 'http://vyan.com':
-        var HOSTNAMEADMIN = 'http://vyan.com/admin';
-        break;
-    default:
-        var HOSTNAMEADMIN = 'http://localhost/vyan/admin';
-} 
+
 $(document).ready(function(){
     "use strict";
 
     tinymce.init({
         selector: ".tinymce-area",
         theme: "modern",
+        block_formats: 'Paragraph=p;Header 1=h1;Header 2=h2;Header 3=h3',
         height: 300,
         relative_urls: false,
         remove_script_host: false,
+        forced_root_block : false,
         plugins: [
             "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
             "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
@@ -38,7 +27,6 @@ $(document).ready(function(){
         ],
         external_filemanager_path: HOSTNAME + "filemanager/",
         filemanager_title: "Responsive Filemanager",
-        filemanager_access_key:'myPrivateKey',
         external_plugins: {"filemanager": HOSTNAME + "filemanager/plugin.min.js"}
     });
 
@@ -209,3 +197,45 @@ $('.btn-remove').click(function(){
         });
     }
 });
+
+$('#tag').tagsinput({
+    maxTags: 4,
+});
+
+
+// $(document).ready(function () {
+//     $('#bootstrapTagsInputForm')
+//         .find('[name="tag"]')
+//             // Revalidate the tag field when it is changed
+//             .change(function (e) {
+//                 $('#bootstrapTagsInputForm').bootstrapValidator('revalidateField', 'tag');
+//             })
+//             .end()
+//         .bootstrapValidator({
+//             excluded: ':disabled',
+//             feedbackIcons: {
+//                 valid: 'glyphicon glyphicon-ok',
+//                 invalid: 'glyphicon glyphicon-remove',
+//                 validating: 'glyphicon glyphicon-refresh'
+//             },
+//             fields: {
+//                 tag: {
+//                     validators: {
+//                         callback: {
+//                             message: 'Tối đa 4 thuộc tính.',
+//                             callback: function (value, validator) {
+//                                 // Get the entered elements
+//                                 var options = validator.getFieldElements('tag').tagsinput('items');
+//                                 if ( options.length <= 4 ) {
+//                                     return true;    
+//                                 }else{
+//                                     return false;
+//                                 }
+                                
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         });
+// });

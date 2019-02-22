@@ -125,7 +125,7 @@ class Service extends Admin_Controller{
                     'meta_description' => $this->input->post('meta_description'),
                     'iframe' => $this->input->post('iframe'),
                     'description' => $this->input->post('description'),
-                    'description' => $this->input->post('body'),
+                    'body' => $this->input->post('body'),
                 );
                 $insert = $this->service_model->insert(array_merge($data, $this->author_data));
                 if ($insert) {
@@ -221,7 +221,7 @@ class Service extends Admin_Controller{
                     'meta_description' => $this->input->post('meta_description'),
                     'iframe' => $this->input->post('iframe'),
                     'description' => $this->input->post('description'),
-                    'description' => $this->input->post('body'),
+                    'body' => $this->input->post('body'),
                 );
                 if ( !empty($_FILES['image']['name']) ) {
                     $data['image'] = $images;

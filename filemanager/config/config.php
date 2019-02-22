@@ -22,7 +22,7 @@ date_default_timezone_set('Europe/Rome');
 |
 */
 
-define('USE_ACCESS_KEYS', true); // TRUE or FALSE
+define('USE_ACCESS_KEYS', false); // TRUE or FALSE
 
 /*
 |--------------------------------------------------------------------------
@@ -59,7 +59,7 @@ $config = array(
 	|
 	*/
 	//'base_url' => ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] && ! in_array(strtolower($_SERVER['HTTPS']), array( 'off', 'no' ))) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'],
-        'base_url' => "http://localhost/teddy/",
+        'base_url' => "http://localhost/vyan",
 	/*
 	|--------------------------------------------------------------------------
 	| path from base_url to base of upload folder
@@ -107,7 +107,7 @@ $config = array(
 	|
 	*/
 
-	'access_keys' => array('myPrivateKey', 'Mato12340'),
+	'access_keys' => array(),
 
 	//--------------------------------------------------------------------------------------------------------
 	// YOU CAN COPY AND CHANGE THESE VARIABLES INTO FOLDERS config.php FILES TO CUSTOMIZE EACH FOLDER OPTIONS

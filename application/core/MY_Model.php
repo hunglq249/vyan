@@ -463,6 +463,16 @@ class Single_model extends MY_Model {
         $this->db->where('id', $id);
         return $this->db->get()->row_array();
     }
+    /**
+     * [get_by_slug description]
+     * @param  string $slug [description]
+     * @return [type]       [description]
+     */
+    public function get_by_slug($slug=''){
+        $this->db->from($this->table);
+        $this->db->where('slug', $slug);
+        return $this->db->get()->row_array();
+    }
 
     /**
      * [count_active description]
@@ -475,7 +485,12 @@ class Single_model extends MY_Model {
         return $this->db->num_rows();
     }
 
-
+    /**
+     * [get_by_parent_id_when_active description]
+     * @param  [type] $parent_id [description]
+     * @param  string $order     [description]
+     * @return [type]            [description]
+     */
     public function get_by_parent_id_when_active($parent_id, $order = 'desc'){
         $this->db->select('*');
         $this->db->from($this->table);
@@ -490,6 +505,12 @@ class Single_model extends MY_Model {
         return $result = $this->db->get()->result_array();
     }
 
+    /**
+     * [get_by_node_path description]
+     * @param  [type] $id    [description]
+     * @param  array  $level [description]
+     * @return [type]        [description]
+     */
     public function get_by_node_path($id, $level = array()){
         $this->db->select('*');
         $this->db->from($this->table);
@@ -502,6 +523,24 @@ class Single_model extends MY_Model {
         return $result = $this->db->get()->result_array();
     }
 
+    public function get_related($category_id, $id=''){
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where('is_deleted', 0);
+        $this->db->where('category_id', $category_id);
+        if ( !empty($id) ) {
+            $this->db->where('id !=', $id);
+        }
+        $this->db->limit(3);
+        return $result = $this->db->get()->result_array();
+    }
+
+    /**
+     * [count_by_node_path description]
+     * @param  [type] $id    [description]
+     * @param  array  $level [description]
+     * @return [type]        [description]
+     */
     public function count_by_node_path($id, $level = array()){
         $this->db->select('*');
         $this->db->from($this->table);
@@ -514,6 +553,12 @@ class Single_model extends MY_Model {
         return $result = $this->db->get()->num_rows();
     }
     
+    /**
+     * [get_by_node_path_when_active description]
+     * @param  [type] $id    [description]
+     * @param  array  $level [description]
+     * @return [type]        [description]
+     */
     public function get_by_node_path_when_active($id, $level = array()){
             $this->db->select('*');
             $this->db->from($this->table);
@@ -546,12 +591,23 @@ class Single_model extends MY_Model {
         return $this->db->get()->result_array();
     }
 
+    /**
+     * [update_multiple_by_ids description]
+     * @param  array  $ids  [description]
+     * @param  [type] $data [description]
+     * @return [type]       [description]
+     */
     public function update_multiple_by_ids($ids = array(), $data) {
         $this->db->where_in('id', $ids);
 
         return $this->db->update_batch($this->table, $data, 'status');
     }
 
+    /**
+     * [insert_multiple_by_ids description]
+     * @param  [type] $data [description]
+     * @return [type]       [description]
+     */
     public function insert_multiple_by_ids($data){
         $this->db->set($data);
         return $this->db->insert_batch($this->table);

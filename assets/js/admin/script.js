@@ -1,26 +1,15 @@
-switch(window.location.origin){
-    case 'http://vyan.com':
-        var HOSTNAME = 'http://vyan.com/';
-        break;
-    default:
-        var HOSTNAME = 'http://localhost/vyan/';
-}
-switch(window.location.origin){
-    case 'http://vyan.com':
-        var HOSTNAMEADMIN = 'http://vyan.com/admin';
-        break;
-    default:
-        var HOSTNAMEADMIN = 'http://localhost/vyan/admin';
-} 
+
 $(document).ready(function(){
     "use strict";
 
     tinymce.init({
         selector: ".tinymce-area",
         theme: "modern",
+        block_formats: 'Paragraph=p;Header 1=h1;Header 2=h2;Header 3=h3',
         height: 300,
         relative_urls: false,
         remove_script_host: false,
+        forced_root_block : false,
         plugins: [
             "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
             "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
@@ -38,7 +27,6 @@ $(document).ready(function(){
         ],
         external_filemanager_path: HOSTNAME + "filemanager/",
         filemanager_title: "Responsive Filemanager",
-        filemanager_access_key:'myPrivateKey',
         external_plugins: {"filemanager": HOSTNAME + "filemanager/plugin.min.js"}
     });
 
@@ -65,8 +53,36 @@ $(window).scroll(function () {
 });
 
 
-$('#parent_id').each(function(){
-    category = $('#parent_id_hidden').val();
+// $('#parent_id').each(function(){
+//     category = $('#parent_id_hidden').val();
+//     id = $(this).val();
+//     $.ajax({
+//         method: "get",
+//         url: HOSTNAMEADMIN + '/service_category_sub_2/get_service_category',
+//         data: {
+//             id : id
+//         },
+//         success: function(response){
+//             html = '<option value="">Chọn danh mục</option>';
+//             if(response.status == 200){
+//                 if (response.result.length > 0) {
+//                     $.each(response.result, function(index, value){
+//                         selected = (value.id == category)? "selected" : "";
+//                         html += '<option value="'+ value.id +'" ' + selected + ' >'+ value.title +'</option>';
+//                     });
+//                 }else{
+//                     html = '<option value="">Không có danh mục</option>';
+//                 }
+//                 $('#parent_id_1').html(html);
+//             }
+//         },
+//         error: function(jqXHR, exception){
+//             console.log(errorHandle(jqXHR, exception));
+//         }
+//     });
+// });
+
+$('#parent_id').change(function(){
     id = $(this).val();
     $.ajax({
         method: "get",
@@ -75,12 +91,11 @@ $('#parent_id').each(function(){
             id : id
         },
         success: function(response){
-            html = '';
+            html = '<option value="">Chọn danh mục</option>';
             if(response.status == 200){
                 if (response.result.length > 0) {
                     $.each(response.result, function(index, value){
-                        selected = (value.id == category)? "selected" : "";
-                        html += '<option value="'+ value.id +'" ' + selected + ' >'+ value.title +'</option>';
+                        html += '<option value="'+ value.id +'">'+ value.title +'</option>';
                     });
                 }else{
                     html = '<option value="">Không có danh mục</option>';
@@ -94,7 +109,7 @@ $('#parent_id').each(function(){
     });
 });
 
-$('#parent_id').change(function(){
+$('#parent_id_1').change(function(){
     id = $(this).val();
     $.ajax({
         method: "get",
@@ -103,7 +118,7 @@ $('#parent_id').change(function(){
             id : id
         },
         success: function(response){
-            html = '';
+            html = '<option value="">Chọn danh mục</option>';
             if(response.status == 200){
                 if (response.result.length > 0) {
                     $.each(response.result, function(index, value){
@@ -112,7 +127,7 @@ $('#parent_id').change(function(){
                 }else{
                     html = '<option value="">Không có danh mục</option>';
                 }
-                $('#parent_id_1').html(html);
+                $('#parent_id_2').html(html);
             }
         },
         error: function(jqXHR, exception){
@@ -182,3 +197,45 @@ $('.btn-remove').click(function(){
         });
     }
 });
+
+$('#tag').tagsinput({
+    maxTags: 4,
+});
+
+
+// $(document).ready(function () {
+//     $('#bootstrapTagsInputForm')
+//         .find('[name="tag"]')
+//             // Revalidate the tag field when it is changed
+//             .change(function (e) {
+//                 $('#bootstrapTagsInputForm').bootstrapValidator('revalidateField', 'tag');
+//             })
+//             .end()
+//         .bootstrapValidator({
+//             excluded: ':disabled',
+//             feedbackIcons: {
+//                 valid: 'glyphicon glyphicon-ok',
+//                 invalid: 'glyphicon glyphicon-remove',
+//                 validating: 'glyphicon glyphicon-refresh'
+//             },
+//             fields: {
+//                 tag: {
+//                     validators: {
+//                         callback: {
+//                             message: 'Tối đa 4 thuộc tính.',
+//                             callback: function (value, validator) {
+//                                 // Get the entered elements
+//                                 var options = validator.getFieldElements('tag').tagsinput('items');
+//                                 if ( options.length <= 4 ) {
+//                                     return true;    
+//                                 }else{
+//                                     return false;
+//                                 }
+                                
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         });
+// });

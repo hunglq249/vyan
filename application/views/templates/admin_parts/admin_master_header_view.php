@@ -24,8 +24,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<?php echo site_url('assets/lib/') ?>iCheck/square/blue.css">
-    <link rel="stylesheet" href="<?php echo site_url('assets/lib/') ?>dist/css/skins/skin-black-light.css">
-    <link rel="stylesheet" href="<?php echo site_url('assets/') ?>sass/pikaday.css">
+    <link rel="stylesheet" href="<?php echo site_url('assets/lib/') ?>dist/css/skins/skin-green.css">
+    <link rel="stylesheet" href="<?php echo site_url('assets/lib/bootstrap-tagsinput-latest/dist/bootstrap-tagsinput.css') ?>">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -45,12 +45,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="<?php echo site_url('assets/lib/') ?>bootstrap/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="<?php echo site_url('') ?>tinymce/tinymce.min.js"></script>
-
+    <script type="text/javascript" src="<?php echo site_url('assets/lib/bootstrap-tagsinput-latest/dist/bootstrap-tagsinput.js') ?>"></script>
+    <script src="<?php echo site_url('assets/') ?>js/admin/config.js"></script>
+    <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script> -->
 
 
 </head>
 
-<body class="hold-transition skin-black-light sidebar-mini">
+<body class="hold-transition skin-green skin-black-light sidebar-mini">
 <div class="wrapper">
 <!-- <?php if ($this->ion_auth->logged_in()): ?> -->
     <header class="main-header">

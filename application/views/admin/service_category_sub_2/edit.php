@@ -72,7 +72,7 @@
                                 <?php
                                 echo form_label('Danh mục cấp 2', 'parent_id_1');
                                 echo form_error('parent_id_1');
-                                echo form_dropdown('parent_id_1', array(), 0,'class="form-control" id="parent_id_1"');
+                                echo form_dropdown('parent_id_1', $category_1, $detail['parent_id'],'class="form-control" id="parent_id_1"');
                                 ?>
                             </div>
                         </div>
@@ -133,5 +133,4 @@
         </div>
     </section>
 </div>
-<script src="<?php echo base_url('assets/js/admin/');?>admin.js" type="text/javascript" charset="utf-8" async defer></script>
 

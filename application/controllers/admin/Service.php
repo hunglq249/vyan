@@ -42,10 +42,8 @@ class Service extends Admin_Controller{
             $node_path = explode('/', $node_path);
             $category_0 = $this->service_category_model->get_by_id($node_path[0]);
             $category_1 = $this->service_category_model->get_by_id($node_path[1]);
-            $category_2 = $this->service_category_model->get_by_id($node_path[2]);
             $result[$key]['category_0'] = $category_0['title'];
             $result[$key]['category_1'] = $category_1['title'];
-            $result[$key]['category_2'] = $category_2['title'];
         }
         $this->data['result'] = $result;
         // echo '<pre>';
@@ -60,10 +58,8 @@ class Service extends Admin_Controller{
         $node_path = explode('/', $node_path);
         $category_0 = $this->service_category_model->get_by_id($node_path[0]);
         $category_1 = $this->service_category_model->get_by_id($node_path[1]);
-        $category_2 = $this->service_category_model->get_by_id($node_path[2]);
         $detail['category_0'] = $category_0['title'];
         $detail['category_1'] = $category_1['title'];
-        $detail['category_2'] = $category_2['title'];
         $tag = $detail['tag'];
         $tag = json_decode($tag);
         $detail['tag'] = $tag;
@@ -80,13 +76,16 @@ class Service extends Admin_Controller{
         $this->load->library('form_validation');
 
         $category = $this->service_category_model->get_by_level(0);
-        $category = build_array_for_dropdown($category);
+        foreach ($category as $key => $value) {
+            $sub = $this->service_category_model->get_by_parent_id_when_active($value['id']);
+
+            $sub = build_array_for_dropdown($sub);
+            $category[$key]['sub'] = $sub;
+        }
         $this->data['category'] = $category;
         
         $this->form_validation->set_rules('title', 'Tiêu đề', 'required');
-        $this->form_validation->set_rules('parent_id', 'Danh mục cấp 1', 'required');
-        $this->form_validation->set_rules('parent_id_1', 'Danh mục cấp 2', 'required');
-        $this->form_validation->set_rules('parent_id_2', 'Danh mục cấp 3', 'required');
+        $this->form_validation->set_rules('parent_id', 'Danh mục', 'required');
         $this->form_validation->set_rules('image', 'Hình ảnh', 'callback_check_file');
 
         if ($this->form_validation->run() == FALSE) {
@@ -113,12 +112,14 @@ class Service extends Admin_Controller{
                 }else{
                 	$tag = json_encode(array($tag));
                 }
-                $node_path = $this->input->post('parent_id') . '/' . $this->input->post('parent_id_1') . '/' .$this->input->post('parent_id_2');
+                $parent = $this->service_category_model->get_by_id($this->input->post('parent_id'));
+                $root = $this->service_category_model->get_by_id($parent['parent_id']);
+                $node_path = $root['id'] . '/' .$this->input->post('parent_id');
                 $data = array(
                     'image' => $images,
                     'slug' => $unique_slug,
                     'title' => $this->input->post('title'),
-                    'category_id' => $this->input->post('parent_id_2'),
+                    'category_id' => $this->input->post('parent_id'),
                     'node_path' => $node_path,
                     'tag' => $tag,
                     'meta_keywords' => $this->input->post('meta_keywords'),
@@ -149,36 +150,24 @@ class Service extends Admin_Controller{
 		$this->load->helper('form');
         $this->load->library('form_validation');
 
-        $category = $this->service_category_model->get_by_level(0);
-        $category = build_array_for_dropdown($category);
-        $this->data['category'] = $category;
         $detail = $this->service_model->get_by_id($id);
         
-        $node_path = $detail['node_path'];
-        $node_path = explode('/', $node_path);
-        $category_0 = $this->service_category_model->get_by_id($node_path[0]);
-        $category_1 = $this->service_category_model->get_by_id($node_path[1]);
-        $category_2 = $this->service_category_model->get_by_id($node_path[2]);
-        $detail['category_0'] = $category_0['title'];
-        $detail['category_1'] = $category_1['title'];
-        $detail['category_2'] = $category_2['title'];
+        $category = $this->service_category_model->get_by_level(0);
+        foreach ($category as $key => $value) {
+            $sub = $this->service_category_model->get_by_parent_id_when_active($value['id']);
+
+            $sub = build_array_for_dropdown($sub);
+            $category[$key]['sub'] = $sub;
+        }
+        $this->data['category'] = $category;
         $tag = $detail['tag'];
         $tag = json_decode($tag);
         $detail['tag'] = implode(',', $tag);
         $this->data['detail'] = $detail;
 
-        $category_1 = $this->service_category_model->get_by_parent_id_when_active($node_path[0]);
-        $category_1 = build_array_for_dropdown($category_1);
-        $category_2 = $this->service_category_model->get_by_parent_id_when_active($node_path[1]);
-        $category_2 = build_array_for_dropdown($category_2);
-        $this->data['category_1'] = $category_1;
-        $this->data['category_2'] = $category_2;
-
 
         $this->form_validation->set_rules('title', 'Tiêu đề', 'required');
-        $this->form_validation->set_rules('parent_id', 'Danh mục cấp 1', 'required');
-        $this->form_validation->set_rules('parent_id_1', 'Danh mục cấp 2', 'required');
-        $this->form_validation->set_rules('parent_id_2', 'Danh mục cấp 3', 'required');
+        $this->form_validation->set_rules('parent_id', 'Danh mục', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $this->render('admin/service/edit');
@@ -197,7 +186,9 @@ class Service extends Admin_Controller{
                         rename('assets/upload/service/' . $detail['slug'], 'assets/upload/service/' . $unique_slug);
                     }
                 }
-                
+                if(!file_exists('assets/upload/service/' . $unique_slug)){
+                    mkdir('assets/upload/service/' . $unique_slug, 0777);
+                }
                 if ( !empty($_FILES['image']['name']) ) {
                     chmod('assets/upload/service/' . $unique_slug, 0777);
                     $images = $this->upload_image('image', 'assets/upload/service/' . $unique_slug, $_FILES['image']['name']);
@@ -210,11 +201,13 @@ class Service extends Admin_Controller{
                 }else{
                 	$tag = json_encode(array($tag));
                 }
-                $node_path = $this->input->post('parent_id') . '/' . $this->input->post('parent_id_1') . '/' .$this->input->post('parent_id_2');
+                $parent = $this->service_category_model->get_by_id($this->input->post('parent_id'));
+                $root = $this->service_category_model->get_by_id($parent['parent_id']);
+                $node_path = $root['id'] . '/' .$this->input->post('parent_id');
                 $data = array(
                     'slug' => $unique_slug,
                     'title' => $this->input->post('title'),
-                    'category_id' => $this->input->post('parent_id_2'),
+                    'category_id' => $this->input->post('parent_id'),
                     'node_path' => $node_path,
                     'tag' => $tag,
                     'meta_keywords' => $this->input->post('meta_keywords'),

@@ -495,12 +495,26 @@ class Single_model extends MY_Model {
         $this->db->select('*');
         $this->db->from($this->table);
         $this->db->where('is_deleted', 0);
-        $this->db->where('is_active', 0);
+        $this->db->where('is_active', 1);
         if(is_numeric($parent_id)){
             $this->db->where('parent_id', $parent_id);
         }
         
         $this->db->order_by("id", $order);
+
+        return $result = $this->db->get()->result_array();
+    }
+
+    public function get_by_category_id_when_active($category_id, $order = 'desc'){
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where('is_deleted', 0);
+        $this->db->where('is_active', 1);
+        if(is_numeric($category_id)){
+            $this->db->where('category_id', $category_id);
+        }
+        
+        $this->db->order_by("updated_at", $order);
 
         return $result = $this->db->get()->result_array();
     }
@@ -520,18 +534,6 @@ class Single_model extends MY_Model {
         }
         $this->db->like('node_path', '/' . $id . '/');
 
-        return $result = $this->db->get()->result_array();
-    }
-
-    public function get_related($category_id, $id=''){
-        $this->db->select('*');
-        $this->db->from($this->table);
-        $this->db->where('is_deleted', 0);
-        $this->db->where('category_id', $category_id);
-        if ( !empty($id) ) {
-            $this->db->where('id !=', $id);
-        }
-        $this->db->limit(3);
         return $result = $this->db->get()->result_array();
     }
 
@@ -563,7 +565,7 @@ class Single_model extends MY_Model {
             $this->db->select('*');
             $this->db->from($this->table);
             $this->db->where('is_deleted', 0);
-            $this->db->where('is_active', 0);
+            $this->db->where('is_active', 1);
             if ( !empty($level) ) {
                 $this->db->where_in('level', $level);
             }
@@ -672,6 +674,67 @@ class Single_model extends MY_Model {
     }
     
     /*=====  End of Level  ======*/
+
+
+    /*================================
+    =            Frontend            =
+    ================================*/
+    
+    /**
+     * [get_by_level_when_active description]
+     * @param  string $level [description]
+     * @return [type]        [description]
+     */
+    public function get_by_level_when_active($level=''){
+        $this->db->select('*');
+        
+        $this->db->from($this->table);
+        $this->db->where('is_deleted', 0);
+        $this->db->where('is_active', 1);
+        $this->db->where('level', $level);
+        
+        return $this->db->get()->result_array();
+    }
+
+    /**
+     * [get_by_level_and_parent_id_when_active description]
+     * @param  string $level     [description]
+     * @param  [type] $parent_id [description]
+     * @return [type]            [description]
+     */
+    public function get_by_level_and_parent_id_when_active($level='', $parent_id){
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where('is_deleted', 0);
+        $this->db->where('is_active', 1);
+        $this->db->where('level', $level);
+        if(is_numeric($parent_id)){
+            $this->db->where('parent_id', $parent_id);
+        }
+        
+        return $this->db->get()->result_array();
+    }
+
+    /**
+     * [get_related description]
+     * @param  [type] $category_id [description]
+     * @param  string $id          [description]
+     * @return [type]              [description]
+     */
+    public function get_related($category_id, $id=''){
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where('is_deleted', 0);
+        $this->db->where('category_id', $category_id);
+        if ( !empty($id) ) {
+            $this->db->where('id !=', $id);
+        }
+        $this->db->limit(3);
+        return $result = $this->db->get()->result_array();
+    }
+    
+    /*=====  End of Frontend  ======*/
+    
     
 }
 

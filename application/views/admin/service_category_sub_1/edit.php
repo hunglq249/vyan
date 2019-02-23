@@ -42,7 +42,7 @@
                                 <?php if ( $detail['image'] ): ?>
                                     <img src="<?php echo base_url('assets/upload/service_category_sub_1/' . $detail['slug'] . '/' . $detail['image']) ?>" width="150">
                                 <?php else: ?>
-                                    Hiện chưa có hình ảnh cho danh mục món ăn
+                                    Hiện chưa có hình ảnh
                                 <?php endif ?>
                             </div>
                         </div>
@@ -92,7 +92,7 @@
                             <?php
                             echo form_label('Meta Keywords', 'meta_keywords');
                             echo form_error('meta_keywords');
-                            echo form_textarea('meta_keywords', set_value('meta_keywords', $detail['meta_keywords']), 'class="form-control" id="meta_keywords"');
+                            echo form_textarea('meta_keywords', $detail['meta_keywords'], 'class="form-control" id="meta_keywords"');
                             ?>
                         </div>
 
@@ -100,7 +100,7 @@
                             <?php
                             echo form_label('Meta Description', 'meta_description');
                             echo form_error('meta_description');
-                            echo form_textarea('meta_description', set_value('meta_description', $detail['meta_description']), 'class="form-control" id="meta_description"');
+                            echo form_textarea('meta_description', $detail['meta_description'], 'class="form-control" id="meta_description"');
                             ?>
                         </div>
 
@@ -108,7 +108,7 @@
                             <?php
                             echo form_label('Giới thiệu', 'description');
                             echo form_error('description');
-                            echo form_textarea('description', set_value('description', $detail['description']), 'class="form-control tinymce-area" id="description"');
+                            echo form_textarea('description', $detail['description'], 'class="form-control tinymce-area" id="description"');
                             ?>
                         </div>
 

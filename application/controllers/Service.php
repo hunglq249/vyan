@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class PostDetail extends Public_Controller {
+class Service extends Public_Controller {
     public function __construct(){
         parent::__construct();
         $this->load->model('service_model');
@@ -15,6 +15,6 @@ class PostDetail extends Public_Controller {
     	$this->data['detail'] = $detail;
     	$this->data['category'] = $category;
     	$this->data['related'] = $related;
-        $this->render('post_detail_view');
+        $this->render('service_detail_view');
     }
 }

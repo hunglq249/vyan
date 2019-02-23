@@ -40,6 +40,7 @@
             <div class="row">
                 <div class="left col-xs-12 col-md-8">
                     <article>
+                        <?php echo $detail['iframe'] ?>
                         <?php echo $detail['body'] ?>
                     </article>
 

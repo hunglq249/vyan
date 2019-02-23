@@ -48,7 +48,7 @@
                                 <?php if ( $detail['image'] ): ?>
                                     <img src="<?php echo base_url('assets/upload/service/' . $detail['slug'] . '/' . $detail['image']) ?>" width="150">
                                 <?php else: ?>
-                                    Hiện chưa có hình ảnh cho danh mục món ăn
+                                    Hiện chưa có hình ảnh
                                 <?php endif ?>
                             </div>
                         </div>
@@ -66,31 +66,22 @@
 
                         <div class="form-group col-xs-12" style="padding-right: 0px;">
                             <div class="form-group col-xs-12" style="padding-right: 0px;">
-                                <?php
-                                echo form_label('Danh mục cấp 1', 'parent_id');
-                                echo form_error('parent_id', '<div class="error">', '</div>');
-                                echo form_dropdown('parent_id', $category, $detail['category_0'],'class="form-control" id="parent_id"');
-                                ?>
-                            </div>
-                        </div>
-
-                        <div class="form-group col-xs-12" style="padding-right: 0px;">
-                            <div class="form-group col-xs-12" style="padding-right: 0px;">
-                                <?php
-                                echo form_label('Danh mục cấp 2', 'parent_id_1');
-                                echo form_error('parent_id_1', '<div class="error">', '</div>');
-                                echo form_dropdown('parent_id_1', $category_1, $detail['category_1'],'class="form-control" id="parent_id_1"');
-                                ?>
-                            </div>
-                        </div>
-
-                        <div class="form-group col-xs-12" style="padding-right: 0px;">
-                            <div class="form-group col-xs-12" style="padding-right: 0px;">
-                                <?php
-                                echo form_label('Danh mục cấp 3', 'parent_id_2');
-                                echo form_error('parent_id_2', '<div class="error">', '</div>');
-                                echo form_dropdown('parent_id_2',$category_2, $detail['category_2'],'class="form-control" id="parent_id_2"');
-                                ?>
+                                <label for="parent_id">Danh mục</label>
+                                <?php echo form_error('parent_id', '<div class="error">', '</div>'); ?>
+                                <select name="parent_id" class="form-control" id="parent_id">
+                                    <option value="">Chọn danh mục</option>
+                                    <?php if ( $category ): ?>
+                                        <?php foreach ($category as $key => $value): ?>
+                                            <optgroup label="<?php echo $value['title'] ?>">
+                                                <?php if ( !empty($value['sub']) ): ?>
+                                                    <?php foreach ($value['sub'] as $k => $val): ?>
+                                                        <option value="<?php echo $k ?>" <?php echo ($k == $detail['category_id'])? 'selected' : '' ?> ><?php echo $val ?></option>
+                                                    <?php endforeach ?>
+                                                <?php endif ?>
+                                            </optgroup>
+                                        <?php endforeach ?>
+                                    <?php endif ?>
+                                </select>
                             </div>
                         </div>
 
@@ -167,7 +158,7 @@
 
                         <div class="form-group col-xs-12">
                             <a href="javascript:history.back()" class="btn btn-default">Quay lại</a>
-                            <?php echo form_submit('submit', 'Thêm mới', 'class="btn btn-primary pull-right margin-right-xs" '); ?>
+                            <?php echo form_submit('submit', 'Cập nhật', 'class="btn btn-primary pull-right margin-right-xs" '); ?>
                         </div>
                         <?php echo form_close(); ?>
                     </div>

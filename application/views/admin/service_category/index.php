@@ -101,12 +101,6 @@
                                                     <a href="<?= base_url('admin/service_category/edit/' . $value['id'] ) ?>" style="color: #f0ad4e" title="Cập nhật">
                                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                     </a>
-                                                        <?php //if (handle_common_permission_active_and_remove()): ?>
-                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <a href="javascript:void(0)" class="btn-remove" data-id="<?= $value['id'] ?>" data-url="<?= base_url('admin/service_category/remove' ) ?>" data-name="danh mục"  style="color: #d9534f" title="Xóa">
-                                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                                        </a>
-                                                        <?php //endif ?>
                                                 </td>
                                             </tr>
                                             <?php $serial++ ?>

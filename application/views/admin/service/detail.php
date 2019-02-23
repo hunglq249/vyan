@@ -1,3 +1,8 @@
+<style type="text/css">
+    .box-body img{
+        width: 100%;
+    }
+</style>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -48,7 +53,7 @@
                                                 <th>Danh mục</th>
                                                 <td style="text-align: center;">
                                                     <?php
-                                                        echo $detail['category_0'] . ' <br/><i class="fa fa-arrow-down" aria-hidden="true" style="color:blue"></i><br/>' . $detail['category_1'] . '<br/><i class="fa fa-arrow-down" aria-hidden="true" style="color:blue"></i><br/>' . $detail['category_2']
+                                                        echo $detail['category_0'] . ' <br/><i class="fa fa-arrow-down" aria-hidden="true" style="color:blue"></i><br/>' . $detail['category_1']
                                                         ?>
                                                 </td>
                                             </tr>

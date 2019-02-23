@@ -120,7 +120,9 @@ class Service_category extends Admin_Controller{
                         rename('assets/upload/service_category/' . $detail['slug'], 'assets/upload/service_category/' . $unique_slug);
                     }
                 }
-                
+                if(!file_exists('assets/upload/service_category/' . $unique_slug)){
+                    mkdir('assets/upload/service_category/' . $unique_slug, 0777);
+                }
                 if ( !empty($_FILES['image']['name']) ) {
                     chmod('assets/upload/service_category/' . $unique_slug, 0777);
                     $images = $this->upload_image('image', 'assets/upload/service_category/' . $unique_slug, $_FILES['image']['name']);

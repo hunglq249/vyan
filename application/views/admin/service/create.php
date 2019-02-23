@@ -54,31 +54,22 @@
 
                         <div class="form-group col-xs-12" style="padding-right: 0px;">
                             <div class="form-group col-xs-12" style="padding-right: 0px;">
-                                <?php
-                                echo form_label('Danh mục cấp 1', 'parent_id');
-                                echo form_error('parent_id', '<div class="error">', '</div>');
-                                echo form_dropdown('parent_id', $category, 0,'class="form-control" id="parent_id"');
-                                ?>
-                            </div>
-                        </div>
-
-                        <div class="form-group col-xs-12" style="padding-right: 0px;">
-                            <div class="form-group col-xs-12" style="padding-right: 0px;">
-                                <?php
-                                echo form_label('Danh mục cấp 2', 'parent_id_1');
-                                echo form_error('parent_id_1', '<div class="error">', '</div>');
-                                echo form_dropdown('parent_id_1', array('' => 'Chọn danh mục'), 0,'class="form-control" id="parent_id_1"');
-                                ?>
-                            </div>
-                        </div>
-
-                        <div class="form-group col-xs-12" style="padding-right: 0px;">
-                            <div class="form-group col-xs-12" style="padding-right: 0px;">
-                                <?php
-                                echo form_label('Danh mục cấp 3', 'parent_id_2');
-                                echo form_error('parent_id_2', '<div class="error">', '</div>');
-                                echo form_dropdown('parent_id_2', array('' => 'Chọn danh mục'), 0,'class="form-control" id="parent_id_2"');
-                                ?>
+                                <label for="parent_id">Danh mục</label>
+                                <?php echo form_error('parent_id', '<div class="error">', '</div>'); ?>
+                                <select name="parent_id" class="form-control" id="parent_id">
+                                    <option value="">Chọn danh mục</option>
+                                    <?php if ( $category ): ?>
+                                        <?php foreach ($category as $key => $value): ?>
+                                            <optgroup label="<?php echo $value['title'] ?>">
+                                                <?php if ( !empty($value['sub']) ): ?>
+                                                    <?php foreach ($value['sub'] as $k => $val): ?>
+                                                        <option value="<?php echo $k ?>"><?php echo $val ?></option>
+                                                    <?php endforeach ?>
+                                                <?php endif ?>
+                                            </optgroup>
+                                        <?php endforeach ?>
+                                    <?php endif ?>
+                                </select>
                             </div>
                         </div>
 
@@ -147,7 +138,7 @@
 
                         <div class="form-group col-md-12">
                             <?php
-                            echo form_label('Giới thiệu', 'Nội dung');
+                            echo form_label('Nội dung', 'body');
                             echo form_error('body', '<div class="error">', '</div>');
                             echo form_textarea('body', set_value('body'), 'class="form-control tinymce-area" id="body"');
                             ?>

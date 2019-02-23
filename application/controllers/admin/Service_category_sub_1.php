@@ -137,7 +137,9 @@ class Service_category_sub_1 extends Admin_Controller{
                             rename('assets/upload/service_category_sub_1/' . $detail['slug'], 'assets/upload/service_category_sub_1/' . $unique_slug);
                         }
                     }
-                    
+                    if(!file_exists('assets/upload/service_category_sub_1/' . $unique_slug)){
+                        mkdir('assets/upload/service_category_sub_1/' . $unique_slug, 0777);
+                    }
                     if ( !empty($_FILES['image']['name']) ) {
                         chmod('assets/upload/service_category_sub_1/' . $unique_slug, 0777);
                         $images = $this->upload_image('image', 'assets/upload/service_category_sub_1/' . $unique_slug, $_FILES['image']['name']);

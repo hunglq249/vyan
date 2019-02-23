@@ -12,6 +12,7 @@ class Service_category_sub_2 extends Admin_Controller{
 		$this->load->model('service_category_model');
 		$this->load->helper('common_helper');
         $this->author_data = handle_author_common_data();
+        redirect('admin/dashboard');
 	}
 
 	public function index(){
@@ -159,7 +160,9 @@ class Service_category_sub_2 extends Admin_Controller{
                             rename('assets/upload/service_category_sub_2/' . $detail['slug'], 'assets/upload/service_category_sub_2/' . $unique_slug);
                         }
                     }
-                    
+                    if(!file_exists('assets/upload/service_category_sub_2/' . $unique_slug)){
+                        mkdir('assets/upload/service_category_sub_2/' . $unique_slug, 0777);
+                    }
                     if ( !empty($_FILES['image']['name']) ) {
                         chmod('assets/upload/service_category_sub_2/' . $unique_slug, 0777);
                         $images = $this->upload_image('image', 'assets/upload/service_category_sub_2/' . $unique_slug, $_FILES['image']['name']);

@@ -84,7 +84,7 @@
                                                 </td>
                                                 <td><?= $value['title'] ?></td>
                                                 <td>
-                                                    <?php echo $value['category_0'] . ' &nbsp; &nbsp;&nbsp;<i class="fa fa-long-arrow-right" aria-hidden="true" style="color:blue"></i>&nbsp; &nbsp;&nbsp; ' . $value['category_1'] . ' &nbsp; &nbsp;&nbsp;<i class="fa fa-long-arrow-right" aria-hidden="true" style="color:blue"></i>&nbsp; &nbsp;&nbsp; ' . $value['category_2'] ?>
+                                                    <?php echo $value['category_0'] . ' &nbsp; &nbsp;&nbsp;<i class="fa fa-long-arrow-right" aria-hidden="true" style="color:blue"></i>&nbsp; &nbsp;&nbsp; ' . $value['category_1'] ?>
                                                 </td>
                                                 <td class="is-active-<?= $value['id'] ?>">
                                                     <?php

@@ -111,7 +111,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<li>
 					<a href="<?php echo base_url('') ?>">
 						<img src="<?php echo site_url('assets/img/') ?>icon/ico-surgeon-01.svg" alt="Image Beauty Surgeon">
-						Beauty Surgeon
+						<?php echo $this->category_root[0]['title'] ?>
 					</a>
 
 					<span>
@@ -124,51 +124,54 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<i class="fas fa-caret-left"></i> Back
 							</a>
 						</li>
+						<?php if ( $this->category_by_root_1 ): ?>
+							<?php foreach ($this->category_by_root_1 as $key => $value): ?>
+								<li>
+									<a href="<?php echo base_url('') ?>">
+										<?php echo $value['title'] ?>
+									</a>
 
-                        <?php for ($i = 0; $i < 4; $i++) { ?>
-							<li>
-								<a href="<?php echo base_url('') ?>">
-									Heading <?php echo $i+1 ?>
-								</a>
+									<span>
+										<i class="fas fa-caret-right"></i>
+									</span>
 
-								<span>
-									<i class="fas fa-caret-right"></i>
-								</span>
-
-								<ul>
-									<li>
-										<a href="#" class="back">
-											<i class="fas fa-caret-left"></i> Back
-										</a>
-									</li>
-									<!-- Testing Column Height -->
-                                    <?php if ($i%2==0) { ?>
-                                        <?php for ($j = 0; $j < 6; $j++) { ?>
-											<li>
-												<a href="<?php echo base_url('postdetail') ?>">
-													Content Nav Category <?php echo $i+1 .'.'.$j+1 ?>
-												</a>
-											</li>
-                                        <?php } ?>
-                                    <?php } else { ?>
-                                        <?php for ($j = 0; $j < 10; $j++) { ?>
-											<li>
-												<a href="<?php echo base_url('postdetail') ?>">
-													Content Nav Category <?php echo $i+1 .'.'.$j+1  ?>
-												</a>
-											</li>
-                                        <?php } ?>
-                                    <?php } ?>
-								</ul>
-							</li>
-                        <?php } ?>
+									<ul>
+										<li>
+											<a href="#" class="back">
+												<i class="fas fa-caret-left"></i> Back
+											</a>
+										</li>
+										<!-- Testing Column Height -->
+										<?php if ( !empty($value['sub']) ): ?>
+											<?php foreach ($value['sub'] as $k => $val): ?>
+												<?php if ($k <= 8): ?>
+													<li>
+														<a href="<?php echo base_url('service/index/' . $val['slug']) ?>">
+															<?php echo $val['title'] ?>
+														</a>
+													</li>
+												<?php endif ?>
+												<?php if ($k > 8): ?>
+													<li>
+														<a href="<?php echo base_url('service/index/' . $val['slug']) ?>">
+															Xem Thêm
+														</a>
+													</li>
+												<?php endif ?>
+											<?php endforeach ?>
+										<?php endif ?>
+										
+									</ul>
+								</li>
+							<?php endforeach ?>
+						<?php endif ?>
 					</ul>
 				</li>
 
 				<li>
 					<a href="<?php echo base_url('') ?>">
 						<img src="<?php echo site_url('assets/img/') ?>icon/ico-skincare-01.svg" alt="Image Skincare & Spa">
-						Skincare & Spa
+						<?php echo $this->category_root[1]['title'] ?>
 					</a>
 
 					<span>
@@ -182,51 +185,108 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</a>
 						</li>
 
-                        <?php for ($i = 0; $i < 4; $i++) { ?>
-							<li>
-								<a href="<?php echo base_url('') ?>">
-									Heading <?php echo $i+1 ?>
-								</a>
+                        <?php if ( $this->category_by_root_2 ): ?>
+							<?php foreach ($this->category_by_root_2 as $key => $value): ?>
+								<li>
+									<a href="<?php echo base_url('') ?>">
+										<?php echo $value['title'] ?>
+									</a>
 
-								<span>
-									<i class="fas fa-caret-right"></i>
-								</span>
+									<span>
+										<i class="fas fa-caret-right"></i>
+									</span>
 
-								<ul>
-									<li>
-										<a href="#" class="back">
-											<i class="fas fa-caret-left"></i> Back
-										</a>
-									</li>
-									<!-- Testing Column Height -->
-                                    <?php if ($i%2==0) { ?>
-                                        <?php for ($j = 0; $j < 6; $j++) { ?>
-											<li>
-												<a href="<?php echo base_url('postdetail') ?>">
-													Content Nav Category <?php echo $i+1 .'.'.$j+1 ?>
-												</a>
-											</li>
-                                        <?php } ?>
-                                    <?php } else { ?>
-                                        <?php for ($j = 0; $j < 10; $j++) { ?>
-											<li>
-												<a href="<?php echo base_url('postdetail') ?>">
-													Content Nav Category <?php echo $i+1 .'.'.$j+1  ?>
-												</a>
-											</li>
-                                        <?php } ?>
-                                    <?php } ?>
-								</ul>
-							</li>
-                        <?php } ?>
+									<ul>
+										<li>
+											<a href="#" class="back">
+												<i class="fas fa-caret-left"></i> Back
+											</a>
+										</li>
+										<!-- Testing Column Height -->
+										<?php if ( !empty($value['sub']) ): ?>
+											<?php foreach ($value['sub'] as $k => $val): ?>
+												<?php if ($k <= 8): ?>
+													<li>
+														<a href="<?php echo base_url('service/index/' . $val['slug']) ?>">
+															<?php echo $val['title'] ?>
+														</a>
+													</li>
+												<?php endif ?>
+												<?php if ($k > 8): ?>
+													<li>
+														<a href="<?php echo base_url('service/index/' . $val['slug']) ?>">
+															Xem Thêm
+														</a>
+													</li>
+												<?php endif ?>
+											<?php endforeach ?>
+										<?php endif ?>
+										
+									</ul>
+								</li>
+							<?php endforeach ?>
+						<?php endif ?>
 					</ul>
 				</li>
 
 				<li>
 					<a href="<?php echo base_url('') ?>">
 						<img src="<?php echo site_url('assets/img/') ?>icon/ico-others-01.svg" alt="Image Others Care">
-						Others Care
+						<?php echo $this->category_root[2]['title'] ?>
 					</a>
+					<span>
+						<i class="fas fa-caret-right"></i>
+					</span>
+
+					<ul>
+						<li>
+							<a href="#" class="back">
+								<i class="fas fa-caret-left"></i> Back
+							</a>
+						</li>
+
+                        <?php if ( $this->category_by_root_3 ): ?>
+							<?php foreach ($this->category_by_root_3 as $key => $value): ?>
+								<li>
+									<a href="<?php echo base_url('') ?>">
+										<?php echo $value['title'] ?>
+									</a>
+
+									<span>
+										<i class="fas fa-caret-right"></i>
+									</span>
+
+									<ul>
+										<li>
+											<a href="#" class="back">
+												<i class="fas fa-caret-left"></i> Back
+											</a>
+										</li>
+										<!-- Testing Column Height -->
+										<?php if ( !empty($value['sub']) ): ?>
+											<?php foreach ($value['sub'] as $k => $val): ?>
+												<?php if ($k <= 8): ?>
+													<li>
+														<a href="<?php echo base_url('service/index/' . $val['slug']) ?>">
+															<?php echo $val['title'] ?>
+														</a>
+													</li>
+												<?php endif ?>
+												<?php if ($k > 8): ?>
+													<li>
+														<a href="<?php echo base_url('service/index/' . $val['slug']) ?>">
+															Xem Thêm
+														</a>
+													</li>
+												<?php endif ?>
+											<?php endforeach ?>
+										<?php endif ?>
+										
+									</ul>
+								</li>
+							<?php endforeach ?>
+						<?php endif ?>
+					</ul>
 				</li>
 
 				<li>

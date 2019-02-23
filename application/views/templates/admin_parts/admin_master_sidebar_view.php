@@ -28,7 +28,7 @@ if($this->ion_auth->logged_in()) {
                         <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                     </a>
                 </li>
-                <li class="treeview <?php echo ($this->uri->segment(2) == 'service_category' || $this->uri->segment(2) == 'service_category_sub_1' || $this->uri->segment(2) == 'service_category_sub_2' )? 'active' : '' ?>" style="border-bottom: none;">
+                <li class="treeview <?php echo ($this->uri->segment(2) == 'service_category' || $this->uri->segment(2) == 'service_category_sub_1' )? 'active' : '' ?>" style="border-bottom: none;">
                     <a href="">
                         <i class="fa fa-bars"></i>
                         <span>Danh Mục Dịch Vụ</span>
@@ -42,9 +42,6 @@ if($this->ion_auth->logged_in()) {
                         </li>
                         <li class="<?php echo ( $this->uri->segment(2) == 'service_category_sub_1' )? 'active' : '' ?>" >
                             <a href="<?php echo base_url('admin/service_category_sub_1') ?>"><i class="fa fa-calendar-o" aria-hidden="true"></i> <span>Danh Mục Cấp 2</span></a>
-                        </li>
-                        <li class="<?php echo ( $this->uri->segment(2) == 'service_category_sub_2' )? 'active' : '' ?>" >
-                            <a href="<?php echo base_url('admin/service_category_sub_2') ?>"><i class="fa fa-calendar-o" aria-hidden="true"></i> <span>Danh Mục Cấp 3</span></a>
                         </li>
                     </ul>
                 </li>

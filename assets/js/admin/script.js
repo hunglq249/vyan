@@ -157,7 +157,7 @@ $('.btn-deactive').click(function(){
 
 $('.btn-active').click(function(){
     id = $(this).data('id');
-    if (confirm('Chắc chắn hủy kích hoạt?')) {
+    if (confirm('Chắc chắn kích hoạt?')) {
         $.ajax({
             method: "get",
             url: HOSTNAMEADMIN + '/service_category/active',

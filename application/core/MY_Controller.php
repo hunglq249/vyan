@@ -177,10 +177,16 @@ class Admin_Controller extends MY_Controller {
 }
 
 class Public_Controller extends MY_Controller {
+    public $category_root;
+    public $category_by_root_1;
+    public $category_by_root_2;
+    public $category_by_root_3;
     public function __construct() {
         parent::__construct();
         $this->load->helper('form');
         $this->load->library('session');
+        $this->load->model('service_category_model');
+        $this->load->model('service_model');
         date_default_timezone_set('Asia/Ho_Chi_Minh');
 
         $this->langAbbreviation = $this->session->userdata('langAbbreviation') ? $this->session->userdata('langAbbreviation') : 'vi';
@@ -201,9 +207,40 @@ class Public_Controller extends MY_Controller {
             $this->session->set_userdata("langAbbreviation",'en');
             $this->lang->load('english_lang', 'english');
         }
+
+        /**
+         *
+         * Get Category for menu
+         *
+         */
+        $category_root = $this->get_category_root();
+        $this->category_root = $category_root;
+        $this->category_by_root_1 = $this->get_category_level_and_parent(1, $category_root[0]['id']);
+        $this->category_by_root_2 = $this->get_category_level_and_parent(1, $category_root[1]['id']);
+        $this->category_by_root_3 = $this->get_category_level_and_parent(1, $category_root[2]['id']);
+
     }
 
     protected function render($the_view = NULL, $template = 'master') {
         parent::render($the_view, $template);
+    }
+
+    private function get_category_root(){
+        $result = $this->service_category_model->get_by_level(0);
+        return $result;
+    }
+
+    private function get_category_level_and_parent($level, $parent_id){
+        $result = $this->service_category_model->get_by_level_and_parent_id_when_active($level, $parent_id);
+        foreach ($result as $key => $value) {
+            $sub = $this->service_model->get_by_category_id_when_active($value['id']);
+            $result[$key]['sub'] = $sub;
+        }
+        return $result;
+    }
+
+    private function get_category_by_root($parent_id){
+        $result = $this->service_category_model->get_by_node_path_when_active($parent_id);
+        return $result;
     }
 }

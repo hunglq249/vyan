@@ -42,7 +42,7 @@
 
                     <div class="row" style="padding: 10px;">
                         <div class="col-md-6">
-                            <a href="<?php echo base_url('admin/service_category/create') ?>" class="btn btn-primary"  >Thêm mới</a>
+                            <!-- <a href="<?php echo base_url('admin/service_category/create') ?>" class="btn btn-primary"  >Thêm mới</a> -->
                         </div>
                         <div class="col-md-6">
                             <form action="<?php echo base_url('admin/service_category/index') ?>" method="get">
@@ -105,14 +105,6 @@
                                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                         <a href="javascript:void(0)" class="btn-remove" data-id="<?= $value['id'] ?>" data-url="<?= base_url('admin/service_category/remove' ) ?>" data-name="danh mục"  style="color: #d9534f" title="Xóa">
                                                             <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                                        </a>
-                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <a href="javascript:void(0)" class="btn-active" title="Duyệt bài" data-id="<?= $value['id'] ?>" data-url="<?= base_url('admin/service_category/active' ) ?>" style="color: #00a65a" >
-                                                            <i class="fa fa-check" aria-hidden="true"></i>
-                                                        </a>
-                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <a href="javascript:void(0)" class="btn-deactive" title="Tắt danh mục" data-id="<?= $value['id'] ?>" data-url="<?= base_url('admin/service_category/deactive' ) ?>" style="color: #f0ad4e">
-                                                            <i class="fa fa-times" aria-hidden="true"></i>
                                                         </a>
                                                         <?php //endif ?>
                                                 </td>

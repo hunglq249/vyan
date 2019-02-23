@@ -138,10 +138,11 @@ $('#parent_id_1').change(function(){
 
 $('.btn-deactive').click(function(){
     id = $(this).data('id');
+    url = $(this).data('url');
     if (confirm('Chắc chắn hủy kích hoạt?')) {
         $.ajax({
             method: "get",
-            url: HOSTNAMEADMIN + '/service_category/deactive',
+            url: url,
             data: {
                 id : id
             },
@@ -157,10 +158,11 @@ $('.btn-deactive').click(function(){
 
 $('.btn-active').click(function(){
     id = $(this).data('id');
+    url = $(this).data('url');
     if (confirm('Chắc chắn kích hoạt?')) {
         $.ajax({
             method: "get",
-            url: HOSTNAMEADMIN + '/service_category/active',
+            url: url,
             data: {
                 id : id
             },
@@ -176,10 +178,11 @@ $('.btn-active').click(function(){
 
 $('.btn-remove').click(function(){
     id = $(this).data('id');
+    url = $(this).data('url');
     if (confirm('Chắc chắn xóa?')) {
         $.ajax({
             method: "get",
-            url: HOSTNAMEADMIN + '/service_category/remove',
+            url: url,
             data: {
                 id : id
             },
@@ -187,7 +190,7 @@ $('.btn-remove').click(function(){
                 if (response.result == true) {
                     alert('Xóa thành công!');
                 }else{
-                    alert('Xóa thất bại do danh mục này có chứa các danh mục con!');
+                    alert('Xóa thất bại do danh mục này có chứa các bài viết!');
                 }
                 location.reload();
             },

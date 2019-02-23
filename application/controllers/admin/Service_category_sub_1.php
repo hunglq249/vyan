@@ -9,7 +9,8 @@ class Service_category_sub_1 extends Admin_Controller{
 	
 	function __construct(){
 		parent::__construct();
-		$this->load->model('service_category_model');
+        $this->load->model('service_category_model');
+		$this->load->model('service_model');
 		$this->load->helper('common_helper');
         $this->author_data = handle_author_common_data();
 	}
@@ -176,6 +177,70 @@ class Service_category_sub_1 extends Admin_Controller{
 
 		
 	}
+
+    public function deactive(){
+        $id = $this->input->get('id');
+        $detail = $this->service_category_model->get_by_id($id);
+        switch ($detail['level']) {
+            case 1:
+                $category = $this->service_category_model->get_by_node_path($id, array(2, 3));
+                break;
+
+            case 2:
+                $category = $this->service_category_model->get_by_node_path($id, array(3));
+                break;
+            case 3:
+                $category = $this->service_category_model->get_by_node_path($id);
+                break;
+            default:
+                
+                break;
+        }
+        $ids = array($id);
+        $data = array(
+            'is_active' => 0
+        );
+        foreach ($category as $key => $value) {
+            $ids[] = $value['id'];
+        }
+        foreach ($ids as $key => $value) {
+            $this->service_category_model->update($value, $data);
+        }
+    }
+
+    public function active(){
+        $id = $this->input->get('id');
+        $data = array(
+            'is_active' => 1
+        );
+        $this->service_category_model->update($id, $data);
+
+    }
+
+    public function remove(){
+        $id = $this->input->get('id');
+        $detail = $this->service_category_model->get_by_id($id);
+        $data = array(
+            'is_deleted' => 1
+        );
+        $total = $this->service_model->count_by_category_id($id);
+        if ( $total > 0 ) {
+            return $this->output
+                ->set_content_type('application/json')
+                ->set_status_header(HTTP_SUCCESS)
+                ->set_output(json_encode(array('status' => HTTP_SUCCESS, 'result' => false)));
+        }else{
+            $update = $this->service_category_model->update($id, $data);
+            if ($update) {
+                return $this->output
+                    ->set_content_type('application/json')
+                    ->set_status_header(HTTP_SUCCESS)
+                    ->set_output(json_encode(array('status' => HTTP_SUCCESS, 'result' => true)));
+            }
+            
+        } 
+
+    }
 
 	protected function check_img($filename, $filesize){
         $reponse = array(

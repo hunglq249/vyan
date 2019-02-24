@@ -235,6 +235,53 @@ class Service extends Admin_Controller{
         }
 	}
 
+
+    public function deactive(){
+        $id = $this->input->get('id');
+        $detail = $this->service_model->get_by_id($id);
+        $data = array(
+            'is_active' => 0
+        );
+        $update = $this->service_model->update($id, $data);
+        if ($update) {
+            return $this->output
+                ->set_content_type('application/json')
+                ->set_status_header(HTTP_SUCCESS)
+                ->set_output(json_encode(array('status' => HTTP_SUCCESS, 'result' => true)));
+        }
+    }
+
+    public function active(){
+        $id = $this->input->get('id');
+        $data = array(
+            'is_active' => 1
+        );
+        $update = $this->service_model->update($id, $data);
+        if ($update) {
+            return $this->output
+                ->set_content_type('application/json')
+                ->set_status_header(HTTP_SUCCESS)
+                ->set_output(json_encode(array('status' => HTTP_SUCCESS, 'result' => true)));
+        }
+
+    }
+
+    public function remove(){
+        $id = $this->input->get('id');
+        $detail = $this->service_model->get_by_id($id);
+        $data = array(
+            'is_deleted' => 1
+        );
+        $update = $this->service_model->update($id, $data);
+        if ($update) {
+            return $this->output
+                ->set_content_type('application/json')
+                ->set_status_header(HTTP_SUCCESS)
+                ->set_output(json_encode(array('status' => HTTP_SUCCESS, 'result' => true)));
+        }
+
+    }
+
 	protected function check_img($filename, $filesize){
         $reponse = array(
             'csrf_hash' => $this->security->get_csrf_hash()

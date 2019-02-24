@@ -554,6 +554,15 @@ class Single_model extends MY_Model {
 
         return $result = $this->db->get()->num_rows();
     }
+
+    public function count_by_category_id($category_id){
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where('is_deleted', 0);
+        $this->db->where('category_id', $category_id);
+
+        return $result = $this->db->get()->num_rows();
+    }
     
     /**
      * [get_by_node_path_when_active description]

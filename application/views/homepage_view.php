@@ -79,39 +79,24 @@
                         <?php } ?>
 					</ol>
 					<div class="carousel-inner">
-						<!-- Import Slider database Here -->
-                        <?php for ($i = 0; $i < 4; $i++) { ?>
-							<div class="carousel-item <?php echo ($i == 0) ? 'active' : '' ?>">
-								<div class="mask">
-									<!-- Test Slider -->
-                                    <?php if ($i % 2 == 0) { ?>
-										<img src="https://images.unsplash.com/photo-1548101867-b873a20f90a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1525&q=80"
-											 alt="Image Slide <?php echo $i + 1 ?>">
-                                    <?php } else { ?>
-										<img src="https://images.unsplash.com/photo-1548264382-09fe66eddf37?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
-											 alt="Image Slide <?php echo $i + 1 ?>">
-                                    <?php } ?>
-								</div>
-
-								<div class="carousel-caption">
-                                    <?php if ($i % 2 == 0) { ?>
-										<h6>
-											Dr. Someone 1
-										</h6>
-										<p>Job Title</p>
-                                    <?php } else { ?>
-										<h6>
-											Dr. Someone 2
-										</h6>
-										<p>Job Title</p>
-                                    <?php } ?>
-
-									<ul>
-										<li>Doctor Profile</li>
-										<li>Limit 2-3 lines</li>
-									</ul>
-								</div>
-							</div>
+                        <?php if($doctors){ ?>
+                            <?php foreach($doctors as $key => $value){ ?>
+                                <div class="carousel-item <?php echo ($key == 0) ? 'active' : '' ?>">
+                                    <div class="mask">
+                                        <img src="<?php echo base_url('assets/upload/doctor/' . $value['image']) ?>"
+                                             alt="Image Slide <?php echo $key; ?>">
+                                    </div>
+                                    <div class="carousel-caption">
+                                        <h6>
+                                            <?php echo $value['name']; ?>
+                                        </h6>
+                                        <p><?php echo $value['title']; ?></p>
+                                        <ul>
+                                            <li><?php echo $value['biography']; ?></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            <?php } ?>
                         <?php } ?>
 					</div>
 					<a class="carousel-control-prev" href="#slideAbout" role="button" data-slide="prev">

@@ -1,22 +1,11 @@
 <div class="post-list">
     <div class="container cover">
         <div class="mask">
-            <img src="<?php echo base_url('assets/upload/service_category_sub_1/' . $detail['slug'] . '/' . $detail['image']) ?>" alt="<?php echo $detail['title'] ?>">
+            <img src="" alt="">
         </div>
     </div>
 
     <div class="container post-content">
-        <div class="post-content-header">
-            <h6 class="subtitle-md">
-                <?php echo $category['title'] ?>
-            </h6>
-            <h4>
-                <?php echo $detail['title'] ?>
-            </h4>
-
-            <?php echo $detail['description'] ?>
-
-        </div>
 
         <div class="post-content-body">
             <div class="row">

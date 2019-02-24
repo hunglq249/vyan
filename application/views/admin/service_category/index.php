@@ -119,7 +119,7 @@
                         </div>
                     </div>
                         <div class="col-md-6 col-md-offset-5 page">
-                            <!-- <?php echo $page_links ?> -->
+                            <?php echo $page_links ?>
                         </div>
                     <!-- /.box-body -->
                 </div>

@@ -127,7 +127,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<?php if ( $this->category_by_root_1 ): ?>
 							<?php foreach ($this->category_by_root_1 as $key => $value): ?>
 								<li>
-									<a href="<?php echo base_url('') ?>">
+									<a href="<?php echo base_url('service/list/' . $value['slug']) ?>">
 										<?php echo $value['title'] ?>
 									</a>
 
@@ -188,7 +188,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <?php if ( $this->category_by_root_2 ): ?>
 							<?php foreach ($this->category_by_root_2 as $key => $value): ?>
 								<li>
-									<a href="<?php echo base_url('') ?>">
+									<a href="<?php echo base_url('service/list/' . $value['slug']) ?>">
 										<?php echo $value['title'] ?>
 									</a>
 
@@ -248,7 +248,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <?php if ( $this->category_by_root_3 ): ?>
 							<?php foreach ($this->category_by_root_3 as $key => $value): ?>
 								<li>
-									<a href="<?php echo base_url('') ?>">
+									<a href="<?php echo base_url('service/list/' . $value['slug']) ?>">
 										<?php echo $value['title'] ?>
 									</a>
 

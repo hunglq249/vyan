@@ -142,23 +142,25 @@
 				</p>
 			</div>
 
-			<div class="owl-carousel">
-                <?php for ($i = 0; $i < 4; $i++) { ?>
-					<div class="item">
-						<div class="mask mask-circle">
-							<img src="https://images.unsplash.com/photo-1548365278-2ee092b7bb18?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"
-								 alt="Image of Service <?php echo $i + 1 ?>">
-						</div>
+			<div class="owl-carousel services">
+				<?php if ( $list_service ): ?>
+					<?php foreach ($list_service as $key => $value): ?>
+						<div class="item">
+							<div class="mask mask-circle">
+								<img src="<?php echo base_url('assets/upload/service/' . $value['slug'] . '/' . $value['image']) ?>"
+									 alt="<?php echo $value['title'] ?>">
+							</div>
 
-						<p>
-							Service <?php echo $i + 1 ?>
-						</p>
-					</div>
-                <?php } ?>
+							<p>
+								<?php echo $value['title'] ?>
+							</p>
+						</div>
+					<?php endforeach ?>
+				<?php endif ?>
 			</div>
 
 			<div class="section-footer">
-				<a href="<?php echo base_url('') ?>" class="btn btn-primary" role="button">
+				<a href="<?php echo base_url('service/list_all') ?>" class="btn btn-primary" role="button">
 					See all our services
 				</a>
 			</div>

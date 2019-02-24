@@ -71,9 +71,9 @@
                         </div>
                         <div class="form-group col-md-12">
                             <?php
-                            echo form_label('Giới thiệu', 'description');
-                            echo form_error('description', '<div class="error">', '</div>');
-                            echo form_textarea('description', set_value('description'), 'class="form-control" id="description"');
+                            echo form_label('Giới thiệu', 'biography');
+                            echo form_error('biography', '<div class="error">', '</div>');
+                            echo form_textarea('biography', set_value('biography'), 'class="form-control" id="biography"');
                             ?>
                         </div>
                         <div class="form-group col-xs-12">

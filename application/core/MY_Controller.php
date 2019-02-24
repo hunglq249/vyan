@@ -181,11 +181,14 @@ class Public_Controller extends MY_Controller {
     public $category_by_root_1;
     public $category_by_root_2;
     public $category_by_root_3;
+    public $category_academy;
     public function __construct() {
         parent::__construct();
         $this->load->helper('form');
         $this->load->library('session');
         $this->load->model('service_category_model');
+        $this->load->model('academy_category_model');
+        $this->load->model('academy_model');
         $this->load->model('service_model');
         date_default_timezone_set('Asia/Ho_Chi_Minh');
 
@@ -219,6 +222,14 @@ class Public_Controller extends MY_Controller {
         $this->category_by_root_2 = $this->get_category_level_and_parent(1, $category_root[1]['id']);
         $this->category_by_root_3 = $this->get_category_level_and_parent(1, $category_root[2]['id']);
 
+        /**
+        *
+        *
+        *Get Category Academy for menu
+        *
+        */
+        $this->category_academy = $this->get_menu_academy();
+
     }
 
     protected function render($the_view = NULL, $template = 'master') {
@@ -241,6 +252,14 @@ class Public_Controller extends MY_Controller {
 
     private function get_category_by_root($parent_id){
         $result = $this->service_category_model->get_by_node_path_when_active($parent_id);
+        return $result;
+    }
+    private function get_menu_academy(){
+        $result = $this->academy_category_model->get_all_with_pagination_search('','desc',4,0);
+        foreach ($result as $key => $value) {
+            $sub = $this->academy_model->get_by_category_id_when_active($value['id']);
+            $result[$key]['sub'] = $sub;
+        }
         return $result;
     }
 }

@@ -117,6 +117,10 @@ class Service_category_sub_1 extends Admin_Controller{
         unset($category[0]);
         $this->data['category'] = $category;
         $detail = $this->service_category_model->get_by_id($id);
+        if(empty($detail) || !is_numeric($id)){
+            $this->session->set_flashdata('message_error', MESSAGE_ISSET_ERROR);
+            redirect('admin/service_category_sub_1');
+        }
         $this->data['detail'] = $detail;
 
         $this->form_validation->set_rules('title', 'Tiêu đề', 'required');

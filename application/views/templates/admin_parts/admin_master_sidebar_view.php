@@ -28,6 +28,11 @@ if($this->ion_auth->logged_in()) {
                         <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                     </a>
                 </li>
+                <li class="<?php echo ($this->uri->segment(2) == 'banner')? 'active' : '' ?>">
+                    <a href="<?php echo base_url('admin/banner') ?>">
+                        <i class="fa fa-inbox"></i> <span>Quản lý banner</span>
+                    </a>
+                </li>
                 <li class="treeview <?php echo ($this->uri->segment(2) == 'service_category' || $this->uri->segment(2) == 'service_category_sub_1' )? 'active' : '' ?>" style="border-bottom: none;">
                     <a href="">
                         <i class="fa fa-bars"></i>
@@ -50,76 +55,19 @@ if($this->ion_auth->logged_in()) {
                         <i class="fa fa-shopping-bag" aria-hidden="true"></i> <span>Dịch Vụ</span>
                     </a>
                 </li>
-                <li class="treeview product">
-                    <a href="">
-                        <i class="fa fa-bars"></i>
-                        <span>Quản lý thực đơn</span>
-                        <span class="pull-right-container">
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li>
-                            <a href="<?php echo base_url('admin/service_category') ?>"><i class="fa fa-calendar-o" aria-hidden="true"></i> <span>Danh Mục Thực Đơn</span></a>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url('admin/service_category_sub_1') ?>"><i class="fa fa-calendar-o" aria-hidden="true"></i> <span>Danh Mục Cấp 2</span></a>
-                        </li>
-                        <li>
-                            <a href="<?php echo base_url('admin/service_category_sub_2') ?>"><i class="fa fa-calendar-o" aria-hidden="true"></i> <span>Danh Mục Cấp 3</span></a>
-                        </li>
-                    </ul>
-                </li>
-             <!--    <li class="treeview floor">
-                 <a href="">
-                     <i class="fa fa-bars"></i>
-                     <span>Quản lý bàn</span>
-                     <span class="pull-right-container">
-                         <i class="fa fa-angle-left pull-right"></i>
-                     </span>
-                 </a>
-                 <ul class="treeview-menu">
-                     <li>
-                         <a href="<?php echo base_url('admin/floor') ?>"><i class="fa fa-inbox"></i> <span>Tầng</span></a>
-                     </li>
-                     <li>
-                         <a href="<?php echo base_url('admin/desk') ?>"><i class="fa fa-envelope-o"></i> <span>Bàn</span></a>
-                     </li>
-                 </ul>
-             </li> -->
-                <li class="treeview set_desk">
-                    <a href="">
-                        <i class="fa fa-bars"></i>
-                        <span>Đặt Bàn</span>
-                        <span class="pull-right-container">
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="<?php echo base_url('admin/set_desk/status/1') ?>"><i class="fa fa-retweet"></i> Đơn Đặt Bàn</a></li>
-                       <li><a href="<?php echo base_url('admin/set_desk/status/2') ?>"><i class="fa fa-check"></i> Đã Xác Nhận</a></li>
-                       <!-- <li><a href="<?php echo base_url('admin/set_desk/status/3') ?>"><i class="fa fa-check"></i> Đã Hoàn Thành</a></li> -->
-                        <li><a href="<?php echo base_url('admin/set_desk/status/0') ?>"><i class="fa fa-times"></i> Đơn Đã Hủy</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="<?php echo base_url('admin/banner') ?>">
-                        <i class="fa fa-inbox"></i> <span>Quản lý banner</span>
+                <li class="<?php echo ($this->uri->segment(2) == 'academy_category')? 'active' : '' ?>">
+                    <a href="<?php echo base_url('admin/academy_category') ?>">
+                        <i class="fa fa-calendar-o" aria-hidden="true"></i> <span>Danh mục Academy</span>
                     </a>
                 </li>
-                <li>
-                    <a href="<?php echo base_url('admin/menu') ?>">
-                        <i class="fa fa-envelope-o"></i> <span>Menu</span>
+                <li class="<?php echo ($this->uri->segment(2) == 'academy')? 'active' : '' ?>">
+                    <a href="<?php echo base_url('admin/academy') ?>">
+                        <i class="fa fa-leanpub" aria-hidden="true"></i> <span>Academy</span>
                     </a>
                 </li>
-                <li>
-                    <a href="<?php echo base_url('admin/client_gmail') ?>">
-                        <i class="fa fa-inbox"></i> <span>Mail đăng kí nhận thông tin</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url('admin/contact/detail') ?>">
-                        <i class="fa fa-inbox"></i> <span>Form liên hệ</span>
+                <li class="<?php echo ($this->uri->segment(2) == 'doctor')? 'active' : '' ?>">
+                    <a href="<?php echo base_url('admin/doctor') ?>">
+                        <i class="fa fa-users" aria-hidden="true"></i> <span>Doctors</span>
                     </a>
                 </li>
                 <li class="header">DOCUMENTATION</li>

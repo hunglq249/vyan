@@ -124,7 +124,7 @@
                                     <?php else: ?>
                                         <tr>
                                             <td colspan="6">
-                                                Chưa có danh mục
+                                                Chưa có dịch vụ
                                             </td>
                                             
                                         </tr>
@@ -135,7 +135,7 @@
                         </div>
                     </div>
                         <div class="col-md-6 col-md-offset-5 page">
-                            <!-- <?php echo $page_links ?> -->
+                            <?php echo $page_links ?>
                         </div>
                     <!-- /.box-body -->
                 </div>

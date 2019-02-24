@@ -8,8 +8,6 @@ function expandNav(){
     
     let deviceWidth = $(window).width();
     
-    console.log(deviceWidth);
-    
     if (deviceWidth < 991.98) {
         $navControl.on('click', function(){
             $(this).toggleClass('active');

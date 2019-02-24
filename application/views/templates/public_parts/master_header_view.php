@@ -1,3 +1,4 @@
+
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
@@ -294,6 +295,54 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<img src="<?php echo site_url('assets/img/') ?>icon/ico-academy-01.svg" alt="Image Academy">
 						Vyan Academy
 					</a>
+					<ul>
+						<li>
+							<a href="#" class="back">
+								<i class="fas fa-caret-left"></i> Back
+							</a>
+						</li>
+						<?php if ( $this->category_academy ): ?>
+							<?php foreach ($this->category_academy as $key => $value): ?>
+								<li>
+									<a href="<?php echo base_url('academy/list/' . $value['slug']) ?>">
+										<?php echo $value['title'] ?>
+									</a>
+
+									<span>
+										<i class="fas fa-caret-right"></i>
+									</span>
+
+									<ul>
+										<li>
+											<a href="#" class="back">
+												<i class="fas fa-caret-left"></i> Back
+											</a>
+										</li>
+										<!-- Testing Column Height -->
+										<?php if ( !empty($value['sub']) ): ?>
+											<?php foreach ($value['sub'] as $k => $val): ?>
+												<?php if ($k <= 8): ?>
+													<li>
+														<a href="<?php echo base_url('academy/index/' . $val['slug']) ?>">
+															<?php echo $val['title'] ?>
+														</a>
+													</li>
+												<?php endif ?>
+												<?php if ($k > 8): ?>
+													<li>
+														<a href="<?php echo base_url('academy/index/' . $val['slug']) ?>">
+															Xem Thêm
+														</a>
+													</li>
+												<?php endif ?>
+											<?php endforeach ?>
+										<?php endif ?>
+										
+									</ul>
+								</li>
+							<?php endforeach ?>
+						<?php endif ?>
+					</ul>
 				</li>
 
 				<li>

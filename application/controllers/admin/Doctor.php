@@ -98,6 +98,10 @@ class Doctor extends Admin_Controller{
         $this->load->library('form_validation');
 
         $detail = $this->doctor_model->get_by_id($id);
+        if(empty($detail) || !is_numeric($id)){
+            $this->session->set_flashdata('message_error', MESSAGE_ISSET_ERROR);
+            redirect('admin/doctor');
+        }
         $this->data['detail'] = $detail;
 
 

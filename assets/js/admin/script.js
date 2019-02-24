@@ -150,7 +150,12 @@ $('.btn-deactive').click(function(){
                 location.reload();
             },
             error: function(jqXHR, exception){
-                console.log(errorHandle(jqXHR, exception));
+                if(jqXHR.responseJSON.message != 'undefined '){
+                    alert(jqXHR.responseJSON.message);
+                    location.reload();
+                }else{
+                    console.log(errorHandle(jqXHR, exception));
+                }
             }
         });
     }
@@ -195,7 +200,12 @@ $('.btn-remove').click(function(){
                 location.reload();
             },
             error: function(jqXHR, exception){
-                console.log(errorHandle(jqXHR, exception));
+                if(jqXHR.responseJSON.message != 'undefined '){
+                    alert(jqXHR.responseJSON.message);
+                    location.reload();
+                }else{
+                    console.log(errorHandle(jqXHR, exception));
+                }
             }
         });
     }

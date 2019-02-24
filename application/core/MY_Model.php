@@ -404,6 +404,20 @@ class Single_model extends MY_Model {
         parent::__construct();
     }
 
+    
+    /**
+     * [get_all description]
+     * @param  string $order [description]
+     * @return [type]        [description]
+     */
+    public function get_all($order = 'desc') {
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where('is_deleted', 0);
+        $this->db->order_by('id', $order);
+
+        return $result = $this->db->get()->result_array();
+    }
 
     /**
      * [get_all_with_pagination_search description]
@@ -486,6 +500,7 @@ class Single_model extends MY_Model {
      */
     public function get_by_id($id=''){
         $this->db->from($this->table);
+        $this->db->where('is_deleted', 0);
         $this->db->where('id', $id);
         return $this->db->get()->row_array();
     }
@@ -515,9 +530,8 @@ class Single_model extends MY_Model {
      * @return [type] [description]
      */
     public function find_row_array($where = array()){
-        $this->db->from($this->table);
-        $this->db->where_in($where);
-        return $result = $this->db->get()->num_rows();
+        $this->db->where($where);
+        return $this->db->count_all_results($this->table);
     }
 
     /**

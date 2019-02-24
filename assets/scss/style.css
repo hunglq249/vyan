@@ -58,7 +58,7 @@ h6 {
     font-size: 0.875rem; }
 
 p {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
   font-weight: 400; }
 
@@ -282,6 +282,36 @@ header {
           margin-top: -10px; }
         header .container .nav-control span:after {
           margin-top: 10px; }
+
+#btnAdvise {
+  position: fixed;
+  bottom: 50%;
+  right: 0;
+  z-index: 999;
+  -webkit-transform: rotate(-90deg) translateX(50%);
+  -moz-transform: rotate(-90deg) translateX(50%);
+  -ms-transform: rotate(-90deg) translateX(50%);
+  -o-transform: rotate(-90deg) translateX(50%);
+  transform: rotate(-90deg) translateX(50%);
+  -webkit-transform-origin: bottom right;
+  -moz-transform-origin: bottom right;
+  -ms-transform-origin: bottom right;
+  -o-transform-origin: bottom right;
+  transform-origin: bottom right; }
+
+.modal#modalAdvise .modal-dialog .modal-content .modal-header {
+  background-color: #97D4CA;
+  color: #fff; }
+.modal#modalAdvise .modal-dialog .modal-content .modal-body .row .form-group textarea {
+  resize: none; }
+.modal#modalAdvise .modal-dialog .modal-content .modal-footer {
+  justify-content: space-between; }
+  .modal#modalAdvise .modal-dialog .modal-content .modal-footer .left p {
+    color: #666; }
+    .modal#modalAdvise .modal-dialog .modal-content .modal-footer .left p a {
+      color: #97D4CA; }
+  .modal#modalAdvise .modal-dialog .modal-content .modal-footer .right {
+    text-align: right; }
 
 @media (max-width: 991.98px) {
   header {

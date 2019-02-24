@@ -146,7 +146,7 @@
                                 }
 
                                 .carousel-caption {
-                                    width: 50%;
+                                    width: 75%;
 
                                     bottom: 50px;
                                     left: 50%;
@@ -159,12 +159,12 @@
                                     padding: $padding-double;
 
                                     h6{
-                                        margin-bottom: $padding-double;
-
                                         text-shadow: 0 0 7px rgba(0,0,0,0.3);
                                     }
 
                                     ul{
+                                        margin-top: $padding-double;
+
                                         li{
                                             font-size: 1rem;
 
@@ -197,6 +197,21 @@
 
                         p{
                             color: $primary-base;
+                        }
+                    }
+
+                    .owl-nav{
+                        display: block !important;
+
+                        padding-top: $padding-base;
+
+                        text-align: center;
+
+                        button{
+                            margin-left: $padding-half;
+                            margin-right: $padding-half;
+
+                            font-size: 1.5rem;
                         }
                     }
                 }

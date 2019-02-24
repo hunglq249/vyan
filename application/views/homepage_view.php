@@ -98,10 +98,12 @@
 										<h6>
 											Dr. Someone 1
 										</h6>
+										<p>Job Title</p>
                                     <?php } else { ?>
 										<h6>
 											Dr. Someone 2
 										</h6>
+										<p>Job Title</p>
                                     <?php } ?>
 
 									<ul>
@@ -334,15 +336,15 @@
 
 <script>
     $(document).ready(function () {
-        $(".owl-carousel.services").owlCarousel({
+        $(".services .owl-carousel").owlCarousel({
             loop: true,
             center: true,
             margin: 15,
-            dots: true,
+			nav: true,
+			dots: false,
             responsive: {
                 0: {
-                    items: 1,
-                    nav: true
+                    items: 1
                 },
                 768: {
                     items: 3

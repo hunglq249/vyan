@@ -332,3 +332,66 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 	</div>
 </header>
+
+<!-- Button call Common Modal Advise -->
+
+<button class="btn btn-primary" id="btnAdvise" type="button" data-toggle="modal" data-target="#modalAdvise">
+	<i class="fas fa-phone fa-flip-horizontal"></i> Advise Register
+</button>
+
+<div class="modal fade" id="modalAdvise" tabindex="-1" role="dialog" aria-labelledby="modalAdviseLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="modalAdviseLabel">
+					Advise Registeration
+				</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form>
+				<div class="modal-body">
+					<div class="row">
+						<div class="form-group col-xs-12 col-md-12 col-lg-12">
+							<?php
+							echo form_input('register_name', set_value('register_name'), 'class="form-control" id="register_name" placeholder="Fullname (*)"');
+							echo form_error('register_name');
+							?>
+						</div>
+						<div class="form-group col-xs-12 col-md-12 col-lg-12">
+							<?php
+							echo form_input('register_phone', set_value('register_phone'), 'class="form-control" id="register_phone" placeholder="Phone Number (*)"');
+							echo form_error('register_phone');
+							?>
+						</div>
+						<div class="form-group col-xs-12 col-md-12 col-lg-12">
+							<?php
+							echo form_input('register_email', set_value('register_email'), 'class="form-control" id="register_email" placeholder="Email"');
+							echo form_error('register_email');
+							?>
+						</div>
+						<div class="form-group col-xs-12 col-md-12 col-lg-12">
+							<?php
+							echo form_textarea('register_message', set_value('register_message'), 'class="form-control" id="register_message" placeholder="Message ..."');
+							echo form_error('register_message');
+							?>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<div class="left">
+						<p>
+							Tư vấn trực tiếp 24/7: <a href="tel:1900.1234">1900.1234</a>
+						</p>
+					</div>
+					<div class="right">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Send</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+

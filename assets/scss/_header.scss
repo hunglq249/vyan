@@ -222,6 +222,62 @@ header{
     }
 }
 
+#btnAdvise{
+    position: fixed;
+    bottom: 50%;
+    right: 0;
+    z-index: 999;
+
+    -webkit-transform: rotate(-90deg) translateX(50%);
+    -moz-transform: rotate(-90deg) translateX(50%);
+    -ms-transform: rotate(-90deg) translateX(50%);
+    -o-transform: rotate(-90deg) translateX(50%);
+    transform: rotate(-90deg) translateX(50%);
+    
+    @include transform-origin(bottom, right);
+}
+
+.modal{
+    &#modalAdvise{
+        .modal-dialog{
+            .modal-content{
+                .modal-header{
+                    background-color: $primary-base;
+                    color: #fff;
+                }
+
+                .modal-body{
+                    .row{
+                        .form-group{
+                            textarea{
+                                resize: none;
+                            }
+                        }
+                    }
+                }
+
+                .modal-footer{
+                    justify-content: space-between;
+
+                    .left{
+                        p{
+                            color: $gray-base;
+
+                            a{
+                                color: $primary-base;
+                            }
+                        }
+                    }
+
+                    .right{
+                        text-align: right;
+                    }
+                }
+            }
+        }
+    }
+}
+
 //For Tablet
 @media (max-width: 991.98px){
     header{

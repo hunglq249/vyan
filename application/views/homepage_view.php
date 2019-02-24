@@ -1,47 +1,34 @@
 <div id="homepage">
 	<div id="slideHomepage" class="carousel slide carousel-fade" data-ride="carousel">
 		<ol class="carousel-indicators">
-            <?php for ($i = 0; $i < 4; $i++) { ?>
-				<li data-target="#slideHomepage" data-slide-to="<?php echo $i ?>"
-					class="<?php echo ($i == 0) ? 'active' : '' ?>"></li>
-            <?php } ?>
+			<?php foreach ($banner as $key => $value): ?>
+				<li data-target="#slideHomepage" data-slide-to="<?php echo $key ?>"
+					class="<?php echo ($key == 0) ? 'active' : '' ?>"></li>
+			<?php endforeach ?>
 		</ol>
 		<div class="carousel-inner">
 			<!-- Import Slider database Here -->
-            <?php for ($i = 0; $i < 4; $i++) { ?>
-				<div class="carousel-item <?php echo ($i == 0) ? 'active' : '' ?>">
+			<?php foreach ($banner as $key => $value): ?>
+				<div class="carousel-item <?php echo ($key == 0) ? 'active' : '' ?>">
 					<div class="mask">
 						<!-- Test Slider -->
-                        <?php if ($i % 2 == 0) { ?>
-							<img src="https://images.unsplash.com/photo-1548101867-b873a20f90a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1525&q=80"
-								 alt="Image Slide <?php echo $i + 1 ?>">
-                        <?php } else { ?>
-							<img src="https://images.unsplash.com/photo-1548264382-09fe66eddf37?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
-								 alt="Image Slide <?php echo $i + 1 ?>">
-                        <?php } ?>
+						<img src="<?= base_url('assets/upload/banner/' . $value['image'] ) ?>"
+								 alt="Image Slide <?php echo $key + 1 ?>">
 					</div>
 
 					<div class="carousel-caption">
-                        <?php if ($i % 2 == 0) { ?>
-							<h6 class="subtitle-md">
-								Post Title
-							</h6>
-                        <?php } else { ?>
-							<h6 class="subtitle-md">
-								Post Title 2
-							</h6>
-                        <?php } ?>
-
+                        <h6 class="subtitle-md">
+								
+						</h6>
 						<h3 class="text-wrapper">
-							Post Title Comes Here. Max 3 lines high. If not, it may be broken
+							<?php echo $value['title'];?>
 						</h3>
-
-						<a href="<?php echo base_url('') ?>" class="btn btn-outline-light" role="button">
-							See detail
+						<a href="<?php echo $value['url'];?>" class="btn btn-outline-light" role="button">
+							Xem chi tiết
 						</a>
 					</div>
 				</div>
-            <?php } ?>
+			<?php endforeach ?>
 		</div>
 		<a class="carousel-control-prev" href="#slideHomepage" role="button" data-slide="prev">
 			<span class="carousel-control-prev-icon" aria-hidden="true"></span>

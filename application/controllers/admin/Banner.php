@@ -28,7 +28,7 @@ class Banner extends Admin_Controller{
         $this->data['page'] = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
         $this->pagination->initialize($config);
         $this->data['page_links'] = $this->pagination->create_links();
-        $this->data['result'] = $this->banner_model->get_all_with_pagination_search('desc', $per_page, $this->data['page'], $this->data['keyword']);
+        $this->data['result'] = $this->banner_model->get_all_with_pagination_search('','desc', $per_page, $this->data['page'], $this->data['keyword']);
         $this->render('admin/banner/index');
     }
 

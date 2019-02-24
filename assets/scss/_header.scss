@@ -79,7 +79,10 @@ header{
                         top: 100%;
                         left: 0;
 
-                        background-color: $primary-lighter;
+                        background-color: #fff;
+                        
+                        border: 1px solid $gray-lightest;
+                        border-top-color: transparent;
 
                         display: none;
 
@@ -126,7 +129,7 @@ header{
                                     }
 
                                     >a{
-                                        color: #fff;
+                                        color: $gray-lightest;
 
                                         &:hover{
                                             color: $primary-darkest;

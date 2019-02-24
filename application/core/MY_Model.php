@@ -413,13 +413,36 @@ class Single_model extends MY_Model {
      * @param  string $keywords [description]
      * @return [type]           [description]
      */
-    public function get_all_with_pagination_search($order = 'desc', $limit = NULL, $start = NULL, $keywords = '') {
+    public function get_all_with_pagination_search($is_active = '', $order = 'desc', $limit = NULL, $start = NULL, $keywords = '') {
         $this->db->select('*');
         $this->db->from($this->table);
         $this->db->like('title', $keywords);
         $this->db->where('is_deleted', 0);
+        if ( !empty($is_active) ) {
+            $this->db->where('is_active', $is_active);
+        }
         $this->db->limit($limit, $start);
         $this->db->order_by('id', $order);
+
+        return $result = $this->db->get()->result_array();
+    }
+
+    /**
+     * [get_by_category_id_with_pagination_search description]
+     * @param  [type] $category_id [description]
+     * @param  [type] $limit       [description]
+     * @param  [type] $start       [description]
+     * @param  string $keywords    [description]
+     * @return [type]              [description]
+     */
+    public function get_by_category_id_with_pagination_search($category_id, $limit = NULL, $start = NULL) {
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where('is_deleted', 0);
+        $this->db->where('is_active', 1);
+        $this->db->where('category_id', $category_id);
+        $this->db->limit($limit, $start);
+        $this->db->order_by('id', 'desc');
 
         return $result = $this->db->get()->result_array();
     }
@@ -444,11 +467,14 @@ class Single_model extends MY_Model {
      * @param  string $keyword [description]
      * @return [type]          [description]
      */
-    public function count_search($keyword = ''){
+    public function count_search($is_active = '', $keyword = ''){
         $this->db->select('*');
         $this->db->from($this->table);
         $this->db->like('title', $keyword);
         $this->db->where('is_deleted', 0);
+        if ( !empty($is_active) ) {
+            $this->db->where('is_active', $is_active);
+        }
 
         return $result = $this->db->get()->num_rows();
     }
@@ -564,10 +590,26 @@ class Single_model extends MY_Model {
         return $result = $this->db->get()->num_rows();
     }
 
+    /**
+     * [count_by_category_id description]
+     * @param  [type] $category_id [description]
+     * @return [type]              [description]
+     */
     public function count_by_category_id($category_id){
         $this->db->select('*');
         $this->db->from($this->table);
         $this->db->where('is_deleted', 0);
+        $this->db->where('is_active', 1);
+        $this->db->where('category_id', $category_id);
+
+        return $result = $this->db->get()->num_rows();
+    }
+
+    public function count_by_category_id_when_active($category_id){
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where('is_deleted', 0);
+        $this->db->where('is_active', 1);
         $this->db->where('category_id', $category_id);
 
         return $result = $this->db->get()->num_rows();

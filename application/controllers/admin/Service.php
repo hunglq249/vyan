@@ -23,7 +23,7 @@ class Service extends Admin_Controller{
             $keywords = $this->input->get('search');
         }
         $this->data['keywords'] = $keywords;
-        $total_rows  = $this->service_model->count_search($keywords);
+        $total_rows  = $this->service_model->count_search('', $keywords);
         $this->load->library('pagination');
         $config = array();
         $base_url = base_url('admin/service/index');
@@ -35,7 +35,7 @@ class Service extends Admin_Controller{
         $this->data['page'] = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
         $this->pagination->initialize($config);
         $this->data['page_links'] = $this->pagination->create_links();
-        $result = $this->service_model->get_all_with_pagination_search('desc', $per_page, $this->data['page'], $keywords);
+        $result = $this->service_model->get_all_with_pagination_search('', 'desc', $per_page, $this->data['page'], $keywords);
         
         foreach ($result as $key => $value) {
         	$node_path = $value['node_path'];

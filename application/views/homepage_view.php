@@ -85,10 +85,12 @@
 										<h6>
 											Dr. Someone 1
 										</h6>
+										<p>Job Title</p>
                                     <?php } else { ?>
 										<h6>
 											Dr. Someone 2
 										</h6>
+										<p>Job Title</p>
                                     <?php } ?>
 
 									<ul>
@@ -128,22 +130,24 @@
 			</div>
 
 			<div class="owl-carousel services">
-                <?php for ($i = 0; $i < 4; $i++) { ?>
-					<div class="item">
-						<div class="mask mask-circle">
-							<img src="https://images.unsplash.com/photo-1548365278-2ee092b7bb18?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"
-								 alt="Image of Service <?php echo $i + 1 ?>">
-						</div>
+				<?php if ( $list_service ): ?>
+					<?php foreach ($list_service as $key => $value): ?>
+						<div class="item">
+							<div class="mask mask-circle">
+								<img src="<?php echo base_url('assets/upload/service/' . $value['slug'] . '/' . $value['image']) ?>"
+									 alt="<?php echo $value['title'] ?>">
+							</div>
 
-						<p>
-							Service <?php echo $i + 1 ?>
-						</p>
-					</div>
-                <?php } ?>
+							<p>
+								<?php echo $value['title'] ?>
+							</p>
+						</div>
+					<?php endforeach ?>
+				<?php endif ?>
 			</div>
 
 			<div class="section-footer">
-				<a href="<?php echo base_url('') ?>" class="btn btn-primary" role="button">
+				<a href="<?php echo base_url('service/list_all') ?>" class="btn btn-primary" role="button">
 					See all our services
 				</a>
 			</div>
@@ -319,15 +323,15 @@
 
 <script>
     $(document).ready(function () {
-        $(".owl-carousel.services").owlCarousel({
+        $(".services .owl-carousel").owlCarousel({
             loop: true,
             center: true,
             margin: 15,
-            dots: true,
+			nav: true,
+			dots: false,
             responsive: {
                 0: {
-                    items: 1,
-                    nav: true
+                    items: 1
                 },
                 768: {
                     items: 3

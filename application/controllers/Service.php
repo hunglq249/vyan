@@ -8,6 +8,10 @@ class Service extends Public_Controller {
         $this->load->model('service_category_model');
     }
 
+    public function list(){
+        $this->render('service_list_view');
+    }
+
     public function index($slug){
     	$detail = $this->service_model->get_by_slug($slug);
     	$category = $this->service_category_model->get_by_id($detail['id']);

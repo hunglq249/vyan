@@ -4,9 +4,6 @@
 * 
 */
 class Banner extends Admin_Controller{
-	private $request_language_template = array(
-        'title', 'description'
-    );
     private $author_data = array();
 
 	function __construct(){
@@ -15,8 +12,6 @@ class Banner extends Admin_Controller{
 		$this->load->helper('common');
         $this->load->helper('file');
 
-        $this->data['template'] = build_template();
-        $this->data['request_language_template'] = $this->request_language_template;
         $this->data['controller'] = $this->banner_model->table;
 		$this->author_data = handle_author_common_data();
 	}
@@ -28,105 +23,101 @@ class Banner extends Admin_Controller{
         }
         $this->load->library('pagination');
         $per_page = 10;
-        $total_rows  = $this->banner_model->count_search('vi', $this->data['keyword']);
+        $total_rows  = $this->banner_model->count_search($this->data['keyword']);
         $config = $this->pagination_config(base_url('admin/'.$this->data['controller'].'/index'), $total_rows, $per_page, 4);
         $this->data['page'] = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
         $this->pagination->initialize($config);
         $this->data['page_links'] = $this->pagination->create_links();
-        $this->data['result'] = $this->banner_model->get_all_with_pagination_search('desc','vi' , $per_page, $this->data['page'], $this->data['keyword']);
-        $this->render('admin/banner/list_banner_view');
+        $this->data['result'] = $this->banner_model->get_all_with_pagination_search('desc', $per_page, $this->data['page'], $this->data['keyword']);
+        $this->render('admin/banner/index');
     }
 
 	public function create(){
 		$this->load->helper('form');
         if($this->input->post()){
             $this->load->library('form_validation');
-            $this->form_validation->set_rules('title_vi', 'Tiêu đề', 'required');
-            $this->form_validation->set_rules('title_en', 'Title', 'required');/*
-            $this->form_validation->set_rules('description_vi', 'Mô tả', 'required');
-            $this->form_validation->set_rules('description_en', 'Description', 'required');*/
+            $this->form_validation->set_rules('title', 'Tiêu đề', 'required');
             if($this->form_validation->run() == TRUE){
-                if(empty($_FILES['image_shared']['name'])){
+                if(empty($_FILES['image']['name'])){
                     $this->session->set_flashdata('message_error', MESSAGE_EMPTY_IMAGE_ERROR);
                     redirect('admin/'.$this->data['controller']);
                 }
-                if(!empty($_FILES['image_shared']['name'])){
-                    $this->check_img($_FILES['image_shared']['name'], $_FILES['image_shared']['size']);
+                if(!empty($_FILES['image']['name'])){
+                    $this->check_img($_FILES['image']['name'], $_FILES['image']['size']);
+                    $image = $this->upload_image('image', 'assets/upload/'.$this->data['controller'], $_FILES['image']['name']);
                 }
-                if(!empty($_FILES['image_shared']['name'])){
-                    $image = $this->upload_image('image_shared', $_FILES['image_shared']['name'], 'assets/upload/'.$this->data['controller'], 'assets/upload/'.$this->data['controller'].'/thumb');
-                }
-                $shared_request['image'] = $image;
-                if($this->banner_model->find_rows(array("is_activated" => 0, "is_deleted" => 0)) == 0){
-                    $shared_request['is_activated'] = 0;
-                }
-                $this->db->trans_begin();
-                $insert = $this->banner_model->common_insert(array_merge($shared_request,$this->author_data));
-                if($insert){
-                    $requests = handle_multi_language_request('banner_id', $insert, $this->request_language_template, $this->input->post(), $this->page_languages);
-                    $this->banner_model->insert_with_language($requests);
-                }
-                if ($this->db->trans_status() === false) {
-                    $this->db->trans_rollback();
-                    $this->session->set_flashdata('message_error', MESSAGE_CREATE_ERROR);
-                    $this->render('admin/banner/create_banner_view');
-                } else {
-                    $this->db->trans_commit();
+                $data = array(
+                    'image' => $image,
+                    'title' => $this->input->post('title'),
+                    'url' => $this->input->post('url'),
+                    'description' => $this->input->post('description'),
+                );
+                $insert = $this->banner_model->insert(array_merge($data,$this->author_data));
+                if ($insert) {
                     $this->session->set_flashdata('message_success', MESSAGE_CREATE_SUCCESS);
-                    redirect('admin/'. $this->data['controller'] .'', 'refresh');
+                    redirect('admin/banner', 'refresh');
+                }else{
+                    $this->session->set_flashdata('message_error', MESSAGE_CREATE_ERROR);
+                    redirect('admin/banner/create');
                 }
             }
         }
-        $this->render('admin/banner/create_banner_view');
+        $this->render('admin/banner/create');
 	}
-    public function active(){
-        $this->load->model('product_model');
-        $id = $this->input->post('id');
-        if($id &&  is_numeric($id) && ($id > 0)){
-            $data = $this->banner_model->get_all(array('is_activated' => 0));
-            if(count($data) == 0){
-                $update = $this->banner_model->common_update($id,array_merge(array('is_activated' => 0),$this->author_data));
-                if($update){
-                    $reponse = array(
-                        'csrf_hash' => $this->security->get_csrf_hash()
-                    );
-                    return $this->return_api(HTTP_SUCCESS,'',$reponse);
-                }
-                return $this->return_api(HTTP_BAD_REQUEST);
-            }
-            return $this->return_api(HTTP_NOT_FOUND,MESSAGE_DEACTIVE_BANNER_ERROR);
-        }
-        return $this->return_api(HTTP_BAD_REQUEST);
-    }
+ 
+
     public function deactive(){
-        $this->load->model('product_model');
-        $id = $this->input->post('id');
-        if($id &&  is_numeric($id) && ($id > 0)){
-            $data = $this->banner_model->get_all(array('id' => $id,'is_activated' => 0));
-            if(count($data) == 1){
-                $update = $this->banner_model->common_update($id,array_merge(array('is_activated' => 1),$this->author_data));
-                if($update){
-                    $reponse = array(
-                        'csrf_hash' => $this->security->get_csrf_hash()
-                    );
-                    return $this->return_api(HTTP_SUCCESS,'',$reponse);
-                }
-                return $this->return_api(HTTP_BAD_REQUEST);
-            }
-            return $this->return_api(HTTP_NOT_FOUND,MESSAGE_ERROR_BANNER_ERROR);
+        $id = $this->input->get('id');
+        $detail = $this->banner_model->get_by_id($id);
+        $data = array(
+            'is_active' => 0
+        );
+        $update = $this->banner_model->update($id, $data);
+        if ($update) {
+            return $this->output
+                ->set_content_type('application/json')
+                ->set_status_header(HTTP_SUCCESS)
+                ->set_output(json_encode(array('status' => HTTP_SUCCESS, 'result' => true)));
         }
-        return $this->return_api(HTTP_BAD_REQUEST);
+    }
+
+    public function active(){
+        $id = $this->input->get('id');
+        $data = array(
+            'is_active' => 1
+        );
+        $update = $this->banner_model->update($id, $data);
+        if ($update) {
+            return $this->output
+                ->set_content_type('application/json')
+                ->set_status_header(HTTP_SUCCESS)
+                ->set_output(json_encode(array('status' => HTTP_SUCCESS, 'result' => true)));
+        }
+
+    }
+
+    public function remove(){
+        $id = $this->input->get('id');
+        $detail = $this->banner_model->get_by_id($id);
+        $data = array(
+            'is_deleted' => 1
+        );
+        $update = $this->banner_model->update($id, $data);
+        if ($update) {
+            return $this->output
+                ->set_content_type('application/json')
+                ->set_status_header(HTTP_SUCCESS)
+                ->set_output(json_encode(array('status' => HTTP_SUCCESS, 'result' => true)));
+        }
+
     }
 
     public function detail($id){
         if($id &&  is_numeric($id) && ($id > 0)){
-            if($this->banner_model->find_rows(array('id' => $id,'is_deleted' => 0)) != 0){
-                $this->load->helper('form');
-                $this->load->library('form_validation');
-                $detail = $this->banner_model->get_by_id($id, array('title', 'description'));
-                $detail = build_language($this->data['controller'], $detail, array('title', 'description'), $this->page_languages);
+            $detail = $this->banner_model->get_by_id($id);
+            if(!empty($detail)){
                 $this->data['detail'] = $detail;
-                $this->render('admin/banner/detail_banner_view');
+                $this->render('admin/banner/detail');
             }else{
                 $this->session->set_flashdata('message_error',MESSAGE_ISSET_ERROR);
                 redirect('admin/banner', 'refresh');
@@ -136,74 +127,43 @@ class Banner extends Admin_Controller{
             return redirect('admin/'.$this->data['controller'],'refresh');
         }
     }
-    function remove(){
-        $id = $this->input->post('id');
-        if($id &&  is_numeric($id) && ($id > 0)){
-            if($this->banner_model->find_rows(array('id' => $id,'is_deleted' => 0)) == 0){
-                return $this->output
-                    ->set_content_type('application/json')
-                    ->set_status_header(404)
-                    ->set_output(json_encode(array('status' => 404,'message' => MESSAGE_ISSET_ERROR)));
-            }
-            $data = array('is_deleted' => 1);
-            $update = $this->banner_model->common_update($id, $data);
-            if($update){
-                $reponse = array(
-                    'csrf_hash' => $this->security->get_csrf_hash()
-                );
-                return $this->return_api(HTTP_SUCCESS,MESSAGE_REMOVE_SUCCESS,$reponse);
-            }
-            return $this->return_api(HTTP_NOT_FOUND,MESSAGE_REMOVE_ERROR);
-        }
-        return $this->return_api(HTTP_NOT_FOUND,MESSAGE_ID_ERROR);
-    }
 
     public function edit($id){
         if($id &&  is_numeric($id) && ($id > 0)){
             $this->load->helper('form');
-            if($this->banner_model->find_rows(array('id' => $id,'is_deleted' => 0)) == 0){
+            $detail = $this->banner_model->get_by_id($id);
+            if(empty($detail)){
                 $this->session->set_flashdata('message_error',MESSAGE_ISSET_ERROR);
                 redirect('admin/banner', 'refresh');
             }
-            $detail = $this->banner_model->get_by_id($id, array('title','description'));
-            $this->data['detail'] = build_language($this->data['controller'], $detail, array('title','description'), $this->page_languages);
+            $this->data['detail'] = $detail;
             if($this->input->post()){
                 $this->load->library('form_validation');
-                $this->form_validation->set_rules('title_vi', 'Tiêu đề', 'required');
-                $this->form_validation->set_rules('title_en', 'Title', 'required');
-                $this->form_validation->set_rules('description_vi', 'Mô tả', 'required');
-                $this->form_validation->set_rules('description_en', 'Description', 'required');
+                $this->form_validation->set_rules('title', 'Title', 'required');
                 if($this->form_validation->run() == TRUE){
-                    if(!empty($_FILES['image_shared']['name'])){
-                        $this->check_img($_FILES['image_shared']['name'], $_FILES['image_shared']['size']);
-                    }
-                    if(!empty($_FILES['image_shared']['name'])){                        $image = $this->upload_image('image_shared', $_FILES['image_shared']['name'], 'assets/upload/'.$this->data['controller'], 'assets/upload/'.$this->data['controller'].'/thumb');
+                    if(!empty($_FILES['image']['name'])){
+                        $this->check_img($_FILES['image']['name'], $_FILES['image']['size']);
+                        $image = $this->upload_image('image', 'assets/upload/'.$this->data['controller'], $_FILES['image']['name']);
                     }
 
-                    $shared_request = array();
+                    $data = array(
+                        'title' => $this->input->post('title'),
+                        'url' => $this->input->post('url'),
+                        'description' => $this->input->post('description'),
+                    );
                     if(isset($image)){
-                        $shared_request['image'] = $image;
+                        $data['image'] = $image;
                     }
-                    $this->db->trans_begin();
-                    $update = $this->banner_model->common_update($id,array_merge($shared_request,$this->author_data));
-                    if($update){
-                        $requests = handle_multi_language_request('banner_id', $id, $this->request_language_template, $this->input->post(), $this->page_languages);
-                        foreach ($requests as $key => $value) {
-                            $this->banner_model->update_with_language($id, $requests[$key]['language'],$value);
-                        }
-                    }
-                    if ($this->db->trans_status() === false) {
-                        $this->db->trans_rollback();
-                        $this->session->set_flashdata('message_error', MESSAGE_EDIT_ERROR);
-                        $this->render('admin/'. $this->data['controller'] .'/edit_product_category_view');
-                    } else {
-                        $this->db->trans_commit();
+                    $update = $this->banner_model->update($id,array_merge($data, $this->author_data));
+                    if ($update) {
                         $this->session->set_flashdata('message_success', MESSAGE_EDIT_SUCCESS);
-                        if(isset($image) && !empty($this->data['detail']['image'])){
-                            if(file_exists('assets/upload/'. $this->data['controller'] .'/'.$this->data['detail']['image']))
-                            unlink('assets/upload/'. $this->data['controller'] .'/'.$this->data['detail']['image']);
+                        if(isset($image) && $image != $detail['image'] && file_exists('assets/upload/banner/'.$detail['image'])){
+                            unlink('assets/upload/banner/'.$detail['image']);
                         }
-                        redirect('admin/'. $this->data['controller'] .'', 'refresh');
+                        redirect('admin/banner/index', 'refresh');
+                    }else{
+                        $this->session->set_flashdata('message_error', MESSAGE_EDIT_ERROR);
+                        redirect('admin/banner/edit/' . $id);
                     }
                 }
             }
@@ -211,7 +171,7 @@ class Banner extends Admin_Controller{
             $this->session->set_flashdata('message_error',MESSAGE_ID_ERROR);
             redirect('admin/'. $this->data['controller'] .'', 'refresh');
         }
-        $this->render('admin/banner/edit_banner_view');
+        $this->render('admin/banner/edit');
     }
 
     public function remove_image(){

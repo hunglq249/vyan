@@ -510,6 +510,15 @@ class Single_model extends MY_Model {
         $this->db->get();
         return $this->db->num_rows();
     }
+    /**
+     * [find_row_array description]
+     * @return [type] [description]
+     */
+    public function find_row_array($where = array()){
+        $this->db->from($this->table);
+        $this->db->where_in($where);
+        return $result = $this->db->get()->num_rows();
+    }
 
     /**
      * [get_by_parent_id_when_active description]
@@ -784,6 +793,18 @@ class Single_model extends MY_Model {
         return $result = $this->db->get()->result_array();
     }
     
+
+    /**
+     * [get_by_all_when_active description]
+     * @return [type]            [description]
+     */
+    public function get_by_all_when_active(){
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where('is_deleted', 0);
+        $this->db->where('is_active', 1);
+        return $this->db->get()->result_array();
+    }
     /*=====  End of Frontend  ======*/
     
     

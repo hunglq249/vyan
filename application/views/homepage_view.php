@@ -98,10 +98,12 @@
 										<h6>
 											Dr. Someone 1
 										</h6>
+										<p>Job Title</p>
                                     <?php } else { ?>
 										<h6>
 											Dr. Someone 2
 										</h6>
+										<p>Job Title</p>
                                     <?php } ?>
 
 									<ul>
@@ -140,7 +142,7 @@
 				</p>
 			</div>
 
-			<div class="owl-carousel services">
+			<div class="owl-carousel">
                 <?php for ($i = 0; $i < 4; $i++) { ?>
 					<div class="item">
 						<div class="mask mask-circle">
@@ -332,15 +334,15 @@
 
 <script>
     $(document).ready(function () {
-        $(".owl-carousel.services").owlCarousel({
+        $(".services .owl-carousel").owlCarousel({
             loop: true,
             center: true,
             margin: 15,
-            dots: true,
+			nav: true,
+			dots: false,
             responsive: {
                 0: {
-                    items: 1,
-                    nav: true
+                    items: 1
                 },
                 768: {
                     items: 3

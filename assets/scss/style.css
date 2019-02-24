@@ -765,7 +765,7 @@ footer {
         #homepage .section.about .row .right .slide .carousel-inner .carousel-item {
           height: 100%; }
           #homepage .section.about .row .right .slide .carousel-inner .carousel-item .mask {
-            height: 100%; }
+            height: 600px; }
           #homepage .section.about .row .right .slide .carousel-inner .carousel-item .carousel-caption {
             width: 75%;
             bottom: 50px;

@@ -23,7 +23,7 @@ class Doctor extends Admin_Controller{
             $keywords = $this->input->get('search');
         }
         $this->data['keywords'] = $keywords;
-        $total_rows  = $this->doctor_model->count_doctor_search($keywords);
+        $total_rows  = $this->doctor_model->count_doctor_search('', $keywords);
         $this->load->library('pagination');
         $config = array();
         $base_url = base_url('admin/doctor/index');
@@ -35,13 +35,17 @@ class Doctor extends Admin_Controller{
         $this->data['page'] = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
         $this->pagination->initialize($config);
         $this->data['page_links'] = $this->pagination->create_links();
-        $result = $this->doctor_model->fetch_all_active_doctor_search('desc', $per_page, $this->data['page'], $keywords);
+        $result = $this->doctor_model->fetch_all_active_doctor_search('', 'desc', $per_page, $this->data['page'], $keywords);
 
         $this->data['result'] = $result;
 
         $this->render('admin/doctor/index');
     }
 
+    /**
+     * [create description]
+     * @return [type] [description]
+     */
 	public function create(){
         $this->load->helper('form');
         $this->load->library('form_validation');
@@ -78,168 +82,121 @@ class Doctor extends Admin_Controller{
         }
 	}
 
-    public function active(){
-        $this->load->model('product_model');
-        $id = $this->input->post('id');
-        if($id &&  is_numeric($id) && ($id > 0)){
-            $data = $this->banner_model->get_all(array('is_activated' => 0));
-            if(count($data) == 0){
-                $update = $this->banner_model->common_update($id,array_merge(array('is_activated' => 0),$this->author_data));
-                if($update){
-                    $reponse = array(
-                        'csrf_hash' => $this->security->get_csrf_hash()
-                    );
-                    return $this->return_api(HTTP_SUCCESS,'',$reponse);
-                }
-                return $this->return_api(HTTP_BAD_REQUEST);
-            }
-            return $this->return_api(HTTP_NOT_FOUND,MESSAGE_DEACTIVE_BANNER_ERROR);
-        }
-        return $this->return_api(HTTP_BAD_REQUEST);
-    }
-    public function deactive(){
-        $this->load->model('product_model');
-        $id = $this->input->post('id');
-        if($id &&  is_numeric($id) && ($id > 0)){
-            $data = $this->banner_model->get_all(array('id' => $id,'is_activated' => 0));
-            if(count($data) == 1){
-                $update = $this->banner_model->common_update($id,array_merge(array('is_activated' => 1),$this->author_data));
-                if($update){
-                    $reponse = array(
-                        'csrf_hash' => $this->security->get_csrf_hash()
-                    );
-                    return $this->return_api(HTTP_SUCCESS,'',$reponse);
-                }
-                return $this->return_api(HTTP_BAD_REQUEST);
-            }
-            return $this->return_api(HTTP_NOT_FOUND,MESSAGE_ERROR_BANNER_ERROR);
-        }
-        return $this->return_api(HTTP_BAD_REQUEST);
-    }
-
     public function detail($id){
-        if($id &&  is_numeric($id) && ($id > 0)){
-            if($this->banner_model->find_rows(array('id' => $id,'is_deleted' => 0)) != 0){
-                $this->load->helper('form');
-                $this->load->library('form_validation');
-                $detail = $this->banner_model->get_by_id($id, array('title', 'description'));
-                $detail = build_language($this->data['controller'], $detail, array('title', 'description'), $this->page_languages);
-                $this->data['detail'] = $detail;
-                $this->render('admin/banner/detail_banner_view');
-            }else{
-                $this->session->set_flashdata('message_error',MESSAGE_ISSET_ERROR);
-                redirect('admin/banner', 'refresh');
-            }
-        }else{
-            $this->session->set_flashdata('message_error',MESSAGE_ID_ERROR);
-            return redirect('admin/'.$this->data['controller'],'refresh');
-        }
-    }
-    function remove(){
-        $id = $this->input->post('id');
-        if($id &&  is_numeric($id) && ($id > 0)){
-            if($this->banner_model->find_rows(array('id' => $id,'is_deleted' => 0)) == 0){
-                return $this->output
-                    ->set_content_type('application/json')
-                    ->set_status_header(404)
-                    ->set_output(json_encode(array('status' => 404,'message' => MESSAGE_ISSET_ERROR)));
-            }
-            $data = array('is_deleted' => 1);
-            $update = $this->banner_model->common_update($id, $data);
-            if($update){
-                $reponse = array(
-                    'csrf_hash' => $this->security->get_csrf_hash()
-                );
-                return $this->return_api(HTTP_SUCCESS,MESSAGE_REMOVE_SUCCESS,$reponse);
-            }
-            return $this->return_api(HTTP_NOT_FOUND,MESSAGE_REMOVE_ERROR);
-        }
-        return $this->return_api(HTTP_NOT_FOUND,MESSAGE_ID_ERROR);
+        $detail = $this->doctor_model->get_by_id($id);
+        $this->data['detail'] = $detail;
+        $this->render('admin/doctor/detail');
     }
 
+    /**
+     * [edit description]
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
     public function edit($id){
-        if($id &&  is_numeric($id) && ($id > 0)){
-            $this->load->helper('form');
-            if($this->banner_model->find_rows(array('id' => $id,'is_deleted' => 0)) == 0){
-                $this->session->set_flashdata('message_error',MESSAGE_ISSET_ERROR);
-                redirect('admin/banner', 'refresh');
-            }
-            $detail = $this->banner_model->get_by_id($id, array('title','description'));
-            $this->data['detail'] = build_language($this->data['controller'], $detail, array('title','description'), $this->page_languages);
-            if($this->input->post()){
-                $this->load->library('form_validation');
-                $this->form_validation->set_rules('title_vi', 'Tiêu đề', 'required');
-                $this->form_validation->set_rules('title_en', 'Title', 'required');
-                $this->form_validation->set_rules('description_vi', 'Mô tả', 'required');
-                $this->form_validation->set_rules('description_en', 'Description', 'required');
-                if($this->form_validation->run() == TRUE){
-                    if(!empty($_FILES['image_shared']['name'])){
-                        $this->check_img($_FILES['image_shared']['name'], $_FILES['image_shared']['size']);
-                    }
-                    if(!empty($_FILES['image_shared']['name'])){                        $image = $this->upload_image('image_shared', $_FILES['image_shared']['name'], 'assets/upload/'.$this->data['controller'], 'assets/upload/'.$this->data['controller'].'/thumb');
-                    }
+        $this->load->helper('form');
+        $this->load->library('form_validation');
 
-                    $shared_request = array();
-                    if(isset($image)){
-                        $shared_request['image'] = $image;
+        $detail = $this->doctor_model->get_by_id($id);
+        $this->data['detail'] = $detail;
+
+
+        $this->form_validation->set_rules('title', 'Tiêu đề', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->render('admin/doctor/edit');
+        }else{
+            if ($this->input->post()) {
+                if(!empty($_FILES['image']['name'])){
+                    $this->check_img($_FILES['image']['name'], $_FILES['image']['size']);
+                }
+
+                if(!file_exists('assets/upload/doctor')){
+                    mkdir('assets/upload/doctor/', 0777);
+                }
+                if ( !empty($_FILES['image']['name']) ) {
+                    $images = $this->upload_image('image', 'assets/upload/doctor', $_FILES['image']['name']);
+                }
+                $data = array(
+                    'name' => $this->input->post('name'),
+                    'title' => $this->input->post('title'),
+                    'biography' => $this->input->post('biography'),
+                );
+                if ( !empty($_FILES['image']['name']) ) {
+                    $data['image'] = $images;
+                }
+                $update = $this->doctor_model->update($id,array_merge($data, $this->author_data));
+                if ($update) {
+                    chmod('assets/upload/doctor', 0755);
+                    $this->session->set_flashdata('message_success', MESSAGE_EDIT_SUCCESS);
+                    if(isset($images) && $images != $detail['image'] && file_exists('assets/upload/doctor/' . $detail['image'])){
+                        unlink('assets/upload/doctor/' . $detail['image']);
                     }
-                    $this->db->trans_begin();
-                    $update = $this->banner_model->common_update($id,array_merge($shared_request,$this->author_data));
-                    if($update){
-                        $requests = handle_multi_language_request('banner_id', $id, $this->request_language_template, $this->input->post(), $this->page_languages);
-                        foreach ($requests as $key => $value) {
-                            $this->banner_model->update_with_language($id, $requests[$key]['language'],$value);
-                        }
-                    }
-                    if ($this->db->trans_status() === false) {
-                        $this->db->trans_rollback();
-                        $this->session->set_flashdata('message_error', MESSAGE_EDIT_ERROR);
-                        $this->render('admin/'. $this->data['controller'] .'/edit_product_category_view');
-                    } else {
-                        $this->db->trans_commit();
-                        $this->session->set_flashdata('message_success', MESSAGE_EDIT_SUCCESS);
-                        if(isset($image) && !empty($this->data['detail']['image'])){
-                            if(file_exists('assets/upload/'. $this->data['controller'] .'/'.$this->data['detail']['image']))
-                            unlink('assets/upload/'. $this->data['controller'] .'/'.$this->data['detail']['image']);
-                        }
-                        redirect('admin/'. $this->data['controller'] .'', 'refresh');
-                    }
+                    redirect('admin/doctor/index', 'refresh');
+                }else{
+                    $this->session->set_flashdata('message_error', MESSAGE_EDIT_ERROR);
+                    redirect('admin/doctor/edit/' . $id);
                 }
             }
-        }else{
-            $this->session->set_flashdata('message_error',MESSAGE_ID_ERROR);
-            redirect('admin/'. $this->data['controller'] .'', 'refresh');
         }
-        $this->render('admin/banner/edit_banner_view');
     }
 
-    public function remove_image(){
-        $id = $this->input->post('id');
-        $image = $this->input->post('image');
-        $detail = $this->banner_model->get_by_id($id);
-        $upload = [];
-        $upload = json_decode($detail['image']);
-        $key = array_search($image, $upload);
-        unset($upload[$key]);
-        $newUpload = [];
-        foreach ($upload as $key => $value) {
-            $newUpload[] = $value;
+    /**
+     * [deactive description]
+     * @return [type] [description]
+     */
+    public function deactive(){
+        $id = $this->input->get('id');
+        $detail = $this->doctor_model->get_by_id($id);
+        $data = array(
+            'is_active' => 0
+        );
+        $update = $this->doctor_model->update($id, $data);
+        if ($update) {
+            return $this->output
+                ->set_content_type('application/json')
+                ->set_status_header(HTTP_SUCCESS)
+                ->set_output(json_encode(array('status' => HTTP_SUCCESS, 'result' => true)));
         }
-        
-        $image_json = json_encode($newUpload);
-        $data = array('image' => $image_json);
+    }
 
-        $update = $this->banner_model->common_update($id, $data);
-        if($update == 1){
-            $reponse = array(
-                'csrf_hash' => $this->security->get_csrf_hash()
-            );
-            if($image != '' && file_exists('assets/upload/product/'.$detail['slug'].'/'.$image)){
-                unlink('assets/upload/product/'.$detail['slug'].'/'.$image);
-            }
-            return $this->return_api(HTTP_SUCCESS,'',$reponse);
+    /**
+     * [active description]
+     * @return [type] [description]
+     */
+    public function active(){
+        $id = $this->input->get('id');
+        $data = array(
+            'is_active' => 1
+        );
+        $update = $this->doctor_model->update($id, $data);
+        if ($update) {
+            return $this->output
+                ->set_content_type('application/json')
+                ->set_status_header(HTTP_SUCCESS)
+                ->set_output(json_encode(array('status' => HTTP_SUCCESS, 'result' => true)));
         }
-        return $this->return_api(HTTP_BAD_REQUEST);
+
+    }
+
+    /**
+     * [remove description]
+     * @return [type] [description]
+     */
+    public function remove(){
+        $id = $this->input->get('id');
+        $detail = $this->doctor_model->get_by_id($id);
+        $data = array(
+            'is_deleted' => 1
+        );
+        $update = $this->doctor_model->update($id, $data);
+        if ($update) {
+            return $this->output
+                ->set_content_type('application/json')
+                ->set_status_header(HTTP_SUCCESS)
+                ->set_output(json_encode(array('status' => HTTP_SUCCESS, 'result' => true)));
+        }
+
     }
 
 
@@ -263,31 +220,14 @@ class Doctor extends Admin_Controller{
         return $title;
     }
     protected function check_img($filename, $filesize){
+        $reponse = array(
+            'csrf_hash' => $this->security->get_csrf_hash()
+        );
         $map = strripos($filename, '.')+1;
         $fileextension = substr($filename, $map,(strlen($filename)-$map));
-        if(!($fileextension == 'jpg' || $fileextension == 'jpeg' || $fileextension == 'png' || $fileextension == 'gif')){
-            $this->session->set_flashdata('message_error', MESSAGE_FILE_EXTENSION_ERROR);
-            redirect('admin/'.$this->data['controller']);
-        }
-        if ($filesize > 1228800) {
+        if(!($fileextension == 'jpg' || $fileextension == 'jpeg' || $fileextension == 'png' || $fileextension == 'gif')  || $filesize > 1228800){
             $this->session->set_flashdata('message_error', sprintf(MESSAGE_PHOTOS_ERROR, 1200));
-            redirect('admin/'.$this->data['controller']);
-        }
-    }
-    function build_new_category($categorie, $parent_id = 0,&$result, $id = "",$char=""){
-        $cate_child = array();
-        foreach ($categorie as $key => $item){
-            if ($item['parent_id'] == $parent_id){
-                $cate_child[] = $item;
-                unset($categorie[$key]);
-            }
-        }
-        if ($cate_child){
-            foreach ($cate_child as $key => $value){
-            $select = ($value['id'] == $id)? 'selected' : '';
-            $result.='<option value="'.$value['id'].'"'.$select.'>'.$char.$value['title'].'</option>';
-            $this->build_new_category($categorie, $value['id'],$result, $id, $char.'---|');
-            }
+            redirect('admin/doctor');
         }
     }
 

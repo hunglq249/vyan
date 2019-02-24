@@ -5,7 +5,7 @@
         <h1>
             Danh sách
             <small>
-                Danh mục dịch vụ
+                Danh mục thành viên
             </small>
         </h1>
         <ol class="breadcrumb">
@@ -67,6 +67,7 @@
                                     <th>Hình ảnh</th>
                                     <th>Họ tên</th>
                                     <th>Chức vụ</th>
+                                    <th>Trạng thái</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -83,7 +84,36 @@
                                                 </td>
                                                 <td><?php echo $value['name'] ?></td>
                                                 <td><?php echo $value['title'] ?></td>
-                                                <td>Action</td>
+                                                <td class="is-active-<?= $value['id'] ?>">
+                                                    <?php
+                                                        if ($value['is_active'] == 0) {
+                                                            echo '<span class="label label-warning">Chờ duyệt</span>';
+                                                        }else{
+                                                            echo '<span class="label label-success">Đã duyệt</span>';
+                                                        }
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                    <a href="<?= base_url('admin/doctor/detail/' . $value['id'] ) ?>" title="Xem chi tiết">
+                                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                                    </a>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <a href="<?= base_url('admin/doctor/edit/' . $value['id'] ) ?>" style="color: #f0ad4e" title="Cập nhật">
+                                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                    </a>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <a href="javascript:void(0)" class="btn-remove" data-id="<?= $value['id'] ?>" data-url="<?= base_url('admin/doctor/remove' ) ?>" data-name="danh mục"  style="color: #d9534f" title="Xóa">
+                                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                    </a>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <a href="javascript:void(0)" class="btn-active" title="Duyệt bài" data-id="<?= $value['id'] ?>" data-url="<?= base_url('admin/doctor/active' ) ?>" style="color: #00a65a" >
+                                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                                    </a>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <a href="javascript:void(0)" class="btn-deactive" title="Tắt danh mục" data-id="<?= $value['id'] ?>" data-url="<?= base_url('admin/doctor/deactive' ) ?>" style="color: #f0ad4e">
+                                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                                    </a>
+                                                </td>
                                             </tr>
                                         <?php endforeach ?>
                                     <?php else: ?>
@@ -100,7 +130,7 @@
                         </div>
                     </div>
                         <div class="col-md-6 col-md-offset-5 page">
-                            <!-- <?php echo $page_links ?> -->
+                            <?php echo $page_links ?>
                         </div>
                     <!-- /.box-body -->
                 </div>

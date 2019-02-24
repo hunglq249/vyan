@@ -8,12 +8,12 @@
     <section class="content-header">
         <h1>
             Chi tiết
-            <small>Dịch vụ</small>
+            <small>Thành viên</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="<?= base_url('admin') ?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="<?= base_url('admin/service') ?>"><i class="fa fa-dashboard"></i> Danh sách dịch vụ</a></li>
-            <li class="active">Chi tiết dịch vụ</li>
+            <li><a href="<?= base_url('admin/doctor') ?>"><i class="fa fa-dashboard"></i> Danh sách thành viên</a></li>
+            <li class="active">Chi tiết thành viên</li>
         </ol>
     </section>
     <!-- Main content -->
@@ -34,7 +34,7 @@
                                     <div class="item col-md-12">
                                         <div class="mask-lg">
                                             <?php if ( $detail['image'] ): ?>
-                                                <img src="<?= base_url('assets/upload/service/' . $detail['slug'] . '/' . $detail['image'] ) ?>" alt="Image Detail" width=100%>    
+                                                <img src="<?= base_url('assets/upload/doctor/' . $detail['image'] ) ?>" alt="Image Detail" width=100%>    
                                             <?php endif ?>
                                         </div>
                                     </div>
@@ -46,36 +46,20 @@
                                     <table class="table table-striped">
                                         <tbody>
                                             <tr>
-                                                <th>Slug</th>
-                                                <td><?= $detail['slug'] ?></td>
-                                            </tr>
-                                            <tr>
-                                                <th>Danh mục</th>
-                                                <td style="text-align: center;">
-                                                    <?php
-                                                        echo $detail['category_0'] . ' <br/><i class="fa fa-arrow-down" aria-hidden="true" style="color:blue"></i><br/>' . $detail['category_1']
-                                                        ?>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>Thuộc tính</th>
+                                                <th>Trạng thái</th>
                                                 <td>
                                                     <?php
-                                                        if ( !empty($detail['tag']) ) {
-                                                            foreach ($detail['tag'] as $key => $value) {
-                                                                echo '<div class="external-event bg-green ui-draggable ui-draggable-handle" style="position: relative;">'. $value .'</div>';
-                                                            }
+                                                        if ($detail['is_active'] == 0) {
+                                                            echo '<span class="label label-warning">Chờ duyệt</span>';
+                                                        }else{
+                                                            echo '<span class="label label-success">Đã duyệt</span>';
                                                         }
                                                     ?>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th>Meta Keywords</th>
-                                                <td><?= $detail['meta_keywords'] ?></td>
-                                            </tr>
-                                            <tr>
-                                                <th>Meta Description</th>
-                                                <td><?= $detail['meta_description'] ?></td>
+                                                <th>Chức vụ</th>
+                                                <td><?= $detail['title'] ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Tài khoản tạo bài viết</th>
@@ -100,41 +84,13 @@
                             <br>
                             <br>
                             <div class="col-md-12">
-                                <div class="box box-danger" style="box-shadow: 0 1px 1px 2px rgba(0, 0, 0, 0.1)">
-                                    <div class="box-header with-border">
-                                        <h3 class="box-title">Iframe Youtube</h3>
-                                    </div>
-                                    <!-- /.box-header -->
-                                    <div class="box-body">
-                                        <?= $detail['iframe'] ?>
-                                    </div>
-                                    <!-- /.box-body -->
-                                </div>
-                            </div>
-                            <br>
-                            <br>
-                            <div class="col-md-12">
                                 <div class="box box-info" style="box-shadow: 0 1px 1px 2px rgba(0, 0, 0, 0.1)">
                                     <div class="box-header with-border">
                                         <h3 class="box-title">Giới thiệu</h3>
                                     </div>
                                     <!-- /.box-header -->
                                     <div class="box-body">
-                                        <?= $detail['description'] ?>
-                                    </div>
-                                    <!-- /.box-body -->
-                                </div>
-                            </div>
-                            <br>
-                            <br>
-                            <div class="col-md-12">
-                                <div class="box box-success" style="box-shadow: 0 1px 1px 2px rgba(0, 0, 0, 0.1)">
-                                    <div class="box-header with-border">
-                                        <h3 class="box-title">Nội dung</h3>
-                                    </div>
-                                    <!-- /.box-header -->
-                                    <div class="box-body">
-                                        <?= $detail['body'] ?>
+                                        <?= $detail['biography'] ?>
                                     </div>
                                     <!-- /.box-body -->
                                 </div>
@@ -152,7 +108,7 @@
                         <h3 class="box-title">Edit Information</h3>
                     </div>
                     <div class="box-body">
-                        <a href="<?= base_url('admin/service/edit/' . $detail['id']) ?>" class="btn btn-warning" role="button">Chỉnh sửa</a>
+                        <a href="<?= base_url('admin/doctor/edit/' . $detail['id']) ?>" class="btn btn-warning" role="button">Chỉnh sửa</a>
                     </div>
                 </div>
             </div>

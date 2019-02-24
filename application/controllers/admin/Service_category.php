@@ -164,7 +164,7 @@ class Service_category extends Admin_Controller{
         );
         $map = strripos($filename, '.')+1;
         $fileextension = substr($filename, $map,(strlen($filename)-$map));
-        if(!($fileextension == 'jpg' || $fileextension == 'jpeg' || $fileextension == 'png' || $fileextension == 'gif'  || $filesize > 1228800)){
+        if(!($fileextension == 'jpg' || $fileextension == 'jpeg' || $fileextension == 'png' || $fileextension == 'gif')  || $filesize > 1228800){
             $this->session->set_flashdata('message_error', sprintf(MESSAGE_PHOTOS_ERROR, 1200));
             redirect('admin/service_category');
         }

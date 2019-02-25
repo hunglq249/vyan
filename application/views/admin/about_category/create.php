@@ -1,21 +1,16 @@
-<style type="text/css">
-    .bootstrap-tagsinput{
-        width: 100%;
-    }
-</style>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
             Thêm mới
             <small>
-                Academy
+                Danh mục cho about
             </small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="<?= base_url('admin') ?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="<?= base_url('admin/service') ?>"><i class="fa fa-dashboard"></i> Danh sách academy</a></li>
-            <li class="active">Thêm mới academy</li>
+            <li><a href="<?= base_url('admin/service_category') ?>"><i class="fa fa-dashboard"></i> Danh sách danh mục cho about</a></li>
+            <li class="active">Thêm mới danh mục cho about</li>
         </ol>
     </section>
 
@@ -33,7 +28,7 @@
                             </div>
                         <?php endif ?>
                         <?php
-                        echo form_open_multipart('', array('class' => 'form-horizontal', 'id' => 'bootstrapTagsInputForm'));
+                        echo form_open_multipart('', array('class' => 'form-horizontal'));
                         ?>
                         <div class="col-xs-12" style="padding: 0px;">
                             <h4 class="box-title">Thông tin cơ bản</h4>
@@ -45,34 +40,31 @@
                             <div class="form-group col-xs-12" style="padding-right: 0px;">
                                 <?php
                                     echo form_label('Hình ảnh (Dung lượng ảnh phải nhỏ hơn 1.2Mb)', 'image');
-                                    echo form_error('image', '<div class="error">', '</div>');
+                                    echo form_error('image');
                                     echo form_upload('image', set_value('image'), 'class="form-control"');
                                 ?>
                             </div>
                             <br>
                         </div>
 
-                        <div class="form-group col-xs-12" style="padding-right: 0px;">
-                            <div class="form-group col-xs-12" style="padding-right: 0px;">
-                                <label for="parent_id">Danh mục</label>
-                                <?php echo form_error('parent_id', '<div class="error">', '</div>'); ?>
-                                <select name="parent_id" class="form-control" id="parent_id">
-                                    <option value="">Chọn danh mục</option>
-                                    <?php if ( $category ): ?>
-                                        <?php foreach ($category as $key => $value): ?>
-                                            <option value="<?php echo $value['id'] ?>" ><?php echo $value['title'] ?></option>
-                                        <?php endforeach ?>
-                                    <?php endif ?>
-                                </select>
+                        <!-- <div class="form-group col-xs-12">
+                            <div class="form-group col-xs-12">
+                                <?php
+                                echo form_label('Danh mục', 'parent_id');
+                                echo form_error('parent_id');
+                                ?>
+                                <select name="parent_id" class="form-control">
+                                    <option value="0">Danh mục gốc</option>
+                                    </select>
                             </div>
-                        </div>
+                        </div> -->
 
 
                         <div class="form-group col-xs-12" style="padding-right: 0px;">
                             <div class="form-group col-xs-12" style="padding-right: 0px;">
                                 <?php
-                                echo form_label('Tiêu đề academy', 'title');
-                                echo form_error('title', '<div class="error">', '</div>');
+                                echo form_label('Tiêu đề', 'title');
+                                echo form_error('title');
                                 echo form_input('title', set_value('title'), 'class="form-control" id="title"');
                                 ?>
                             </div>
@@ -82,18 +74,8 @@
                             <div class="form-group col-xs-12" style="padding-right: 0px;">
                                 <?php
                                 echo form_label('Slug', 'slug');
-                                echo form_error('slug', '<div class="error">', '</div>');
+                                echo form_error('slug');
                                 echo form_input('slug', set_value('slug'), 'class="form-control" id="slug" readonly');
-                                ?>
-                            </div>
-                        </div>
-
-                        <div class="form-group col-xs-12" style="padding-right: 0px;">
-                            <div class="form-group col-xs-12" style="padding-right: 0px;">
-                                <?php
-                                echo form_label('Điểm nổi bật (Tối đa 4 Điểm nổi bật)', 'tag');
-                                echo form_error('tag', '<div class="error">', '</div>');
-                                echo form_input('tag', set_value('tag'), 'class="form-control" id="tag" data-role="tagsinput"');
                                 ?>
                             </div>
                         </div>
@@ -101,7 +83,7 @@
                         <div class="form-group col-md-12">
                             <?php
                             echo form_label('Meta Keywords', 'meta_keywords');
-                            echo form_error('meta_keywords', '<div class="error">', '</div>');
+                            echo form_error('meta_keywords');
                             echo form_textarea('meta_keywords', set_value('meta_keywords'), 'class="form-control" id="meta_keywords"');
                             ?>
                         </div>
@@ -109,32 +91,16 @@
                         <div class="form-group col-md-12">
                             <?php
                             echo form_label('Meta Description', 'meta_description');
-                            echo form_error('meta_description', '<div class="error">', '</div>');
+                            echo form_error('meta_description');
                             echo form_textarea('meta_description', set_value('meta_description'), 'class="form-control" id="meta_description"');
                             ?>
                         </div>
 
                         <div class="form-group col-md-12">
                             <?php
-                            echo form_label('Iframe Youtube', 'iframe');
-                            echo form_error('iframe', '<div class="error">', '</div>');
-                            echo form_textarea('iframe', set_value('iframe'), 'class="form-control" id="iframe"');
-                            ?>
-                        </div>
-
-                        <div class="form-group col-md-12">
-                            <?php
                             echo form_label('Giới thiệu', 'description');
-                            echo form_error('description', '<div class="error">', '</div>');
+                            echo form_error('description');
                             echo form_textarea('description', set_value('description'), 'class="form-control tinymce-area" id="description"');
-                            ?>
-                        </div>
-
-                        <div class="form-group col-md-12">
-                            <?php
-                            echo form_label('Nội dung', 'body');
-                            echo form_error('body', '<div class="error">', '</div>');
-                            echo form_textarea('body', set_value('body'), 'class="form-control tinymce-area" id="body"');
                             ?>
                         </div>
 

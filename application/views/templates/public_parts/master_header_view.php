@@ -107,6 +107,54 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<img src="<?php echo site_url('assets/img/') ?>icon/ico-doctor-01.svg" alt="Image About Us">
 						About Us
 					</a>
+					<ul>
+                        <li>
+                            <a href="#" class="back">
+                                <i class="fas fa-caret-left"></i> Back
+                            </a>
+                        </li>
+                        <?php if ( $this->category_about ): ?>
+                            <?php foreach ($this->category_about as $key => $value): ?>
+                                <li>
+                                    <a href="<?php echo base_url('about/list/' . $value['slug']) ?>">
+                                        <?php echo $value['title'] ?>
+                                    </a>
+
+                                    <span>
+                                        <i class="fas fa-caret-right"></i>
+                                    </span>
+
+                                    <ul>
+                                        <li>
+                                            <a href="#" class="back">
+                                                <i class="fas fa-caret-left"></i> Back
+                                            </a>
+                                        </li>
+                                        <!-- Testing Column Height -->
+                                        <?php if ( !empty($value['sub']) ): ?>
+                                            <?php foreach ($value['sub'] as $k => $val): ?>
+                                                <?php if ($k <= 8): ?>
+                                                    <li>
+                                                        <a href="<?php echo base_url('about/index/' . $val['slug']) ?>">
+                                                            <?php echo $val['title'] ?>
+                                                        </a>
+                                                    </li>
+                                                <?php endif ?>
+                                                <?php if ($k > 8): ?>
+                                                    <li>
+                                                        <a href="<?php echo base_url('about/index/' . $val['slug']) ?>">
+                                                            Xem Thêm
+                                                        </a>
+                                                    </li>
+                                                <?php endif ?>
+                                            <?php endforeach ?>
+                                        <?php endif ?>
+                                        
+                                    </ul>
+                                </li>
+                            <?php endforeach ?>
+                        <?php endif ?>
+                    </ul>
 				</li>
 
 				<li>
@@ -350,6 +398,50 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<img src="<?php echo site_url('assets/img/') ?>icon/ico-news-01.svg" alt="Image News">
 						News
 					</a>
+					<ul>
+                        <li>
+                            <a href="#" class="back">
+                                <i class="fas fa-caret-left"></i> Back
+                            </a>
+                        </li>
+                                <li>
+                                    <a href="<?php echo base_url('') ?>">	
+	
+                                    </a>
+
+                                    <span>
+                                        <i class="fas fa-caret-right"></i>
+                                    </span>
+
+                                    <ul>
+                                        <li>
+                                            <a href="#" class="back">
+                                                <i class="fas fa-caret-left"></i> Back
+                                            </a>
+                                        </li>
+                                        <!-- Testing Column Height -->
+                                        <?php if ( !empty($this->category_news) ): ?>
+                                            <?php foreach ($this->category_news as $k => $val): ?>
+                                                <?php if ($k <= 8): ?>
+                                                    <li>
+                                                        <a href="<?php echo base_url('news/index/' . $val['slug']) ?>">
+                                                            <?php echo $val['title'] ?>
+                                                        </a>
+                                                    </li>
+                                                <?php endif ?>
+                                                <?php if ($k > 8): ?>
+                                                    <li>
+                                                        <a href="<?php echo base_url('news/index/' . $val['slug']) ?>">
+                                                            Xem Thêm
+                                                        </a>
+                                                    </li>
+                                                <?php endif ?>
+                                            <?php endforeach ?>
+                                        <?php endif ?>
+                                        
+                                    </ul>
+                                </li>
+                    </ul>
 				</li>
 
 				<!--

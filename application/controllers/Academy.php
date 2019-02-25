@@ -16,7 +16,7 @@ class Academy extends Public_Controller {
     public function index($slug){
     	$detail = $this->academy_model->get_by_slug($slug);
         if ( !empty($detail) ) {
-            $category = $this->academy_category_model->get_by_id($detail['id']);
+            $category = $this->academy_category_model->get_by_id($detail['category_id']);
             $related = $this->academy_model->get_related($detail['category_id'], $detail['id']);
             $this->data['detail'] = $detail;
             $this->data['category'] = $category;

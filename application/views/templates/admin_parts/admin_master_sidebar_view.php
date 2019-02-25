@@ -33,6 +33,53 @@ if($this->ion_auth->logged_in()) {
                         <i class="fa fa-inbox"></i> <span>Quản lý banner</span>
                     </a>
                 </li>
+                <li class="<?php echo ($this->uri->segment(2) == 'news')? 'active' : '' ?>">
+                    <a href="<?php echo base_url('admin/news') ?>">
+                        <i class="fa fa-newspaper-o"></i> <span>Quản lý news</span>
+                    </a>
+                </li>
+                <li class="<?php echo ($this->uri->segment(2) == 'doctor')? 'active' : '' ?>">
+                    <a href="<?php echo base_url('admin/doctor') ?>">
+                        <i class="fa fa-users" aria-hidden="true"></i> <span>Quản lý doctors</span>
+                    </a>
+                </li>
+                <!-- Show slide About -->
+                <li class="treeview <?php echo ($this->uri->segment(2) == 'about_category' || $this->uri->segment(2) == 'about' )? 'active' : '' ?>" style="border-bottom: none;">
+                    <a href="">
+                        <i class="fa fa-bars"></i>
+                        <span>Quản lý about</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="<?php echo ( $this->uri->segment(2) == 'about_category' )? 'active' : '' ?>" >
+                            <a href="<?php echo base_url('admin/about_category') ?>"><i class="fa fa-calendar-o" aria-hidden="true"></i> <span>Danh Mục</span></a>
+                        </li>
+                        <li class="<?php echo ( $this->uri->segment(2) == 'about' )? 'active' : '' ?>" >
+                            <a href="<?php echo base_url('admin/about') ?>"><i class="fa fa-leanpub" aria-hidden="true"></i> <span>Bài viết</span></a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Show slide Academy -->
+                <li class="treeview <?php echo ($this->uri->segment(2) == 'academy_category' || $this->uri->segment(2) == 'academy' )? 'active' : '' ?>" style="border-bottom: none;">
+                    <a href="">
+                        <i class="fa fa-bars"></i>
+                        <span>Quản lý academy</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="<?php echo ( $this->uri->segment(2) == 'academy_category' )? 'active' : '' ?>" >
+                            <a href="<?php echo base_url('admin/academy_category') ?>"><i class="fa fa-calendar-o" aria-hidden="true"></i> <span>Danh Mục</span></a>
+                        </li>
+                        <li class="<?php echo ( $this->uri->segment(2) == 'academy' )? 'active' : '' ?>" >
+                            <a href="<?php echo base_url('admin/academy') ?>"><i class="fa fa-leanpub" aria-hidden="true"></i> <span>Bài viết</span></a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="treeview <?php echo ($this->uri->segment(2) == 'service_category' || $this->uri->segment(2) == 'service_category_sub_1' )? 'active' : '' ?>" style="border-bottom: none;">
                     <a href="">
                         <i class="fa fa-bars"></i>
@@ -53,21 +100,6 @@ if($this->ion_auth->logged_in()) {
                 <li class="<?php echo ($this->uri->segment(2) == 'service')? 'active' : '' ?>">
                     <a href="<?php echo base_url('admin/service') ?>">
                         <i class="fa fa-shopping-bag" aria-hidden="true"></i> <span>Dịch Vụ</span>
-                    </a>
-                </li>
-                <li class="<?php echo ($this->uri->segment(2) == 'academy_category')? 'active' : '' ?>">
-                    <a href="<?php echo base_url('admin/academy_category') ?>">
-                        <i class="fa fa-calendar-o" aria-hidden="true"></i> <span>Danh mục Academy</span>
-                    </a>
-                </li>
-                <li class="<?php echo ($this->uri->segment(2) == 'academy')? 'active' : '' ?>">
-                    <a href="<?php echo base_url('admin/academy') ?>">
-                        <i class="fa fa-leanpub" aria-hidden="true"></i> <span>Academy</span>
-                    </a>
-                </li>
-                <li class="<?php echo ($this->uri->segment(2) == 'doctor')? 'active' : '' ?>">
-                    <a href="<?php echo base_url('admin/doctor') ?>">
-                        <i class="fa fa-users" aria-hidden="true"></i> <span>Doctors</span>
                     </a>
                 </li>
                 <li class="header">DOCUMENTATION</li>

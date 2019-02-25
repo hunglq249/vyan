@@ -182,6 +182,8 @@ class Public_Controller extends MY_Controller {
     public $category_by_root_2;
     public $category_by_root_3;
     public $category_academy;
+    public $category_about;
+    public $category_news;
     public function __construct() {
         parent::__construct();
         $this->load->helper('form');
@@ -189,6 +191,9 @@ class Public_Controller extends MY_Controller {
         $this->load->model('service_category_model');
         $this->load->model('academy_category_model');
         $this->load->model('academy_model');
+        $this->load->model('about_category_model');
+        $this->load->model('about_model');
+        $this->load->model('news_model');
         $this->load->model('service_model');
         date_default_timezone_set('Asia/Ho_Chi_Minh');
 
@@ -229,6 +234,8 @@ class Public_Controller extends MY_Controller {
         *
         */
         $this->category_academy = $this->get_menu_academy();
+        $this->category_about = $this->get_menu_about();
+        $this->category_news = $this->news_model->get_all_with_pagination_search(1,'desc','',0);
 
     }
 
@@ -255,9 +262,17 @@ class Public_Controller extends MY_Controller {
         return $result;
     }
     private function get_menu_academy(){
-        $result = $this->academy_category_model->get_all_with_pagination_search('','desc',4,0);
+        $result = $this->academy_category_model->get_all_with_pagination_search(1,'desc',4,0);
         foreach ($result as $key => $value) {
             $sub = $this->academy_model->get_by_category_id_when_active($value['id']);
+            $result[$key]['sub'] = $sub;
+        }
+        return $result;
+    }
+    private function get_menu_about(){
+        $result = $this->about_category_model->get_all_with_pagination_search(1,'desc',4,0);
+        foreach ($result as $key => $value) {
+            $sub = $this->about_model->get_by_category_id_when_active($value['id']);
             $result[$key]['sub'] = $sub;
         }
         return $result;

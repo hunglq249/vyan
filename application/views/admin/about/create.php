@@ -9,13 +9,13 @@
         <h1>
             Thêm mới
             <small>
-                Academy
+                about
             </small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="<?= base_url('admin') ?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="<?= base_url('admin/service') ?>"><i class="fa fa-dashboard"></i> Danh sách academy</a></li>
-            <li class="active">Thêm mới academy</li>
+            <li><a href="<?= base_url('admin/service') ?>"><i class="fa fa-dashboard"></i> Danh sách about</a></li>
+            <li class="active">Thêm mới about</li>
         </ol>
     </section>
 
@@ -71,7 +71,7 @@
                         <div class="form-group col-xs-12" style="padding-right: 0px;">
                             <div class="form-group col-xs-12" style="padding-right: 0px;">
                                 <?php
-                                echo form_label('Tiêu đề academy', 'title');
+                                echo form_label('Tiêu đề about', 'title');
                                 echo form_error('title', '<div class="error">', '</div>');
                                 echo form_input('title', set_value('title'), 'class="form-control" id="title"');
                                 ?>
@@ -84,16 +84,6 @@
                                 echo form_label('Slug', 'slug');
                                 echo form_error('slug', '<div class="error">', '</div>');
                                 echo form_input('slug', set_value('slug'), 'class="form-control" id="slug" readonly');
-                                ?>
-                            </div>
-                        </div>
-
-                        <div class="form-group col-xs-12" style="padding-right: 0px;">
-                            <div class="form-group col-xs-12" style="padding-right: 0px;">
-                                <?php
-                                echo form_label('Điểm nổi bật (Tối đa 4 Điểm nổi bật)', 'tag');
-                                echo form_error('tag', '<div class="error">', '</div>');
-                                echo form_input('tag', set_value('tag'), 'class="form-control" id="tag" data-role="tagsinput"');
                                 ?>
                             </div>
                         </div>

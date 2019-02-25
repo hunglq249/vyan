@@ -131,7 +131,6 @@ class Doctor extends Admin_Controller{
                 }
                 $update = $this->doctor_model->update($id,array_merge($data, $this->author_data));
                 if ($update) {
-                    chmod('assets/upload/doctor', 0755);
                     $this->session->set_flashdata('message_success', MESSAGE_EDIT_SUCCESS);
                     if(isset($images) && $images != $detail['image'] && file_exists('assets/upload/doctor/' . $detail['image'])){
                         unlink('assets/upload/doctor/' . $detail['image']);

@@ -70,7 +70,6 @@ class About_category extends Admin_Controller{
                 );
                 $insert = $this->about_category_model->insert(array_merge($data, $this->author_data));
                 if ($insert) {
-                    chmod('assets/upload/about_category/' . $unique_slug, 0755);
                     $this->session->set_flashdata('message_success', MESSAGE_CREATE_SUCCESS);
                     redirect('admin/about_category', 'refresh');
                 }else{
@@ -137,7 +136,6 @@ class About_category extends Admin_Controller{
                 }
                 $update = $this->about_category_model->update($id,array_merge($data, $this->author_data));
                 if ($update) {
-                    chmod('assets/upload/about_category/' . $unique_slug, 0755);
                     $this->session->set_flashdata('message_success', MESSAGE_EDIT_SUCCESS);
                     if(isset($images) && $images != $detail['image'] && file_exists('assets/upload/about_category/'.$unique_slug.'/'.$detail['image'])){
                         unlink('assets/upload/about_category/'.$unique_slug.'/'.$detail['image']);

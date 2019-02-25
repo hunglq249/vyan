@@ -103,7 +103,6 @@ class Academy extends Admin_Controller{
                 );
                 $insert = $this->academy_model->insert(array_merge($data, $this->author_data));
                 if ($insert) {
-                    chmod('assets/upload/academy/' . $unique_slug, 0755);
                     $this->session->set_flashdata('message_success', MESSAGE_CREATE_SUCCESS);
                     redirect('admin/academy', 'refresh');
                 }else{
@@ -186,7 +185,6 @@ class Academy extends Admin_Controller{
                 }
                 $update = $this->academy_model->update($id,array_merge($data, $this->author_data));
                 if ($update) {
-                    chmod('assets/upload/academy/' . $unique_slug, 0755);
                     $this->session->set_flashdata('message_success', MESSAGE_EDIT_SUCCESS);
                     if(isset($images) && $images != $detail['image'] && file_exists('assets/upload/academy/'.$unique_slug.'/'.$detail['image'])){
                         unlink('assets/upload/academy/'.$unique_slug.'/'.$detail['image']);

@@ -89,7 +89,6 @@ class Service_category_sub_1 extends Admin_Controller{
                         'node_path' => $parent_detail['node_path'] . $insert . '/'
                     );
                 	$this->service_category_model->update($insert, $data);
-                    chmod('assets/upload/service_category_sub_1/' . $unique_slug, 0755);
                     $this->session->set_flashdata('message_success', MESSAGE_CREATE_SUCCESS);
                     redirect('admin/service_category_sub_1', 'refresh');
                 }else{
@@ -166,7 +165,6 @@ class Service_category_sub_1 extends Admin_Controller{
                     }
                     $update = $this->service_category_model->update($id,array_merge($data, $this->author_data));
                     if ($update) {
-                        chmod('assets/upload/service_category_sub_1/' . $unique_slug, 0755);
                         $this->session->set_flashdata('message_success', MESSAGE_EDIT_SUCCESS);
                         if(isset($images) && $images != $detail['image'] && file_exists('assets/upload/service_category_sub_1/'.$unique_slug.'/'.$detail['image'])){
                             unlink('assets/upload/service_category_sub_1/'.$unique_slug.'/'.$detail['image']);

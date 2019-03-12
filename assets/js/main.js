@@ -4,30 +4,30 @@ $(document).ready(function(){
 });
 
 function expandNav(){
-    const $navControl = $('#navControl');
+    var $navControl = $('#navControl');
     
-    let deviceWidth = $(window).width();
+    var deviceWidth = $(window).width();
     
     if (deviceWidth < 991.98) {
-        $navControl.on('click', function(){
+		$navControl.click(function(){
             $(this).toggleClass('active');
-            $('.nav-main > ul').toggleClass('active');
-            
+            $('.nav-main').toggleClass('active');
+
             $('.nav-main > ul  ul.active').removeClass('active');
-            
+
         });
-    
+
         //ul lv.2
-        $('.nav-main > ul > li > span').on('click', function(){
-            $(this).next().addClass('active');
-        });
-    
+		$('.nav-main > ul > li > span').on('click', function(){
+			$(this).next().addClass('active');
+		});
+
         //ul lv.3
         $('.nav-main > ul > li > ul > li >span').on('click', function(e){
             e.preventDefault();
             $(this).next().addClass('active');
         });
-        
+
         //Close ul expand
         $('.nav-main > ul > li a.back').on('click', function(){
             $(this).closest('ul').removeClass('active');

@@ -215,7 +215,7 @@ class About extends Admin_Controller{
         return $this->output
             ->set_content_type('application/json')
             ->set_status_header(HTTP_BAD_REQUEST)
-            ->set_output(json_encode(array('status' => HTTP_BAD_REQUEST,'message' => 'Bạn không thể xóa danh mục này')));
+            ->set_output(json_encode(array('status' => HTTP_BAD_REQUEST,'message' => 'Bạn không thể kích hoạt bài viết này')));
     }
 
     public function remove(){

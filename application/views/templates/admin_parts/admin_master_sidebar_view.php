@@ -40,7 +40,12 @@ if($this->ion_auth->logged_in()) {
                 </li>
                 <li class="<?php echo ($this->uri->segment(2) == 'doctor')? 'active' : '' ?>">
                     <a href="<?php echo base_url('admin/doctor') ?>">
-                        <i class="fa fa-users" aria-hidden="true"></i> <span>Quản lý doctors</span>
+                        <i class="fa fa-user-md" aria-hidden="true"></i> <span>Quản lý doctors</span>
+                    </a>
+                </li>
+                <li class="<?php echo ($this->uri->segment(2) == 'transform')? 'active' : '' ?>">
+                    <a href="<?php echo base_url('admin/transform') ?>">
+                        <i class="fa fa-users" aria-hidden="true"></i> <span>Quản lý thông tin khách hàng</span>
                     </a>
                 </li>
                 <!-- Show slide About -->

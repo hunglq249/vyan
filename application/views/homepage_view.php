@@ -8,27 +8,29 @@
 		</ol>
 		<div class="carousel-inner">
 			<!-- Import Slider database Here -->
-			<?php foreach ($banner as $key => $value): ?>
-				<div class="carousel-item <?php echo ($key == 0) ? 'active' : '' ?>">
-					<div class="mask">
-						<!-- Test Slider -->
-						<img src="<?= base_url('assets/upload/banner/' . $value['image'] ) ?>"
-								 alt="Image Slide <?php echo $key + 1 ?>">
-					</div>
+			<?php if ($banner): ?>
+				<?php foreach ($banner as $key => $value): ?>
+					<div class="carousel-item <?php echo ($key == 0) ? 'active' : '' ?>">
+						<div class="mask">
+							<!-- Test Slider -->
+							<img src="<?= base_url('assets/upload/banner/' . $value['image'] ) ?>"
+									 alt="Image Slide <?php echo $key + 1 ?>">
+						</div>
 
-					<div class="carousel-caption">
-                        <h6 class="subtitle-md">
-								
-						</h6>
-						<h3 class="text-wrapper">
-							<?php echo $value['title'];?>
-						</h3>
-						<a href="<?php echo $value['url'];?>" class="btn btn-outline-light" role="button">
-							Xem chi tiết
-						</a>
+						<div class="carousel-caption">
+	                        <h6 class="subtitle-md">
+									
+							</h6>
+							<h3 class="text-wrapper">
+								<?php echo $value['title'];?>
+							</h3>
+							<a href="<?php echo $value['url'];?>" class="btn btn-outline-light" role="button">
+								Xem chi tiết
+							</a>
+						</div>
 					</div>
-				</div>
-			<?php endforeach ?>
+				<?php endforeach ?>
+			<?php endif ?>
 		</div>
 		<a class="carousel-control-prev" href="#slideHomepage" role="button" data-slide="prev">
 			<span class="carousel-control-prev-icon" aria-hidden="true"></span>

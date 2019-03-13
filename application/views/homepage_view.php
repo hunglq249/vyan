@@ -236,17 +236,19 @@
 			</div>
 
 			<div class="slicker">
-                <?php for ($i = 0; $i < 6; $i++) { ?>
-					<div class="item">
-						<div class="mask after">
-							<img src="https://images.unsplash.com/photo-1548365278-2ee092b7bb18?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80" alt="Image of Service <?php echo $i + 1 ?>">
-						</div>
+				<?php if ($transform): ?>
+					<?php foreach ($transform as $key => $value): ?>
+						<div class="item">
+							<div class="mask after">
+								<img src="<?php echo base_url('assets/upload/transform/image_after/' . $value['image_after']) ?>" alt="Image of Service <?php echo $i + 1 ?>">
+							</div>
 
-						<div class="mask before">
-							<img src="https://images.unsplash.com/photo-1548365278-2ee092b7bb18?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80" alt="Image of Service <?php echo $i + 1 ?>">
+							<div class="mask before">
+								<img src="<?php echo base_url('assets/upload/transform/image_before/' . $value['image_before']) ?>" alt="Image of Service <?php echo $i + 1 ?>">
+							</div>
 						</div>
-					</div>
-				<?php } ?>
+					<?php endforeach ?>
+				<?php endif ?>
 			</div>
 
 			<div class="section-footer">

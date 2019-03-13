@@ -360,8 +360,34 @@
             .container{
                 .slicker{
                     .item{
+						height: 500px;
+
+						position: relative;
+
                         .mask{
                             padding: $padding-base;
+
+							position: absolute;
+
+							&.after{
+								width: 75%;
+								height: 75%;
+
+								top: 15px;
+								left: 15px;
+							}
+
+							&.before{
+								width: 40%;
+								height: 35%;
+
+								bottom: 30px;
+								right: 30px;
+							}
+
+							img{
+								@include boxShadow(0px, 4px, 7px, rgba(0,0,0,0.3));
+							}
                         }
                     }
 
@@ -377,6 +403,34 @@
                                 }
                             }
                         }
+
+						.slick-prev{
+							left: 25px !important;
+						}
+
+						.slick-next{
+							right: 25px !important;
+						}
+
+						.slick-next, .slick-prev{
+							z-index: 99;
+
+							opacity: 0.65;
+
+							@include transition(300ms);
+
+							&:before{
+								font-size: 30px;
+
+								color: $primary-base;
+							}
+
+							&:hover{
+								opacity: 1;
+
+								@include transition(300ms);
+							}
+						}
                     }
                 }
             }

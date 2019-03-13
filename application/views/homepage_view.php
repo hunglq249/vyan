@@ -238,7 +238,11 @@
 			<div class="slicker">
                 <?php for ($i = 0; $i < 6; $i++) { ?>
 					<div class="item">
-						<div class="mask">
+						<div class="mask after">
+							<img src="https://images.unsplash.com/photo-1548365278-2ee092b7bb18?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80" alt="Image of Service <?php echo $i + 1 ?>">
+						</div>
+
+						<div class="mask before">
 							<img src="https://images.unsplash.com/photo-1548365278-2ee092b7bb18?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80" alt="Image of Service <?php echo $i + 1 ?>">
 						</div>
 					</div>

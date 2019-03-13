@@ -917,10 +917,50 @@ footer {
               -ms-transition: all ease-in-out 300ms;
               -o-transition: all ease-in-out 300ms;
               transition: all ease-in-out 300ms; }
-#homepage .section.story .container .slicker .item .mask {
-  padding: 15px; }
+#homepage .section.story .container .slicker .item {
+  height: 500px;
+  position: relative; }
+  #homepage .section.story .container .slicker .item .mask {
+    padding: 15px;
+    position: absolute; }
+    #homepage .section.story .container .slicker .item .mask.after {
+      width: 75%;
+      height: 75%;
+      top: 15px;
+      left: 15px; }
+    #homepage .section.story .container .slicker .item .mask.before {
+      width: 40%;
+      height: 35%;
+      bottom: 30px;
+      right: 30px; }
+    #homepage .section.story .container .slicker .item .mask img {
+      -webkit-box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.3);
+      box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.3); }
 #homepage .section.story .container .slicker.slick-slider .slick-slide.slick-active.slick-current .item .mask {
   padding: 0; }
+#homepage .section.story .container .slicker.slick-slider .slick-prev {
+  left: 25px !important; }
+#homepage .section.story .container .slicker.slick-slider .slick-next {
+  right: 25px !important; }
+#homepage .section.story .container .slicker.slick-slider .slick-next, #homepage .section.story .container .slicker.slick-slider .slick-prev {
+  z-index: 99;
+  opacity: 0.65;
+  -webkit-transition: all ease-in-out 300ms;
+  -moz-transition: all ease-in-out 300ms;
+  -ms-transition: all ease-in-out 300ms;
+  -o-transition: all ease-in-out 300ms;
+  transition: all ease-in-out 300ms; }
+  #homepage .section.story .container .slicker.slick-slider .slick-next:before, #homepage .section.story .container .slicker.slick-slider .slick-prev:before {
+    font-size: 30px;
+    color: #97D4CA; }
+  #homepage .section.story .container .slicker.slick-slider .slick-next:hover, #homepage .section.story .container .slicker.slick-slider .slick-prev:hover {
+    opacity: 1;
+    -webkit-transition: all ease-in-out 300ms;
+    -moz-transition: all ease-in-out 300ms;
+    -ms-transition: all ease-in-out 300ms;
+    -o-transition: all ease-in-out 300ms;
+    transition: all ease-in-out 300ms; }
 #homepage .section.story .owl-carousel .item h6 {
   margin-bottom: 15px; }
   #homepage .section.story .owl-carousel .item h6.subtitle-sm {

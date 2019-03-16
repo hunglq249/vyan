@@ -239,23 +239,34 @@
 				<?php if ($transform): ?>
 					<?php foreach ($transform as $key => $value): ?>
 						<div class="item">
-							<div class="mask after">
-								<img src="<?php echo base_url('assets/upload/transform/image_after/' . $value['image_after']) ?>" alt="Image of Service <?php echo $i + 1 ?>">
-							</div>
+							<a href="javascript:void(0)">
+								<div class="mask after">
+									<img src="<?php echo base_url('assets/upload/transform/image_after/' . $value['image_after']) ?>" alt="Image of Service <?php echo $i + 1 ?>">
 
-							<div class="mask before">
-								<img src="<?php echo base_url('assets/upload/transform/image_before/' . $value['image_before']) ?>" alt="Image of Service <?php echo $i + 1 ?>">
-							</div>
+									<div class="info">
+										<h6>
+											<?php echo $value['name'] ?>
+										</h6>
+										<p><?php echo $value['age'] ?></p>
+									</div>
+								</div>
+
+								<div class="mask before">
+									<img src="<?php echo base_url('assets/upload/transform/image_before/' . $value['image_before']) ?>" alt="Image of Service <?php echo $i + 1 ?>">
+								</div>
+							</a>
 						</div>
 					<?php endforeach ?>
 				<?php endif ?>
 			</div>
 
+			<!--
 			<div class="section-footer">
 				<a href="<?php echo base_url('') ?>" class="btn btn-primary" role="button">
 					See all our stories
 				</a>
 			</div>
+			-->
 		</div>
 	</div>
 

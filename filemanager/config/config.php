@@ -1,8 +1,15 @@
 <?php
+$version = "9.13.4";
 if (session_id() == '') session_start();
 
 mb_internal_encoding('UTF-8');
+mb_http_output('UTF-8');
+mb_http_input('UTF-8');
+mb_language('uni');
+mb_regex_encoding('UTF-8');
+ob_start('mb_output_handler');
 date_default_timezone_set('Europe/Rome');
+setlocale(LC_CTYPE, 'en_US'); //correct transliteration
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +37,7 @@ define('USE_ACCESS_KEYS', false); // TRUE or FALSE
 |--------------------------------------------------------------------------
 */
 
-define('DEBUG_ERROR_MESSAGE', true); // TRUE or FALSE
+define('DEBUG_ERROR_MESSAGE', false); // TRUE or FALSE
 
 /*
 |--------------------------------------------------------------------------
@@ -58,8 +65,8 @@ $config = array(
 	| without final / (DON'T TOUCH)
 	|
 	*/
-	//'base_url' => ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] && ! in_array(strtolower($_SERVER['HTTPS']), array( 'off', 'no' ))) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'],
-        'base_url' => "http://localhost/vyan",
+//	'base_url' => ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http"). "://". @$_SERVER['HTTP_HOST'],
+	'base_url' => 'http://localhost/vyan',
 	/*
 	|--------------------------------------------------------------------------
 	| path from base_url to base of upload folder
@@ -69,7 +76,6 @@ $config = array(
 	|
 	*/
 	'upload_dir' => '/source/',
-
 	/*
 	|--------------------------------------------------------------------------
 	| relative path from filemanager folder to upload folder
@@ -90,6 +96,67 @@ $config = array(
 	|
 	*/
 	'thumbs_base_path' => '../thumbs/',
+
+
+	/*
+	|--------------------------------------------------------------------------
+	| mime file control to define files extensions
+	|--------------------------------------------------------------------------
+	|
+	| If you want to be forced to assign the extension starting from the mime type
+	|
+	*/
+	'mime_extension_rename'	=> true,
+
+
+	/*
+	|--------------------------------------------------------------------------
+	| FTP configuration BETA VERSION
+	|--------------------------------------------------------------------------
+	|
+	| If you want enable ftp use write these parametres otherwise leave empty
+	| Remember to set base_url properly to point in the ftp server domain and 
+	| upload dir will be ftp_base_folder + upload_dir so without final /
+	|
+	*/
+	'ftp_host'         => false, //put the FTP host
+	'ftp_user'         => "user",
+	'ftp_pass'         => "pass",
+	'ftp_base_folder'  => "base_folder",
+	'ftp_base_url'     => "http://site to ftp root",
+	// Directory where place files before to send to FTP with final /
+	'ftp_temp_folder'  => "../temp/",
+	/*
+	|---------------------------------------------------------------------------
+	| path from ftp_base_folder to base of thumbs folder with start and final /
+	|---------------------------------------------------------------------------
+	*/
+	'ftp_thumbs_dir' => '/thumbs/',
+	'ftp_ssl' => false,
+	'ftp_port' => 21,
+
+	/* EXAMPLE
+	'ftp_host'         => "host.com",
+	'ftp_user'         => "test@host.com",
+	'ftp_pass'         => "pass.1",
+	'ftp_base_folder'  => "",
+	'ftp_base_url'     => "http://host.com/testFTP",
+	*/
+
+	/*
+	|--------------------------------------------------------------------------
+	| Multiple files selection
+	|--------------------------------------------------------------------------
+	| The user can delete multiple files, select all files , deselect all files
+	*/
+	'multiple_selection' => true,
+	/*
+	|
+	| The user can have a select button that pass a json to external input or pass the first file selected to editor
+	| If you use responsivefilemanager tinymce extension can copy into editor multiple object like images, videos, audios, links in the same time
+	|
+	 */
+	'multiple_selection_action_button' => true,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -131,7 +198,16 @@ $config = array(
 	| in Megabytes
 	|
 	*/
-	'MaxSizeUpload' => 1,
+	'MaxSizeUpload' => 10,
+
+	/*
+	|--------------------------------------------------------------------------
+	| File and Folder permission
+	|--------------------------------------------------------------------------
+	|
+	*/
+	'filePermission' => 0755,
+	'folderPermission' => 0777,
 
 
 	/*
@@ -160,9 +236,9 @@ $config = array(
 	//Show or not show sorting feature in filemanager
 	'show_sorting_bar'						=> true,
 	//Show or not show filters button in filemanager
-	'show_filter_buttons'						=> true,
+	'show_filter_buttons'                   => true,
 	//Show or not language selection feature in filemanager
-	'show_language_selection'				=> false,
+	'show_language_selection'				=> true,
 	//active or deactive the transliteration (mean convert all strange characters in A..Za..z0..9 characters)
 	'transliteration'						=> false,
 	//convert all spaces on files name and folders name with $replace_with variable
@@ -172,9 +248,8 @@ $config = array(
 	//convert to lowercase the files and folders name
 	'lower_case'							=> false,
 
-	// -1: There is no lazy loading at all, 0: Always lazy-load images, 0+: The minimum number of the files in a directory
-	// when lazy loading should be turned on.
-	'lazy_loading_file_number_threshold'	=> 0,
+	//Add ?484899493349 (time value) to returned images to prevent cache
+	'add_time_to_img'                       => false,
 
 
 	//*******************************************
@@ -207,6 +282,30 @@ $config = array(
 	// If set to TRUE then you can specify bigger images than $image_max_width & height otherwise if image_resizing is
 	// bigger than $image_max_width or height then it will be converted to those values
 
+
+	//******************
+	//
+	// WATERMARK IMAGE
+	// 
+	//Watermark path or false
+	'image_watermark'                          => false,//"../watermark.png",
+	# Could be a pre-determined position such as:
+	#           tl = top left,
+	#           t  = top (middle),
+	#           tr = top right,
+	#           l  = left,
+	#           m  = middle,
+	#           r  = right,
+	#           bl = bottom left,
+	#           b  = bottom (middle),
+	#           br = bottom right
+	#           Or, it could be a co-ordinate position such as: 50x100
+	'image_watermark_position'                 => 'br',
+	# padding: If using a pre-determined position you can
+	#         adjust the padding from the edges by passing an amount
+	#         in pixels. If using co-ordinates, this value is ignored.
+	'image_watermark_padding'                 => 10,
+
 	//******************
 	// Default layout setting
 	//
@@ -231,31 +330,32 @@ $config = array(
 	'rename_files'                            => true,
 	'rename_folders'                          => true,
 	'duplicate_files'                         => true,
+	'extract_files'                           => true,
 	'copy_cut_files'                          => true, // for copy/cut files
 	'copy_cut_dirs'                           => true, // for copy/cut directories
 	'chmod_files'                             => true, // change file permissions
 	'chmod_dirs'                              => true, // change folder permissions
 	'preview_text_files'                      => true, // eg.: txt, log etc.
 	'edit_text_files'                         => true, // eg.: txt, log etc.
-	'create_text_files'                       => true, // only create files with exts. defined in $editable_text_file_exts
+	'create_text_files'                       => true, // only create files with exts. defined in $config['editable_text_file_exts']
+	'download_files'			  => true, // allow download files or just preview
 
 	// you can preview these type of files if $preview_text_files is true
-	'previewable_text_file_exts'              => array( 'txt', 'log', 'xml', 'html', 'css', 'htm', 'js' ),
-	'previewable_text_file_exts_no_prettify'  => array( 'txt', 'log' ),
+	'previewable_text_file_exts'              => array( "bsh", "c","css", "cc", "cpp", "cs", "csh", "cyc", "cv", "htm", "html", "java", "js", "m", "mxml", "perl", "pl", "pm", "py", "rb", "sh", "xhtml", "xml","xsl",'txt', 'log','' ),
 
 	// you can edit these type of files if $edit_text_files is true (only text based files)
-	// you can create these type of files if $create_text_files is true (only text based files)
+	// you can create these type of files if $config['create_text_files'] is true (only text based files)
 	// if you want you can add html,css etc.
 	// but for security reasons it's NOT RECOMMENDED!
-	'editable_text_file_exts'                 => array( 'txt', 'log', 'xml', 'html', 'css', 'htm', 'js' ),
+	'editable_text_file_exts'                 => array( 'txt', 'log', 'xml', 'html', 'css', 'htm', 'js','' ),
+
+	'jplayer_exts'                            => array("mp4","flv","webmv","webma","webm","m4a","m4v","ogv","oga","mp3","midi","mid","ogg","wav"),
+
+	'cad_exts'                                => array('dwg', 'dxf', 'hpgl', 'plt', 'spl', 'step', 'stp', 'iges', 'igs', 'sat', 'cgm', 'svg'),
 
 	// Preview with Google Documents
 	'googledoc_enabled'                       => true,
-	'googledoc_file_exts'                     => array( 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx' ),
-
-	// Preview with Viewer.js
-	'viewerjs_enabled'                        => true,
-	'viewerjs_file_exts'                      => array( 'pdf', 'odt', 'odp', 'ods' ),
+	'googledoc_file_exts'                     => array( 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx' , 'pdf', 'odt', 'odp', 'ods'),
 
 	// defines size limit for paste in MB / operation
 	// set 'FALSE' for no limit
@@ -268,11 +368,32 @@ $config = array(
 	//**********************
 	//Allowed extensions (lowercase insert)
 	//**********************
-	'ext_img'                                 => array( 'jpg', 'jpeg', 'png', 'gif', 'bmp', 'tiff', 'svg' ), //Images
-	'ext_file'                                => array( 'doc', 'docx', 'rtf', 'pdf', 'xls', 'xlsx', 'txt', 'csv', 'html', 'xhtml', 'psd', 'sql', 'log', 'fla', 'xml', 'ade', 'adp', 'mdb', 'accdb', 'ppt', 'pptx', 'odt', 'ots', 'ott', 'odb', 'odg', 'otp', 'otg', 'odf', 'ods', 'odp', 'css', 'ai' ), //Files
+	'ext_img'                                 => array( 'jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'ico' ), //Images
+	'ext_file'                                => array( 'doc', 'docx', 'rtf', 'pdf', 'xls', 'xlsx', 'txt', 'csv', 'html', 'xhtml', 'psd', 'sql', 'log', 'fla', 'xml', 'ade', 'adp', 'mdb', 'accdb', 'ppt', 'pptx', 'odt', 'ots', 'ott', 'odb', 'odg', 'otp', 'otg', 'odf', 'ods', 'odp', 'css', 'ai', 'kmz','dwg', 'dxf', 'hpgl', 'plt', 'spl', 'step', 'stp', 'iges', 'igs', 'sat', 'cgm', 'tiff',''), //Files
 	'ext_video'                               => array( 'mov', 'mpeg', 'm4v', 'mp4', 'avi', 'mpg', 'wma', "flv", "webm" ), //Video
-	'ext_music'                               => array( 'mp3', 'm4a', 'ac3', 'aiff', 'mid', 'ogg', 'wav' ), //Audio
+	'ext_music'                               => array( 'mp3', 'mpga', 'm4a', 'ac3', 'aiff', 'mid', 'ogg', 'wav' ), //Audio
 	'ext_misc'                                => array( 'zip', 'rar', 'gz', 'tar', 'iso', 'dmg' ), //Archives
+
+
+	//*********************
+	//  If you insert an extensions blacklist array the filemanager don't check any extensions but simply block the extensions in the list
+	//  otherwise check Allowed extensions configuration
+	//*********************
+	'ext_blacklist'							  => false,//['exe','bat','jpg'],
+
+
+	//Empty filename permits like .htaccess, .env, ...
+	'empty_filename'                          => false,
+
+	/*
+	|--------------------------------------------------------------------------
+	| accept files without extension
+	|--------------------------------------------------------------------------
+	|
+	| If you want to accept files without extension, remember to add '' extension on allowed extension
+	|
+	*/
+	'files_without_extension'	              => false,
 
 	/******************
 	* AVIARY config
@@ -299,10 +420,9 @@ $config = array(
 	'hidden_files'                            => array( 'config.php' ),
 
 	/*******************
-	* JAVA upload
+	* URL upload
 	*******************/
-	'java_upload'                             => true,
-	'JAVAMaxSizeUpload'                       => 200, //Gb
+	'url_upload'                             => true,
 
 
 	//************************************
@@ -321,8 +441,8 @@ $config = array(
 	'fixed_path_from_filemanager'             => array( '../test/', '../test1/' ), //fixed path of the image folder from the current position on upload folder
 	'fixed_image_creation_name_to_prepend'    => array( '', 'test_' ), //name to prepend on filename
 	'fixed_image_creation_to_append'          => array( '_test', '' ), //name to appendon filename
-	'fixed_image_creation_width'              => array( 300, 400 ), //width of image (you can leave empty if you set height)
-	'fixed_image_creation_height'             => array( 200, '' ), //height of image (you can leave empty if you set width)
+	'fixed_image_creation_width'              => array( 300, 400 ), //width of image
+	'fixed_image_creation_height'             => array( 200, 300 ), //height of image
 	/*
 	#             $option:     0 / exact = defined size;
 	#                          1 / portrait = keep aspect set height;
@@ -342,8 +462,8 @@ $config = array(
 	'relative_path_from_current_pos'          => array( './', './' ), //relative path of the image folder from the current position on upload folder
 	'relative_image_creation_name_to_prepend' => array( '', '' ), //name to prepend on filename
 	'relative_image_creation_name_to_append'  => array( '_thumb', '_thumb1' ), //name to append on filename
-	'relative_image_creation_width'           => array( 300, 400 ), //width of image (you can leave empty if you set height)
-	'relative_image_creation_height'          => array( 200, '' ), //height of image (you can leave empty if you set width)
+	'relative_image_creation_width'           => array( 300, 400 ), //width of image
+	'relative_image_creation_height'          => array( 200, 300 ), //height of image
 	/*
 	#             $option:     0 / exact = defined size;
 	#                          1 / portrait = keep aspect set height;
@@ -362,8 +482,6 @@ $config = array(
 return array_merge(
 	$config,
 	array(
-		'MaxSizeUpload' => ((int)(ini_get('post_max_size')) < $config['MaxSizeUpload'])
-			? (int)(ini_get('post_max_size')) : $config['MaxSizeUpload'],
 		'ext'=> array_merge(
 			$config['ext_img'],
 			$config['ext_file'],
@@ -381,4 +499,3 @@ return array_merge(
 		),
 	)
 );
-?>

@@ -239,29 +239,28 @@
 				<?php if ($transform): ?>
 					<?php foreach ($transform as $key => $value): ?>
 						<div class="item">
-							<a href="javascript:void(0)">
-								<div class="mask after" data-id="<?php echo $value['id'] ?>">
-									<img src="<?php echo base_url('assets/upload/transform/image_after/' . $value['image_after']) ?>" alt="<?php echo $value['name'] . ' trước'; ?>">
+							<div class="mask after" data-id="<?php echo $value['id'] ?>">
+								<img src="<?php echo base_url('assets/upload/transform/image_after/' . $value['image_after']) ?>" alt="<?php echo $value['name'] . ' trước'; ?>">
 
-									<div class="info">
-										<h6>
-											<?php echo $value['name'] ?>
-										</h6>
-										<p><?php echo $value['age'] ?></p>
-									</div>
+								<div class="info">
+									<h6>
+										<?php echo $value['name'] ?>
+									</h6>
+									<p><?php echo $value['age'] ?></p>
 								</div>
+							</div>
 
-								<div class="mask before">
-									<img src="<?php echo base_url('assets/upload/transform/image_before/' . $value['image_before']) ?>" alt="<?php echo $value['name'] . ' sau'; ?>">
-								</div>
-							</a>
+							<div class="mask before">
+								<img src="<?php echo base_url('assets/upload/transform/image_before/' . $value['image_before']) ?>" alt="<?php echo $value['name'] . ' sau'; ?>">
+							</div>
+
+							<div class="overlay">
+								<p class="transform-title"></p>
+								<p class="transform-intro"></p>
+							</div>
 						</div>
 					<?php endforeach ?>
 				<?php endif ?>
-			</div>
-			<div>
-				<p class="transform-title"></p>
-				<p class="transform-intro"></p>
 			</div>
 
 			<!--

@@ -240,8 +240,8 @@
 					<?php foreach ($transform as $key => $value): ?>
 						<div class="item">
 							<a href="javascript:void(0)">
-								<div class="mask after">
-									<img src="<?php echo base_url('assets/upload/transform/image_after/' . $value['image_after']) ?>" alt="Image of Service <?php echo $i + 1 ?>">
+								<div class="mask after" data-id="<?php echo $value['id'] ?>">
+									<img src="<?php echo base_url('assets/upload/transform/image_after/' . $value['image_after']) ?>" alt="<?php echo $value['name'] . ' trước'; ?>">
 
 									<div class="info">
 										<h6>
@@ -252,12 +252,16 @@
 								</div>
 
 								<div class="mask before">
-									<img src="<?php echo base_url('assets/upload/transform/image_before/' . $value['image_before']) ?>" alt="Image of Service <?php echo $i + 1 ?>">
+									<img src="<?php echo base_url('assets/upload/transform/image_before/' . $value['image_before']) ?>" alt="<?php echo $value['name'] . ' sau'; ?>">
 								</div>
 							</a>
 						</div>
 					<?php endforeach ?>
 				<?php endif ?>
+			</div>
+			<div>
+				<p class="transform-title"></p>
+				<p class="transform-intro"></p>
 			</div>
 
 			<!--
@@ -282,24 +286,22 @@
 			</div>
 
 			<div class="owl-carousel comments">
-                <?php for ($i = 0; $i < 6; $i++) { ?>
-					<div class="item">
-						<div class="mask mask-circle">
-							<img src="https://images.unsplash.com/photo-1548365278-2ee092b7bb18?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"
-								 alt="Image of Service <?php echo $i + 1 ?>">
-						</div>
+				<?php if ($customer): ?>
+					<?php foreach ($customer as $key => $value): ?>
+						<div class="item">
+							<div class="mask mask-circle">
+								<img src="<?php echo base_url('assets/upload/customer/' . $value['image']) ?>" alt="<?php echo $value['title'] ?>">
+							</div>
 
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin condimentum non eros ac
-							luctus. Nulla aliquam lobortis porttitor. Aenean non lobortis nulla. Donec at ligula ut
-							justo pharetra elementum vitae a libero. Proin mattis, ligula quis aliquet posuere, tellus
-							nibh mollis urna, quis dignissim quam diam eget purus.
-						</p>
-						<h6 class="subtitle-sm">
-							Client <?php echo $i + 1 ?>
-						</h6>
-					</div>
-                <?php } ?>
+							<p>
+								<?php echo $value['description'] ?>
+							</p>
+							<h6 class="subtitle-sm">
+								<?php echo $value['title'] ?>
+							</h6>
+						</div>
+					<?php endforeach ?>
+				<?php endif ?>
 			</div>
 		</div>
 	</div>
@@ -327,6 +329,7 @@
 
 <script>
     $(document).ready(function () {
+
         $(".services .owl-carousel").owlCarousel({
             loop: true,
             center: true,
@@ -381,7 +384,54 @@
                         slidesToShow: 1
                     }
                 }
-            ]
+            ],
+
+        }).on('afterChange', function(event, slick, currentSlide, nextSlide){
+            // finally let's do this after changing slides
+            id = $('.slick-track').find('.slick-center').find('.after').data('id');
+            $.ajax({
+	            method: 'GET',
+	            url: HOSTNAME + '/homepage/get_intro_article',
+	            data: {
+	            	id : id, is_session : false
+	            },
+	            success: function(response){
+	                if ( response.status == 200 ) {
+	                	if ( response.result != '' ) {
+	                		$('.transform-title').html(response.result.title_basic);
+	                		$('.transform-intro').html(response.result.description_basic);
+	                	}
+	                }
+	            },
+	            error: function(jqXHR, exception){
+	                console.log(errorHandle(jqXHR, exception));
+	            }
+	        });
         });
+
+        $('.slick-track').each(function(){
+        	id = $(this).find('.slick-center').find('.after').data('id');
+        	$.ajax({
+	            method: 'GET',
+	            url: HOSTNAME + '/homepage/get_intro_article',
+	            data: {
+	            	id : id, is_session : true
+	            },
+	            success: function(response){
+	                if ( response.status == 200 ) {
+	                	if ( response.result != '' ) {
+	                		$('.transform-title').html(response.result.title_basic);
+	                		$('.transform-intro').html(response.result.description_basic);
+	                	}
+	                }
+	            },
+	            error: function(jqXHR, exception){
+	                console.log(errorHandle(jqXHR, exception));
+	            }
+	        });
+        })
     });
+
+$('.slider')
+        
 </script>

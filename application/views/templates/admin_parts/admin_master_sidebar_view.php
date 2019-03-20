@@ -107,6 +107,11 @@ if($this->ion_auth->logged_in()) {
                         <i class="fa fa-shopping-bag" aria-hidden="true"></i> <span>Dịch Vụ</span>
                     </a>
                 </li>
+                <li class="<?php echo ($this->uri->segment(2) == 'customer')? 'active' : '' ?>">
+                    <a href="<?php echo base_url('admin/customer') ?>">
+                        <i class="fa fa-address-card" aria-hidden="true"></i> <span>Đối Tác</span>
+                    </a>
+                </li>
                 <li class="header">DOCUMENTATION</li>
                 <li>
                     <a href="<?php echo base_url('admin/user/change_password') ?>">

@@ -46,8 +46,6 @@ class Service extends Admin_Controller{
             $result[$key]['category_1'] = $category_1['title'];
         }
         $this->data['result'] = $result;
-        // echo '<pre>';
-        // print_r($result);die;
 		$this->render('admin/service/index');
 	}
 

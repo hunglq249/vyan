@@ -43,6 +43,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<!-- Bootstrap 4 js -->
 	<script src="<?php echo site_url('node_modules/') ?>bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="<?php echo site_url('assets/js/config.js') ?>"></script>
 	
 </head>
 

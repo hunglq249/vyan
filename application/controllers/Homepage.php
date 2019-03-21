@@ -9,6 +9,7 @@ class Homepage extends Public_Controller {
         $this->load->model('doctor_model');
         $this->load->model('transform_model');
         $this->load->model('customer_model');
+        $this->load->model('why_model');
         $this->load->library('session');
 	}
 
@@ -19,6 +20,8 @@ class Homepage extends Public_Controller {
         $this->data['doctors'] = $this->doctor_model->fetch_all_active_doctor_search();
         $this->data['transform'] = $this->transform_model->get_by_all_when_active();
         $this->data['customer'] = $this->customer_model->get_by_all_when_active();
+        $this->data['why'] = $this->why_model->get_all_with_pagination_search(1, 'desc', 4);
+        
         $this->render('homepage_view');
 	}
 

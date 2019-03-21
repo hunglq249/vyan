@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Admin Mato Creative | Dashboard</title>
+    <title>Admin CNC Team | Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -19,6 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="<?php echo site_url('assets/lib/') ?>fontAwesome/css/daterangepicker-bs3.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="<?php echo site_url('assets/lib/') ?>ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="<?php echo site_url('assets/lib/select2/select2.min.css') ?>">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo site_url('assets/lib/') ?>dist/css/AdminLTE.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -26,6 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="<?php echo site_url('assets/lib/') ?>iCheck/square/blue.css">
     <link rel="stylesheet" href="<?php echo site_url('assets/lib/') ?>dist/css/skins/skin-green.css">
     <link rel="stylesheet" href="<?php echo site_url('assets/lib/bootstrap-tagsinput-latest/dist/bootstrap-tagsinput.css') ?>">
+    
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -47,6 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script type="text/javascript" src="<?php echo site_url('') ?>tinymce/tinymce.min.js"></script>
     <script type="text/javascript" src="<?php echo site_url('assets/lib/bootstrap-tagsinput-latest/dist/bootstrap-tagsinput.js') ?>"></script>
     <script src="<?php echo site_url('assets/') ?>js/admin/config.js"></script>
+    <script src="<?php echo site_url('assets/lib/select2/select2.min.js') ?>"></script>
     <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script> -->
 

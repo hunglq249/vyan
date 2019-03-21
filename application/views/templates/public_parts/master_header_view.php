@@ -28,6 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<!-- FontAwesome 5 -->
 	<link rel="stylesheet" href="<?php echo site_url('node_modules/') ?>@fortawesome/fontawesome-free/css/all.min.css">
+	<link rel="stylesheet" href="<?php echo site_url('assets/lib/') ?>fontAwesome/css/font-awesome.min.css">
 
 	<!-- Style -->
 	<link rel="stylesheet" href="<?php echo site_url('assets/scss/') ?>style.css">

@@ -227,6 +227,11 @@
 				<?php endif ?>
 			</div>
 
+			<div class="detail-info">
+				<p class="transform-title"></p>
+				<p class="transform-intro"></p>
+			</div>
+
 			<!--
 			<div class="section-footer">
 				<a href="<?php echo base_url('') ?>" class="btn btn-primary" role="button">

@@ -863,6 +863,7 @@ footer {
         #homepage .section.whyus > .row .right .row .item a {
           width: 100%;
           height: 100%;
+          color: #97D4CA;
           display: flex;
           flex-direction: row;
           justify-content: center;
@@ -897,6 +898,7 @@ footer {
               -o-transition: all ease-in-out 300ms;
               transition: all ease-in-out 300ms; }
           #homepage .section.whyus > .row .right .row .item a:hover {
+            color: #fff;
             background-color: #97D4CA;
             -webkit-transition: all ease-in-out 300ms;
             -moz-transition: all ease-in-out 300ms;
@@ -972,67 +974,8 @@ footer {
       -webkit-box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.3);
       -moz-box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.3);
       box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.3); }
-  #homepage .section.story .container .slicker .item .overlay {
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 3;
-    padding: 15px;
-    color: #fff;
-    opacity: 0;
-    -webkit-transition: all ease-in-out 300ms;
-    -moz-transition: all ease-in-out 300ms;
-    -ms-transition: all ease-in-out 300ms;
-    -o-transition: all ease-in-out 300ms;
-    transition: all ease-in-out 300ms; }
-    #homepage .section.story .container .slicker .item .overlay .transform-title {
-      font-weight: 700;
-      font-size: 2.125rem;
-      margin-bottom: 15px; }
 #homepage .section.story .container .slicker.slick-slider .slick-slide.slick-active.slick-current .item .mask {
   padding: 0; }
-#homepage .section.story .container .slicker.slick-slider .slick-slide.slick-active.slick-current .item .mask.after {
-  width: 100%;
-  height: 100%;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  -webkit-transition: all ease-in-out 300ms;
-  -moz-transition: all ease-in-out 300ms;
-  -ms-transition: all ease-in-out 300ms;
-  -o-transition: all ease-in-out 300ms;
-  transition: all ease-in-out 300ms; }
-  #homepage .section.story .container .slicker.slick-slider .slick-slide.slick-active.slick-current .item .mask.after .info {
-    opacity: 0;
-    -webkit-transition: all ease-in-out 300ms;
-    -moz-transition: all ease-in-out 300ms;
-    -ms-transition: all ease-in-out 300ms;
-    -o-transition: all ease-in-out 300ms;
-    transition: all ease-in-out 300ms; }
-#homepage .section.story .container .slicker.slick-slider .slick-slide.slick-active.slick-current .item .mask.before {
-  opacity: 0;
-  z-index: 1;
-  -webkit-transition: all ease-in-out 300ms;
-  -moz-transition: all ease-in-out 300ms;
-  -ms-transition: all ease-in-out 300ms;
-  -o-transition: all ease-in-out 300ms;
-  transition: all ease-in-out 300ms; }
-#homepage .section.story .container .slicker.slick-slider .slick-slide.slick-active.slick-current .item .overlay {
-  background-color: rgba(0, 0, 0, 0.5);
-  opacity: 1;
-  -webkit-transition: all ease-in-out 300ms;
-  -moz-transition: all ease-in-out 300ms;
-  -ms-transition: all ease-in-out 300ms;
-  -o-transition: all ease-in-out 300ms;
-  transition: all ease-in-out 300ms; }
 #homepage .section.story .container .slicker.slick-slider .slick-prev {
   left: 25px !important; }
 #homepage .section.story .container .slicker.slick-slider .slick-next {
@@ -1055,6 +998,15 @@ footer {
     -ms-transition: all ease-in-out 300ms;
     -o-transition: all ease-in-out 300ms;
     transition: all ease-in-out 300ms; }
+#homepage .section.story .container .detail-info {
+  width: 50%;
+  margin: 50px auto; }
+  #homepage .section.story .container .detail-info .transform-title {
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 15px; }
+  #homepage .section.story .container .detail-info .transform-intro {
+    color: #949494; }
 #homepage .section.story .owl-carousel .item h6 {
   margin-bottom: 15px; }
   #homepage .section.story .owl-carousel .item h6.subtitle-sm {

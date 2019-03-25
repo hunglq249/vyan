@@ -16,18 +16,6 @@
 							<img src="<?= base_url('assets/upload/banner/' . $value['image'] ) ?>"
 									 alt="Image Slide <?php echo $key + 1 ?>">
 						</div>
-
-						<div class="carousel-caption">
-	                        <h6 class="subtitle-md">
-									
-							</h6>
-							<h3 class="text-wrapper">
-								<?php echo $value['title'];?>
-							</h3>
-							<a href="<?php echo $value['url'];?>" class="btn btn-outline-light" role="button">
-								Xem chi tiết
-							</a>
-						</div>
 					</div>
 				<?php endforeach ?>
 			<?php endif ?>

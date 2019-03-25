@@ -173,7 +173,7 @@
 					<?php if ($why): ?>
 						<?php foreach ($why as $key => $value): ?>
 							<div class="item col-xs-12 col-md-6">
-								<a href="<?php echo base_url('') ?>">
+								<a href="<?php echo base_url('why/index/' . $value['slug']) ?>">
 									<div class="content">
 										<!-- Replace by a 50x50px png image later -->
 										<i class="fa fa-3x <?php echo $value['icon'] ?>" aria-hidden="true"></i>
@@ -203,31 +203,28 @@
 				<?php if ($transform): ?>
 					<?php foreach ($transform as $key => $value): ?>
 						<div class="item">
-							<div class="mask after" data-id="<?php echo $value['id'] ?>">
-								<img src="<?php echo base_url('assets/upload/transform/image_after/' . $value['image_after']) ?>" alt="<?php echo $value['name'] . ' trước'; ?>">
+							<a href="<?php echo base_url('transform/index/' . $value['slug']) ?>">
+								<div class="mask after" data-id="<?php echo $value['id'] ?>">
+									<img src="<?php echo base_url('assets/upload/transform/image_after/' . $value['image_after']) ?>" alt="<?php echo $value['name'] . ' trước'; ?>">
 
-								<div class="info">
-									<h6>
-										<?php echo $value['name'] ?>
-									</h6>
-									<p><?php echo $value['age'] ?></p>
+									<div class="info">
+										<h6>
+											<?php echo $value['name'] ?>
+										</h6>
+										<p><?php echo $value['age'] ?></p>
+									</div>
 								</div>
-							</div>
 
-							<div class="mask before">
-								<img src="<?php echo base_url('assets/upload/transform/image_before/' . $value['image_before']) ?>" alt="<?php echo $value['name'] . ' sau'; ?>">
-							</div>
-
-							<div class="overlay">
-								<p class="transform-title"></p>
-								<p class="transform-intro"></p>
-							</div>
+								<div class="mask before">
+									<img src="<?php echo base_url('assets/upload/transform/image_before/' . $value['image_before']) ?>" alt="<?php echo $value['name'] . ' sau'; ?>">
+								</div>
+							</a>
 						</div>
 					<?php endforeach ?>
 				<?php endif ?>
 			</div>
 
-			<div class="detail-info">
+			<div class="detail-info" style="width: 100%;">
 				<p class="transform-title"></p>
 				<p class="transform-intro"></p>
 			</div>

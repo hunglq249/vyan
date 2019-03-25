@@ -222,7 +222,7 @@
 
                 <div class="form-group col-xs-12">
                     <a href="javascript:history.back()" class="btn btn-default">Quay lại</a>
-                    <?php echo form_submit('submit', 'Thêm mới', 'class="btn btn-primary pull-right margin-right-xs" '); ?>
+                    <?php echo form_submit('submit', 'Cập nhật', 'class="btn btn-primary pull-right margin-right-xs" '); ?>
                 </div>
                 <?php echo form_close(); ?>
             </div>

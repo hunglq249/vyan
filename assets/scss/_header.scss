@@ -22,6 +22,8 @@ header{
                     width: 70px;
                     height: 82px;
 
+					@include transition(300ms);
+
                     .shape, .text{
                         fill: #fff;
                     }
@@ -54,10 +56,14 @@ header{
 
                         @include d-flex(column, center, center);
 
+						@include transition(300ms);
+
                         img{
                             width: 25px;
 
                             margin-bottom: $padding-half;
+
+							@include transition(300ms);
                         }
                     }
 
@@ -220,6 +226,39 @@ header{
             }
         }
     }
+
+	&.scaled{
+		.container{
+
+			.nav-brand {
+				a {
+					svg{
+						width: 60px;
+						height: auto;
+
+						@include transition(300ms);
+					}
+				}
+
+			}
+
+			.nav-main{
+				> ul {
+					> li{
+						padding: 5px;
+
+						@include transition(300ms);
+
+						> a{
+							font-size: 0.5rem;
+
+							@include transition(300ms);
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 #btnAdvise{

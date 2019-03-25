@@ -652,12 +652,33 @@
 @media (max-width: 767.98px){
     #homepage{
         #slideHomepage{
+			max-height: 50vh;
+			height: auto;
+
+			margin-top: 70px;
+
+			.carousel-indicators{
+				display: none;
+			}
+
             .carousel-inner{
                 .carousel-item{
+					.mask{
+						img{
+							object-fit: contain;
+						}
+					}
                     .carousel-caption{
                         width: 90%;
 
+						padding-top: 10px;
+						padding-bottom: 10px;
+
+						border-top: 2px solid #fff;
+
                         h6{
+							display: none;
+
                             &.subtitle-md{
                                 position: relative;
 
@@ -675,13 +696,18 @@
                             text-shadow: 0 0 10px rgba(0,0,0,0.3);
 
                             &.text-wrapper{
-                                height: 3.5em;
+								height: auto;
+                                max-height: 3.5em !important;
                                 -webkit-line-clamp: 3;
                             }
                         }
 
                         .btn{
-                            @include translate(0, $padding-double * 4);
+							font-size: 0.75rem;
+
+							padding: 5px 10px;
+
+                            @include translate(0, 50px);
                         }
                     }
                 }

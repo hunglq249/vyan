@@ -1,6 +1,6 @@
 $(document).ready(function(){
     expandNav();
-    
+	onScrollNav();
 });
 
 function expandNav(){
@@ -46,4 +46,21 @@ function expandNav(){
             });
         });
     }
+}
+
+function onScrollNav(){
+	$(window).scroll(function () {
+		//if you hard code, then use console
+		//.log to determine when you want the
+		//nav bar to stick.
+		'use strict';
+		var windowHeight = $(window).height();
+
+		if ($(window).scrollTop() > 0) {
+			$('header').addClass('scaled');
+		}
+		if ($(window).scrollTop() === 0) {
+			$('header').removeClass('scaled');
+		}
+	});
 }

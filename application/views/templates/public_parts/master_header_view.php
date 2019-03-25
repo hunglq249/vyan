@@ -63,7 +63,7 @@ fjs.parentNode.insertBefore(js, fjs);
 data-href="https://www.facebook.com/DevApi-2151677928419078/" data-width="250" data-height="300" 
 data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"></div>
 
-<header>
+<header class="">
 	<div class="container">
 		<div class="nav-brand">
 			<a href="<?php echo base_url('') ?>" title="Homepage">

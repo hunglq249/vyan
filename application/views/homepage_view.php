@@ -212,7 +212,7 @@
 				<?php endif ?>
 			</div>
 
-			<div class="detail-info" style="width: 100%;">
+			<div class="detail-info">
 				<p class="transform-title"></p>
 				<p class="transform-intro"></p>
 			</div>

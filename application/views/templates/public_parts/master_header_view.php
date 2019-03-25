@@ -63,15 +63,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
      data-href="https://www.facebook.com/Vyanspa/" data-width="250" data-height="300"
      data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"></div>
 
-<header>
-    <div class="container">
-        <div class="nav-brand">
-            <a href="<?php echo base_url('') ?>" title="Homepage">
-                <!--<img src="<?php echo site_url('assets/img/') ?>logo-w.svg" alt="Logo Vyan">-->
+<header class="">
+	<div class="container">
+		<div class="nav-brand">
+			<a href="<?php echo base_url('') ?>" title="Homepage">
+				<!--<img src="<?php echo site_url('assets/img/') ?>logo-w.svg" alt="Logo Vyan">-->
 
-                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                     viewBox="0 0 200 200" style="enable-background:new 0 0 200 200;" xml:space="preserve">
+				<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+					 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					 viewBox="0 0 200 200" style="enable-background:new 0 0 200 200;" xml:space="preserve">
 					 <g>
                          <path class="text" d="M159.9,151.1c-2.1,0-4.2,0-6.6,0c2.2-6.5,2.1-13.2,1.9-19.9c-0.2-6.6,1.1-13.2-1.3-19.9c2.2,0,4.4-0.2,6.6,0.1
 		c0.9,0.1,1.8,1.2,2.4,2.1c6.3,9.1,12.6,18.3,18.9,27.5c0.4,0.6,0.9,1.1,1.4,1.8c1.1-2.5,0.6-26.6-0.6-31.4c1.9,0,3.8,0,5.8,0

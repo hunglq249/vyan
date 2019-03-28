@@ -53,14 +53,32 @@ $route['default_controller'] = 'homepage';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = TRUE;
 
-$route['thuc-don'] = "menu/index";
-$route['thuc-don/(:any)'] = "menu/detail/$1";
-$route['gioi-thieu'] = 'about/index/';
-$route['gioi-thieu/(:any)'] = 'about/detail/$1';
-$route['bai-viet'] = 'blogs/index/';
-$route['bai-viet/(:num)'] = 'blogs/index/$1';
-$route['bai-viet/chi-tiet/(:any)'] = 'blogs/detail/$1';
-$route['(:any)/danh-sach'] = "blogs/category/$1";
+//about
+$route['ve-chung-toi/([a-zA-Z0-9-_]+)/([a-zA-Z0-9-_]+)'] = 'about/index/$1/$2';
+$route['ve-chung-toi/([a-zA-Z0-9-_]+)'] = 'about/list/$1';
+$route['ve-chung-toi'] = 'about/list_all';
+
+//academy
+$route['hoc-vien-vyan/([a-zA-Z0-9-_]+)/([a-zA-Z0-9-_]+)'] = 'academy/index/$1/$2';
+$route['hoc-vien-vyan/([a-zA-Z0-9-_]+)'] = 'academy/list/$1';
+$route['hoc-vien-vyan'] = 'academy/list_all';
+
+//service
+$route['dich-vu/([a-zA-Z0-9-_]+)/([a-zA-Z0-9-_]+)'] = 'service/index/$1/$2';
+$route['dich-vu/([a-zA-Z0-9-_]+)'] = 'service/list/$1';
+$route['dich-vu'] = 'service/list_all';
+
+// news
+$route['bai-viet'] = 'news/list_all';
+$route['bai-viet/([a-zA-Z0-9-_]+)'] = 'news/index/$1';
+
+//transform
+$route['ket-qua/([a-zA-Z0-9-_]+)'] = 'transform/index/$1';
+
+//why
+$route['tai-sao-chon-vyan/([a-zA-Z0-9-_]+)'] = 'why/index/$1';
+
+// $route['lien-he'] = 'contact/index';
 // $route['(:any)/chi-tiet/(:any)'] = "blogs/detail/$2";
 
 if($this->uri->segment(1) == "admin"){

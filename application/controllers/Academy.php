@@ -13,26 +13,49 @@ class Academy extends Public_Controller {
      * @param  [type] $slug [description]
      * @return [type]       [description]
      */
-    public function index($slug){
-    	$detail = $this->academy_model->get_by_slug($slug);
-        if ( !empty($detail) ) {
-            $category = $this->academy_category_model->get_by_id($detail['category_id']);
-            $related = $this->academy_model->get_related($detail['category_id'], $detail['id']);
-            $this->data['detail'] = $detail;
-            $this->data['category'] = $category;
-            $this->data['related'] = $related;
-            $this->render('academy_detail_view');
+    // 1 tham số trên url
+    // public function index($slug){
+    // 	$detail = $this->academy_model->get_by_slug($slug);
+    //     if ( !empty($detail) ) {
+    //         $category = $this->academy_category_model->get_by_id($detail['category_id']);
+    //         $related = $this->academy_model->get_related($detail['category_id'], $detail['id']);
+    //         $this->data['detail'] = $detail;
+    //         $this->data['category'] = $category;
+    //         $this->data['related'] = $related;
+    //         $this->render('academy_detail_view');
+    //     }else{
+    //         redirect('/','refresh');
+    //     }
+    // }
+
+    // 2 tham số trên url
+    public function index($slug_category,$slug){
+        $category = $this->academy_category_model->get_by_slug($slug_category);
+        if( !empty($category) ){
+            $detail = $this->academy_model->get_by_slug($slug);
+            if ( !empty($detail) ) {
+                $related = $this->academy_model->get_related($detail['category_id'], $detail['id']);
+                $this->data['detail'] = $detail;
+                $this->data['metakeywords'] = $detail['meta_keywords'];
+                $this->data['metadescription'] = $detail['meta_description'];
+                $this->data['category'] = $category;
+                $this->data['related'] = $related;
+                $this->render('academy_detail_view');
+            }else{
+                redirect('/','refresh');
+            }
         }else{
             redirect('/','refresh');
         }
     }
-
     /**
      * [list description]
      * @return [type] [description]
      */
     public function list($slug){
         $detail = $this->academy_category_model->get_by_slug($slug);
+        $this->data['metakeywords'] = $detail['meta_keywords'];
+        $this->data['metadescription'] = $detail['meta_description'];
         if ( !empty($detail) ) {
             $this->data['detail'] = $detail;
             $total_rows  = $this->academy_model->count_by_category_id_when_active($detail['id']);
@@ -56,6 +79,8 @@ class Academy extends Public_Controller {
     }
 
     public function list_all(){
+        $this->data['metakeywords'] = 'Học viện Vyan';
+        $this->data['metadescription'] = 'Học viện vyan';
         $total_rows  = $this->academy_model->count_search(1);
         $this->load->library('pagination');
         $config = array();

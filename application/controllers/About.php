@@ -13,15 +13,38 @@ class About extends Public_Controller {
      * @param  [type] $slug [description]
      * @return [type]       [description]
      */
-    public function index($slug){
-    	$detail = $this->about_model->get_by_slug($slug);
-        if ( !empty($detail) ) {
-            $category = $this->about_category_model->get_by_id($detail['category_id']);
-            $related = $this->about_model->get_related($detail['category_id'], $detail['id']);
-            $this->data['detail'] = $detail;
-            $this->data['category'] = $category;
-            $this->data['related'] = $related;
-            $this->render('about_detail_view');
+
+    // 1 tham số trên url
+    // public function index($slug){
+    //     $detail = $this->about_model->get_by_slug($slug);
+    //     if ( !empty($detail) ) {
+    //         $category = $this->about_category_model->get_by_id($detail['category_id']);
+    //         $related = $this->about_model->get_related($detail['category_id'], $detail['id']);
+    //         $this->data['detail'] = $detail;
+    //         $this->data['category'] = $category;
+    //         $this->data['related'] = $related;
+    //         $this->render('about_detail_view');
+    //     }else{
+    //         redirect('/','refresh');
+    //     }
+    // }
+
+    // 2 thâm số trên url
+    public function index($slug_category,$slug){
+        $category = $this->about_category_model->get_by_slug($slug_category);
+        if( !empty($category) ){
+            $detail = $this->about_model->get_by_slug($slug);
+            if ( !empty($detail) ) {
+                $related = $this->about_model->get_related($detail['category_id'], $detail['id']);
+                $this->data['detail'] = $detail;
+                $this->data['metakeywords'] = $detail['meta_keywords'];
+                $this->data['metadescription'] = $detail['meta_description'];
+                $this->data['category'] = $category;
+                $this->data['related'] = $related;
+                $this->render('about_detail_view');
+            }else{
+                redirect('/','refresh');
+            }
         }else{
             redirect('/','refresh');
         }
@@ -33,6 +56,8 @@ class About extends Public_Controller {
      */
     public function list($slug){
         $detail = $this->about_category_model->get_by_slug($slug);
+        $this->data['metakeywords'] = $detail['meta_keywords'];
+        $this->data['metadescription'] = $detail['meta_description'];
         if ( !empty($detail) ) {
             $this->data['detail'] = $detail;
             $total_rows  = $this->about_model->count_by_category_id_when_active($detail['id']);
@@ -56,6 +81,8 @@ class About extends Public_Controller {
     }
 
     public function list_all(){
+        $this->data['metakeywords'] = 'Về chúng tôi';
+        $this->data['metadescription'] = 'Về chúng tôi';
         $total_rows  = $this->about_model->count_search(1);
         $this->load->library('pagination');
         $config = array();

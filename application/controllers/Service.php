@@ -13,26 +13,49 @@ class Service extends Public_Controller {
      * @param  [type] $slug [description]
      * @return [type]       [description]
      */
-    public function index($slug){
-    	$detail = $this->service_model->get_by_slug($slug);
-        if ( !empty($detail) ) {
-            $category = $this->service_category_model->get_by_id($detail['id']);
-            $related = $this->service_model->get_related($detail['category_id'], $detail['id']);
-            $this->data['detail'] = $detail;
-            $this->data['category'] = $category;
-            $this->data['related'] = $related;
-            $this->render('service_detail_view');
+    // 1 tham số trên url
+    // public function index($slug){
+    // 	$detail = $this->service_model->get_by_slug($slug);
+    //     if ( !empty($detail) ) {
+    //         $category = $this->service_category_model->get_by_id($detail['id']);
+    //         $related = $this->service_model->get_related($detail['category_id'], $detail['id']);
+    //         $this->data['detail'] = $detail;
+    //         $this->data['category'] = $category;
+    //         $this->data['related'] = $related;
+    //         $this->render('service_detail_view');
+    //     }else{
+    //         redirect('/','refresh');
+    //     }
+    // }
+
+    // 2 tham số trên url
+    public function index($slug_category,$slug){
+        $category = $this->service_category_model->get_by_slug($slug_category);
+        if( !empty($category) ){
+            $detail = $this->service_model->get_by_slug($slug);
+            if ( !empty($detail) ) {
+                $related = $this->service_model->get_related($detail['category_id'], $detail['id']);
+                $this->data['detail'] = $detail;
+                $this->data['metakeywords'] = $detail['meta_keywords'];
+                $this->data['metadescription'] = $detail['meta_description'];
+                $this->data['category'] = $category;
+                $this->data['related'] = $related;
+                $this->render('service_detail_view');
+            }else{
+                redirect('/','refresh');
+            }
         }else{
             redirect('/','refresh');
         }
     }
-
     /**
      * [list description]
      * @return [type] [description]
      */
     public function list($slug){
         $detail = $this->service_category_model->get_by_slug($slug);
+        $this->data['metakeywords'] = $detail['meta_keywords'];
+        $this->data['metadescription'] = $detail['meta_description'];
         if ( !empty($detail) ) {
             $category = $this->service_category_model->get_by_id($detail['parent_id']);
             $this->data['category'] = $category;
@@ -58,6 +81,8 @@ class Service extends Public_Controller {
     }
 
     public function list_all(){
+        $this->data['metakeywords'] = 'Dịch vụ';
+        $this->data['metadescription'] = 'Dịch vụ';
         $total_rows  = $this->service_model->count_search(1);
         $this->load->library('pagination');
         $config = array();

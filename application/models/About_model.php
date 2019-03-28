@@ -17,7 +17,7 @@ class About_model extends Single_model{
 		parent::__construct();
 	}
     public function get_all_with_pagination_search($is_active = '',$order = 'desc', $limit = NULL, $start = NULL, $keywords = '') {
-        $this->db->select($this->table.'.*, about_category.title as category_title');
+        $this->db->select($this->table.'.*, about_category.title as category_title, about_category.slug as category_slug');
         $this->db->from($this->table);
         $this->db->join('about_category','about.category_id = about_category.id');
         $this->db->like($this->table.'.title', $keywords);

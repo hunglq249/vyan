@@ -10,6 +10,7 @@ class Homepage extends Public_Controller {
         $this->load->model('transform_model');
         $this->load->model('customer_model');
         $this->load->model('why_model');
+        $this->load->model('commercial_model');
         $this->load->library('session');
 	}
 
@@ -21,6 +22,9 @@ class Homepage extends Public_Controller {
         $this->data['transform'] = $this->transform_model->get_by_all_when_active();
         $this->data['customer'] = $this->customer_model->get_by_all_when_active();
         $this->data['why'] = $this->why_model->get_all_with_pagination_search(1, 'desc', 4);
+        $this->data['commercial'] = $this->commercial_model->get_by_id(1);
+        // echo '<pre>';
+        // print_r($this->data['commercial']);die;
         
         $this->render('homepage_view');
 	}

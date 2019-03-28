@@ -8,7 +8,8 @@ class Why extends Admin_Controller{
 	function __construct(){
 		parent::__construct();
         $this->load->model('why_model');
-		$this->load->model('config_model');
+        $this->load->model('config_model');
+		$this->load->model('commercial_model');
 		$this->load->helper('common_helper');
         $this->author_data = handle_author_common_data();
 	}
@@ -18,6 +19,9 @@ class Why extends Admin_Controller{
 	 * @return [type] [description]
 	 */
 	public function index(){
+        $banner = $this->commercial_model->get_by_id(1);
+        $this->data['banner'] = $banner;
+
 		$keywords = '';
         if($this->input->get('search')){
             $keywords = $this->input->get('search');
@@ -144,55 +148,61 @@ class Why extends Admin_Controller{
         if ($this->form_validation->run() == FALSE) {
             $this->render('admin/why/edit');
         } else {
-            if(!empty($_FILES['image']['name'])){
-                $this->check_img($_FILES['image']['name'], $_FILES['image']['size']);
-            }
-
-            $slug = $this->input->post('slug');
-            $unique_slug = $detail['slug'];
-            if ($slug != $unique_slug) {
-                $unique_slug = $this->why_model->build_unique_slug($slug);
-                if(file_exists('assets/upload/why/' . $detail['slug'])) {
-                    chmod('assets/upload/why/' . $detail['slug'], 0777);
-                    rename('assets/upload/why/' . $detail['slug'], 'assets/upload/why/' . $unique_slug);
+            if ( $this->input->post() ) {
+                if(!empty($_FILES['image']['name'])){
+                    $this->check_img($_FILES['image']['name'], $_FILES['image']['size']);
                 }
-            }
-            if(!file_exists('assets/upload/why/' . $unique_slug)){
-                mkdir('assets/upload/why/' . $unique_slug, 0777);
-            }
-            if ( !empty($_FILES['image']['name']) ) {
-                chmod('assets/upload/why/' . $unique_slug, 0777);
-                $images = $this->upload_image('image', 'assets/upload/why/' . $unique_slug, $_FILES['image']['name']);
-            }
 
-            $data = array(
-                'slug' => $unique_slug,
-                'title' => $this->input->post('title'),
-                'icon' => $this->input->post('icon'),
-                'is_active' => $this->input->post('is_active'),
-                'meta_keywords' => $this->input->post('meta_keywords'),
-                'meta_description' => $this->input->post('meta_description'),
-                'description' => $this->input->post('description'),
-                'body' => $this->input->post('body'),
-            );
-            if ( !empty($_FILES['image']['name']) ) {
-                $data['image'] = $images;
-            }
-            $update = $this->why_model->update($id,array_merge($data, $this->author_data));
-            if ($update) {
-                $this->session->set_flashdata('message_success', MESSAGE_EDIT_SUCCESS);
-                if(isset($images) && $images != $detail['image'] && file_exists('assets/upload/why/'.$unique_slug.'/'.$detail['image'])){
-                    unlink('assets/upload/why/'.$unique_slug.'/'.$detail['image']);
+                $slug = $this->input->post('slug');
+                $unique_slug = $detail['slug'];
+                if ($slug != $unique_slug) {
+                    $unique_slug = $this->why_model->build_unique_slug($slug);
+                    if(file_exists('assets/upload/why/' . $detail['slug'])) {
+                        chmod('assets/upload/why/' . $detail['slug'], 0777);
+                        rename('assets/upload/why/' . $detail['slug'], 'assets/upload/why/' . $unique_slug);
+                    }
                 }
-                redirect('admin/why/index', 'refresh');
-            }else{
-                $this->session->set_flashdata('message_error', MESSAGE_EDIT_ERROR);
-                redirect('admin/why/edit/' . $id);
+                if(!file_exists('assets/upload/why/' . $unique_slug)){
+                    mkdir('assets/upload/why/' . $unique_slug, 0777);
+                }
+                if ( !empty($_FILES['image']['name']) ) {
+                    chmod('assets/upload/why/' . $unique_slug, 0777);
+                    $images = $this->upload_image('image', 'assets/upload/why/' . $unique_slug, $_FILES['image']['name']);
+                }
+
+                $data = array(
+                    'slug' => $unique_slug,
+                    'title' => $this->input->post('title'),
+                    'icon' => $this->input->post('icon'),
+                    'is_active' => $this->input->post('is_active'),
+                    'meta_keywords' => $this->input->post('meta_keywords'),
+                    'meta_description' => $this->input->post('meta_description'),
+                    'description' => $this->input->post('description'),
+                    'body' => $this->input->post('body'),
+                );
+                if ( !empty($_FILES['image']['name']) ) {
+                    $data['image'] = $images;
+                }
+                $update = $this->why_model->update($id,array_merge($data, $this->author_data));
+                if ($update) {
+                    $this->session->set_flashdata('message_success', MESSAGE_EDIT_SUCCESS);
+                    if(isset($images) && $images != $detail['image'] && file_exists('assets/upload/why/'.$unique_slug.'/'.$detail['image'])){
+                        unlink('assets/upload/why/'.$unique_slug.'/'.$detail['image']);
+                    }
+                    redirect('admin/why/index', 'refresh');
+                }else{
+                    $this->session->set_flashdata('message_error', MESSAGE_EDIT_ERROR);
+                    redirect('admin/why/edit/' . $id);
+                }
             }
         }
     }
 
 
+    /**
+     * [deactive description]
+     * @return [type] [description]
+     */
     public function deactive(){
         $id = $this->input->get('id');
         $detail = $this->why_model->get_by_id($id);
@@ -208,6 +218,10 @@ class Why extends Admin_Controller{
         }
     }
 
+    /**
+     * [active description]
+     * @return [type] [description]
+     */
     public function active(){
         $id = $this->input->get('id');
         $data = array(
@@ -223,6 +237,10 @@ class Why extends Admin_Controller{
 
     }
 
+    /**
+     * [remove description]
+     * @return [type] [description]
+     */
     public function remove(){
         $id = $this->input->get('id');
         $detail = $this->why_model->get_by_id($id);
@@ -239,6 +257,12 @@ class Why extends Admin_Controller{
 
     }
 
+    /**
+     * [check_img description]
+     * @param  [type] $filename [description]
+     * @param  [type] $filesize [description]
+     * @return [type]           [description]
+     */
 	protected function check_img($filename, $filesize){
         $reponse = array(
             'csrf_hash' => $this->security->get_csrf_hash()
@@ -251,6 +275,10 @@ class Why extends Admin_Controller{
         }
     }
 
+    /**
+     * [check_file description]
+     * @return [type] [description]
+     */
     public function check_file(){
         $this->form_validation->set_message(__FUNCTION__, 'Vui lòng chọn ảnh.');
         if (!empty($_FILES['image']['name'][0])) {
@@ -258,4 +286,66 @@ class Why extends Admin_Controller{
         }
         return false;
     }
+
+
+    public function edit_commercial(){
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $detail = $this->commercial_model->get_by_id(1);
+        $this->data['detail'] = $detail;
+
+        $this->form_validation->set_rules('title', 'Tiêu đề', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->render('admin/commercial/edit');
+        } else {
+            if ( $this->input->post() ) {
+                if(!empty($_FILES['image']['name'])){
+                    $this->check_img($_FILES['image']['name'], $_FILES['image']['size']);
+                }
+
+                if ( !empty($_FILES['image']['name']) ) {
+                    if(!file_exists('assets/upload/why/commercial')) {
+                        chmod('assets/upload/why/commercial', 0777);
+                    }
+                    $images = $this->upload_image('image', 'assets/upload/why/commercial', $_FILES['image']['name']);
+                }
+
+                $data = array(
+                    'title' => $this->input->post('title'),
+                    'is_active' => $this->input->post('is_active'),
+                    'iframe' => $this->input->post('iframe'),
+                    'description' => $this->input->post('description'),
+                );
+                if ( !empty($_FILES['image']['name']) ) {
+                    $data['image'] = $images;
+                }
+
+                $update = $this->commercial_model->update(1, array_merge($data, $this->author_data));
+                if ($update) {
+                    $this->session->set_flashdata('message_success', MESSAGE_EDIT_SUCCESS);
+                    if(isset($images) && $images != $detail['image'] && file_exists('assets/upload/why/commercial/' . $detail['image'])){
+                        unlink('assets/upload/why/commercial/' . $detail['image']);
+                    }
+                    redirect('admin/why/index', 'refresh');
+                }else{
+                    $this->session->set_flashdata('message_error', MESSAGE_EDIT_ERROR);
+                    redirect('admin/commercial/edit/1');
+                }
+            }
+        }
+    }
+
+    public function detail_commercial(){
+        $detail = $this->commercial_model->get_by_id(1);
+
+        if(empty($detail)){
+            $this->session->set_flashdata('message_error', MESSAGE_ISSET_ERROR);
+            redirect('admin/why');
+        }
+        
+        $this->data['detail'] = $detail;
+        $this->render('admin/commercial/detail');
+    }    
 }

@@ -20,5 +20,9 @@
 
 <script src="<?php echo site_url('assets/') ?>js/admin/common.js"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/js/admin/menu.js'); ?>"></script>
-
+<script type="text/javascript">
+	$(document).ready(function (){
+		$("[data-toggle=tooltip]").tooltip()
+	})
+</script>
 </html>

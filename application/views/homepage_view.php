@@ -132,10 +132,22 @@
 	<div class="section whyus">
 		<div class="row no-gutters">
 			<div class="left col-xs-12 col-md-6">
-				<div class="mask">
-					<img src="<?php echo site_url('assets/img/test-gif.gif') ?>" alt="Background for Whyus Cover">
-				</div>
-
+				<?php if ( $commercial ): ?>
+					<?php if ( $commercial['is_active'] == 0 ): ?>
+						<?php if ( $commercial['image'] && file_exists('assets/upload/why/commercial/' . $commercial['image']) && is_file('assets/upload/why/commercial/' . $commercial['image']) ): ?>
+							<div class="mask">
+								<img src="<?php echo base_url('assets/upload/why/commercial/' . $commercial['image']) ?>" alt="Background for Whyus Cover">
+							</div>
+						<?php else: ?>
+							<div class="mask">
+								<img src="<?php echo base_url('assets/img/no-image.jpg') ?>" alt="Background for Whyus Cover">
+							</div>
+						<?php endif ?>
+					<?php else: ?>
+						<?php echo $commercial['iframe'] ?>
+					<?php endif ?>
+					
+				<?php endif ?>
 				<div class="overlay"></div>
 
 				<div class="wrapper">

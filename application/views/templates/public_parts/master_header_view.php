@@ -10,15 +10,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <?php if ($this->uri->segment(1) == 'gioi-thieu' && $this->uri->segment(2) != '' && $this->uri->segment(2) != 'danh-sach'): ?>
-        <meta name="keywords" content="<?php echo $detail['about_metakeywords'] ?>">
-        <meta name="description" content="<?php echo $detail['about_metadescription'] ?>">
-    <?php endif ?>
-
-    <?php if ($this->uri->segment(1) == 'bai-viet' && $this->uri->segment(2) == 'chi-tiet'): ?>
-        <meta name="keywords" content="<?php echo $detail['post_metakeywords'] ?>">
-        <meta name="description" content="<?php echo $detail['post_metadescription'] ?>">
-    <?php endif ?>
+    <meta name="description" content="<?= (isset($metadescription)) ? $metadescription : 'Vyan Beauty Clinic & Spa' ?>">
+    <meta name="keywords" content="<?= (isset($metakeywords)) ? $metakeywords : 'Vyan Beauty Clinic & Spa' ?>">
 
     <!-- TITLE -->
     <title>Vyan Beauty Clinic & Spa</title>
@@ -118,7 +111,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="nav-main">
             <ul>
                 <li>
-                    <a href="<?php echo base_url('') ?>">
+                    <a href="<?php echo base_url('ve-chung-toi') ?>">
                         <img src="<?php echo site_url('assets/img/') ?>icon/ico-doctor-01.svg" alt="Image About Us">
                         About Us
                     </a>
@@ -131,7 +124,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <?php if ( $this->category_about ): ?>
                             <?php foreach ($this->category_about as $key => $value): ?>
                                 <li>
-                                    <a href="<?php echo base_url('about/list/' . $value['slug']) ?>">
+                                    <a href="<?php echo base_url('ve-chung-toi/' . $value['slug']) ?>">
                                         <?php echo $value['title'] ?>
                                     </a>
 
@@ -150,14 +143,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <?php foreach ($value['sub'] as $k => $val): ?>
                                                 <?php if ($k <= 8): ?>
                                                     <li>
-                                                        <a href="<?php echo base_url('about/index/' . $val['slug']) ?>">
+                                                        <a href="<?php echo base_url('ve-chung-toi/' . $value['slug'] . '/' . $val['slug']) ?>">
                                                             <?php echo $val['title'] ?>
                                                         </a>
                                                     </li>
                                                 <?php endif ?>
                                                 <?php if ($k > 8): ?>
                                                     <li>
-                                                        <a href="<?php echo base_url('about/index/' . $val['slug']) ?>">
+                                                        <a href="<?php echo base_url('ve-chung-toi/' . $value['slug']) ?>">
                                                             Xem Thêm
                                                         </a>
                                                     </li>
@@ -173,7 +166,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </li>
 
                 <li>
-                    <a href="<?php echo base_url('') ?>">
+                    <a href="<?php echo base_url('dich-vu') ?>">
                         <img src="<?php echo site_url('assets/img/') ?>icon/ico-surgeon-01.svg" alt="Image Beauty Surgeon">
                         <?php echo $this->category_root[0]['title'] ?>
                     </a>
@@ -191,7 +184,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <?php if ( $this->category_by_root_1 ): ?>
                             <?php foreach ($this->category_by_root_1 as $key => $value): ?>
                                 <li>
-                                    <a href="<?php echo base_url('service/list/' . $value['slug']) ?>">
+                                    <a href="<?php echo base_url('dich-vu/' . $value['slug']) ?>">
                                         <?php echo $value['title'] ?>
                                     </a>
 
@@ -210,14 +203,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <?php foreach ($value['sub'] as $k => $val): ?>
                                                 <?php if ($k <= 8): ?>
                                                     <li>
-                                                        <a href="<?php echo base_url('service/index/' . $val['slug']) ?>">
+                                                        <a href="<?php echo base_url('dich-vu/' . $value['slug'] . '/' . $val['slug']) ?>">
                                                             <?php echo $val['title'] ?>
                                                         </a>
                                                     </li>
                                                 <?php endif ?>
                                                 <?php if ($k > 8): ?>
                                                     <li>
-                                                        <a href="<?php echo base_url('service/index/' . $val['slug']) ?>">
+                                                        <a href="<?php echo base_url('dich-vu/' . $value['slug']) ?>">
                                                             Xem Thêm
                                                         </a>
                                                     </li>
@@ -233,7 +226,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </li>
 
                 <li>
-                    <a href="<?php echo base_url('') ?>">
+                    <a href="<?php echo base_url('dich-vu') ?>">
                         <img src="<?php echo site_url('assets/img/') ?>icon/ico-skincare-01.svg" alt="Image Skincare & Spa">
                         <?php echo $this->category_root[1]['title'] ?>
                     </a>
@@ -252,7 +245,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <?php if ( $this->category_by_root_2 ): ?>
                             <?php foreach ($this->category_by_root_2 as $key => $value): ?>
                                 <li>
-                                    <a href="<?php echo base_url('service/list/' . $value['slug']) ?>">
+                                    <a href="<?php echo base_url('dich-vu/' . $value['slug']) ?>">
                                         <?php echo $value['title'] ?>
                                     </a>
 
@@ -271,14 +264,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <?php foreach ($value['sub'] as $k => $val): ?>
                                                 <?php if ($k <= 8): ?>
                                                     <li>
-                                                        <a href="<?php echo base_url('service/index/' . $val['slug']) ?>">
+                                                        <a href="<?php echo base_url('dich-vu/' . $value['slug'] . '/' . $val['slug']) ?>">
                                                             <?php echo $val['title'] ?>
                                                         </a>
                                                     </li>
                                                 <?php endif ?>
                                                 <?php if ($k > 8): ?>
                                                     <li>
-                                                        <a href="<?php echo base_url('service/index/' . $val['slug']) ?>">
+                                                        <a href="<?php echo base_url('dich-vu/' . $value['slug']) ?>">
                                                             Xem Thêm
                                                         </a>
                                                     </li>
@@ -294,7 +287,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </li>
 
                 <li>
-                    <a href="<?php echo base_url('') ?>">
+                    <a href="<?php echo base_url('dich-vu') ?>">
                         <img src="<?php echo site_url('assets/img/') ?>icon/ico-others-01.svg" alt="Image Others Care">
                         <?php echo $this->category_root[2]['title'] ?>
                     </a>
@@ -312,7 +305,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <?php if ( $this->category_by_root_3 ): ?>
                             <?php foreach ($this->category_by_root_3 as $key => $value): ?>
                                 <li>
-                                    <a href="<?php echo base_url('service/list/' . $value['slug']) ?>">
+                                    <a href="<?php echo base_url('dich-vu/' . $value['slug']) ?>">
                                         <?php echo $value['title'] ?>
                                     </a>
 
@@ -331,14 +324,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <?php foreach ($value['sub'] as $k => $val): ?>
                                                 <?php if ($k <= 8): ?>
                                                     <li>
-                                                        <a href="<?php echo base_url('service/index/' . $val['slug']) ?>">
+                                                        <a href="<?php echo base_url('dich-vu/' . $value['slug'] . '/' . $val['slug']) ?>">
                                                             <?php echo $val['title'] ?>
                                                         </a>
                                                     </li>
                                                 <?php endif ?>
                                                 <?php if ($k > 8): ?>
                                                     <li>
-                                                        <a href="<?php echo base_url('service/index/' . $val['slug']) ?>">
+                                                        <a href="<?php echo base_url('dich-vu/' . $value['slug']) ?>">
                                                             Xem Thêm
                                                         </a>
                                                     </li>
@@ -354,7 +347,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </li>
 
                 <li>
-                    <a href="<?php echo base_url('') ?>">
+                    <a href="<?php echo base_url('hoc-vien-vyan') ?>">
                         <img src="<?php echo site_url('assets/img/') ?>icon/ico-academy-01.svg" alt="Image Academy">
                         Vyan Academy
                     </a>
@@ -367,7 +360,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <?php if ( $this->category_academy ): ?>
                             <?php foreach ($this->category_academy as $key => $value): ?>
                                 <li>
-                                    <a href="<?php echo base_url('academy/list/' . $value['slug']) ?>">
+                                    <a href="<?php echo base_url('hoc-vien-vyan/' . $value['slug']) ?>">
                                         <?php echo $value['title'] ?>
                                     </a>
 
@@ -386,14 +379,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <?php foreach ($value['sub'] as $k => $val): ?>
                                                 <?php if ($k <= 8): ?>
                                                     <li>
-                                                        <a href="<?php echo base_url('academy/index/' . $val['slug']) ?>">
+                                                        <a href="<?php echo base_url('hoc-vien-vyan/' . $value['slug'] . '/' . $val['slug']) ?>">
                                                             <?php echo $val['title'] ?>
                                                         </a>
                                                     </li>
                                                 <?php endif ?>
                                                 <?php if ($k > 8): ?>
                                                     <li>
-                                                        <a href="<?php echo base_url('academy/index/' . $val['slug']) ?>">
+                                                        <a href="<?php echo base_url('hoc-vien-vyan/' . $value['slug']) ?>">
                                                             Xem Thêm
                                                         </a>
                                                     </li>
@@ -409,7 +402,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </li>
 
                 <li>
-                    <a href="<?php echo base_url('') ?>">
+                    <a href="<?php echo base_url('bai-viet') ?>">
                         <img src="<?php echo site_url('assets/img/') ?>icon/ico-news-01.svg" alt="Image News">
                         News
                     </a>
@@ -439,14 +432,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <?php foreach ($this->category_news as $k => $val): ?>
                                         <?php if ($k <= 8): ?>
                                             <li>
-                                                <a href="<?php echo base_url('news/index/' . $val['slug']) ?>">
+                                                <a href="<?php echo base_url('bai-viet/' . $val['slug']) ?>">
                                                     <?php echo $val['title'] ?>
                                                 </a>
                                             </li>
                                         <?php endif ?>
                                         <?php if ($k > 8): ?>
                                             <li>
-                                                <a href="<?php echo base_url('news/index/' . $val['slug']) ?>">
+                                                <a href="<?php echo base_url('bai-viet/' . $val['slug']) ?>">
                                                     Xem Thêm
                                                 </a>
                                             </li>

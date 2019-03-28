@@ -122,7 +122,7 @@
 			</div>
 
 			<div class="section-footer">
-				<a href="<?php echo base_url('service/list_all') ?>" class="btn btn-primary" role="button">
+				<a href="<?php echo base_url('dich-vu') ?>" class="btn btn-primary" role="button">
 					See all our services
 				</a>
 			</div>
@@ -161,7 +161,7 @@
 					<?php if ($why): ?>
 						<?php foreach ($why as $key => $value): ?>
 							<div class="item col-xs-12 col-md-6">
-								<a href="<?php echo base_url('why/index/' . $value['slug']) ?>">
+								<a href="<?php echo base_url('tai-sao-chon-vyan/' . $value['slug']) ?>">
 									<div class="content">
 										<!-- Replace by a 50x50px png image later -->
 										<i class="fa fa-3x <?php echo $value['icon'] ?>" aria-hidden="true"></i>
@@ -191,7 +191,7 @@
 				<?php if ($transform): ?>
 					<?php foreach ($transform as $key => $value): ?>
 						<div class="item">
-							<a href="<?php echo base_url('transform/index/' . $value['slug']) ?>">
+							<a href="<?php echo base_url('ket-qua/' . $value['slug']) ?>">
 								<div class="mask after" data-id="<?php echo $value['id'] ?>">
 									<img src="<?php echo base_url('assets/upload/transform/image_after/' . $value['image_after']) ?>" alt="<?php echo $value['name'] . ' trước'; ?>">
 

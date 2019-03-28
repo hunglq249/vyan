@@ -79,12 +79,12 @@
                                             <?php echo $category['title'] ?>
                                         </h6>
                                         <h5 class="text-wrapper">
-                                            <a href="<?php echo base_url('academy/index/' . $value['slug']) ?>">
+                                            <a href="<?php echo base_url('hoc-vien-vyan/' . $category['slug'] . '/' . $value['slug']) ?>">
                                                 <?php echo $value['title'] ?>
                                             </a>
                                         </h5>
                                         <div class="mask">
-                                            <a href="<?php echo base_url('academy/index/' . $value['slug']) ?>">
+                                            <a href="<?php echo base_url('hoc-vien-vyan/' . $category['slug'] . '/' . $value['slug']) ?>">
                                                 <img src="<?php echo base_url('assets/upload/academy/' . $value['slug'] . '/' . $value['image']); ?>" alt="<?php echo $value['title'] ?>">
                                             </a>
                                         </div>

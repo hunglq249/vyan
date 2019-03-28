@@ -12,7 +12,7 @@
                 <?php if ( $result ): ?>
                     <?php foreach ($result as $key => $value): ?>
                         <div class="item col-xs-12 col-md-6 col-lg-4">
-                            <a href="<?php echo base_url('about/index/' . $value['slug']) ?>">
+                            <a href="<?php echo base_url('ve-chung-toi/' . $value['category_slug'] . '/' . $value['slug']) ?>">
                                 <div class="inner">
                                     <div class="mask">
                                         <img src="<?php echo base_url('assets/upload/about/' .  $value['slug'] . '/' . $value['image']) ?>" alt="<?php echo $value['title'] ?>">

@@ -8,6 +8,8 @@ class Contact extends Public_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('contact_model');
+        $this->data['metakeywords'] = 'Liên hệ';
+        $this->data['metadescription'] = 'Liên hệ';
     }
 
     public function index(){

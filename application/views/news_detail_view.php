@@ -76,12 +76,12 @@
                                             
                                         </h6>
                                         <h5 class="text-wrapper">
-                                            <a href="<?php echo base_url('news/index/' . $value['slug']) ?>">
+                                            <a href="<?php echo base_url('bai-viet/' . $value['slug']) ?>">
                                                 <?php echo $value['title'] ?>
                                             </a>
                                         </h5>
                                         <div class="mask">
-                                            <a href="<?php echo base_url('news/index/' . $value['slug']) ?>">
+                                            <a href="<?php echo base_url('bai-viet/' . $value['slug']) ?>">
                                                 <img src="<?php echo base_url('assets/upload/news/' . $value['slug'] . '/' . $value['image']); ?>" alt="<?php echo $value['title'] ?>">
                                             </a>
                                         </div>

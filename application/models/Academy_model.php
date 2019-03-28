@@ -17,7 +17,7 @@ class Academy_model extends Single_model{
 		parent::__construct();
 	}
     public function get_all_with_pagination_search($is_active = '',$order = 'desc', $limit = NULL, $start = NULL, $keywords = '') {
-        $this->db->select($this->table.'.*, academy_category.title as category_title');
+        $this->db->select($this->table.'.*, academy_category.title as category_title, academy_category.slug as category_slug');
         $this->db->from($this->table);
         $this->db->join('academy_category','academy.category_id = academy_category.id');
         $this->db->like($this->table.'.title', $keywords);

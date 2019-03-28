@@ -16,6 +16,8 @@ class Why extends Public_Controller {
     	$detail = $this->why_model->get_by_slug($slug);
         if ( !empty($detail) ) {
             $this->data['detail'] = $detail;
+            $this->data['metakeywords'] = $detail['meta_keywords'];
+            $this->data['metadescription'] = $detail['meta_description'];
             $this->data['related'] = $this->why_model->get_related_not_category($detail['id']);
             $this->render('why_detail_view');
         }else{

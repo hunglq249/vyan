@@ -79,12 +79,12 @@
                                             <?php echo $category['title'] ?>
                                         </h6>
                                         <h5 class="text-wrapper">
-                                            <a href="<?php echo base_url('') ?>">
+                                            <a href="<?php echo base_url('dich-vu/' . $category['slug'] . '/' . $value['slug']) ?>">
                                                 <?php echo $value['title'] ?>
                                             </a>
                                         </h5>
                                         <div class="mask">
-                                            <a href="<?php echo base_url('postdetail/index/' . $value['slug']) ?>">
+                                            <a href="<?php echo base_url('dich-vu/' . $category['slug'] . '/' . $value['slug']) ?>">
                                                 <img src="<?php echo base_url('assets/upload/service/' . $value['slug'] . '/' . $value['image']); ?>" alt="<?php echo $value['title'] ?>">
                                             </a>
                                         </div>

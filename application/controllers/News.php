@@ -14,6 +14,8 @@ class News extends Public_Controller {
      */
     public function index($slug){
     	$detail = $this->news_model->get_by_slug($slug);
+        $this->data['metakeywords'] = $detail['meta_keywords'];
+        $this->data['metadescription'] = $detail['meta_description'];
         if ( !empty($detail) ) {
             $related = $this->news_model->get_related_not_category($detail['id']);
             $this->data['detail'] = $detail;
@@ -25,6 +27,8 @@ class News extends Public_Controller {
     }
 
     public function list_all(){
+        $this->data['metakeywords'] = 'Bài viết';
+        $this->data['metadescription'] = 'Bài viết';
         $total_rows  = $this->news_model->count_search(1);
         $this->load->library('pagination');
         $config = array();

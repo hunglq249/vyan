@@ -471,7 +471,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
 
         <div class="nav-call">
-            <a href="tel:84 1234 5678" class="btn btn-sm btn-light" role="button">
+            <a href="tel:024 2120 2888" class="btn btn-sm btn-light" role="button">
                 Call Now!
             </a>
         </div>

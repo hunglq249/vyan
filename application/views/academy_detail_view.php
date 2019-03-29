@@ -51,7 +51,7 @@
                                     Action Subtitle
                                 </h6>
                                 <h6>
-                                    Action Title <b>1900.1900</b>
+                                    Action Title <b>024 2120 2888</b>
                                 </h6>
                             </div>
 

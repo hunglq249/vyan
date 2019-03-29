@@ -144,10 +144,20 @@
 							</div>
 						<?php endif ?>
 					<?php else: ?>
-						<?php echo $commercial['iframe'] ?>
+						<video
+							id="vid1"
+							class="video-js vjs-default-skin"
+							autoplay
+							muted
+							loop
+							width="100%" height="100%"
+							data-setup='{ "techOrder": ["youtube"], "sources": [{ "type": "video/youtube", "src": "<?php echo $commercial['iframe'] ?>"}] }'
+						>
+						</video>
 					<?php endif ?>
 					
 				<?php endif ?>
+
 				<div class="overlay"></div>
 
 				<div class="wrapper">
@@ -240,8 +250,7 @@
 	</div>
 
 	<div class="section testimonial">
-		<div class="background-image"
-			 style="background-image: url('https://images.unsplash.com/photo-1548358520-2ef49c127e51?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80')"></div>
+		<div class="background-image" style="background-image: url('https://images.unsplash.com/photo-1548358520-2ef49c127e51?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80')"></div>
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="section-intro">
@@ -283,6 +292,9 @@
 <link rel="stylesheet" href="<?php echo site_url('assets/lib/') ?>OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css">
 <link rel="stylesheet" href="<?php echo site_url('assets/lib/') ?>OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css">
 
+<!-- video.js css -->
+<link href="<?php echo site_url('node_modules/') ?>video.js/dist/video-js.css" rel="stylesheet">
+
 <!-- wow.js -->
 <script src="<?php echo site_url('node_modules/') ?>wow.js/dist/wow.min.js"></script>
 
@@ -291,6 +303,10 @@
 
 <!-- slick js -->
 <script src="<?php echo site_url('node_modules/') ?>slick-carousel/slick/slick.js"></script>
+
+<!-- video.js -->
+<script src="<?php echo site_url('node_modules/') ?>video.js/dist/video.js"></script>
+<script src="<?php echo site_url('node_modules/') ?>videojs-youtube/dist/Youtube.js"></script>
 
 <script>
     $(document).ready(function () {

@@ -51,6 +51,7 @@ class Banner extends Admin_Controller{
                     'title' => $this->input->post('title'),
                     'url' => $this->input->post('url'),
                     'description' => $this->input->post('description'),
+                    'is_active' => $this->input->post('is_active'),
                 );
                 $insert = $this->banner_model->insert(array_merge($data,$this->author_data));
                 if ($insert) {
@@ -150,6 +151,7 @@ class Banner extends Admin_Controller{
                         'title' => $this->input->post('title'),
                         'url' => $this->input->post('url'),
                         'description' => $this->input->post('description'),
+                        'is_active' => $this->input->post('is_active'),
                     );
                     if(isset($image)){
                         $data['image'] = $image;

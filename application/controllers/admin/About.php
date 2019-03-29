@@ -91,6 +91,7 @@ class About extends Admin_Controller{
                     'iframe' => $this->input->post('iframe'),
                     'description' => $this->input->post('description'),
                     'body' => $this->input->post('body'),
+                    'is_active' => $this->input->post('is_active'),
                 );
                 $insert = $this->about_model->insert(array_merge($data, $this->author_data));
                 if ($insert) {
@@ -158,6 +159,7 @@ class About extends Admin_Controller{
                     'iframe' => $this->input->post('iframe'),
                     'description' => $this->input->post('description'),
                     'body' => $this->input->post('body'),
+                    'is_active' => $this->input->post('is_active'),
                 );
                 if ( !empty($_FILES['image']['name']) ) {
                     $data['image'] = $images;

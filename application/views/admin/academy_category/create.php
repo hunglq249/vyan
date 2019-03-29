@@ -104,6 +104,14 @@
                             ?>
                         </div>
 
+                        <div class="form-group col-md-12">
+                            <?php
+                            echo form_label('Trạng thái', 'is_active');
+                            echo form_error('is_active', '<div class="error">', '</div>');
+                            echo form_dropdown('is_active', array('Chưa kích hoạt', 'Kích hoạt'), 0, 'class="form-control" id="is_active"');
+                            ?>
+                        </div>
+                        
                         <div class="form-group col-xs-12">
                             <a href="javascript:history.back()" class="btn btn-default">Quay lại</a>
                             <?php echo form_submit('submit', 'Thêm mới', 'class="btn btn-primary pull-right margin-right-xs" '); ?>

@@ -89,17 +89,17 @@
                 <ul>
                     <li>
                         <a href="mailto:info@vyan.vn">
-                            <i class="fas fa-envelope"></i> info@vyan.vn
+                            <i class="fas fa-envelope"></i> <?php echo $contact['email'] ?>
                         </a>
                     </li>
                     <li>
                         <a href="javascript:void(0);">
-                            <i class="fas fa-map-marked-alt"></i> 39 Lý Nam Đế - Hoàn Kiếm - Hà Nội
+                            <i class="fas fa-map-marked-alt"></i> <?php echo $contact['address'] ?>
                         </a>
                     </li>
                     <li>
                         <a href="mailto:info@vyan.vn">
-                            <i class="fas fa-phone"></i> 024 2120 2888
+                            <i class="fas fa-phone"></i> <?php echo $contact['phone'] ?>
                         </a>
                     </li>
                 </ul>
@@ -110,17 +110,17 @@
 
                 <ul>
                     <li>
-                        <a href="<?php echo base_url('') ?>">
+                        <a href="<?php echo base_url('/') ?>">
                             Home
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url('') ?>">
+                        <a href="<?php echo base_url('ve-chung-toi') ?>">
                             About Us
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url('') ?>">
+                        <a href="<?php echo base_url('dich-vu') ?>">
                             Services
                         </a>
                     </li>
@@ -137,17 +137,17 @@
 
                 <ul>
                     <li>
-                        <a href="<?php echo base_url('') ?>">
+                        <a href="<?php echo base_url('dich-vu') ?>">
                             Service 1
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url('') ?>">
+                        <a href="<?php echo base_url('dich-vu') ?>">
                             Service 2
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url('') ?>">
+                        <a href="<?php echo base_url('dich-vu') ?>">
                             Service 3
                         </a>
                     </li>
@@ -159,17 +159,17 @@
 
                 <ul>
                     <li>
-                        <a href="<?php echo base_url('') ?>">
+                        <a href="<?php echo $contact['facebook'] ?>">
                             Facebook
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url('') ?>">
+                        <a href="<?php echo $contact['instagram'] ?>">
                             Instagram
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url('') ?>">
+                        <a href="<?php echo $contact['linkedin'] ?>">
                             LinkedIn
                         </a>
                     </li>

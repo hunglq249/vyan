@@ -69,6 +69,7 @@ class Doctor extends Admin_Controller{
                     'name' => $this->input->post('name'),
                     'title' => $this->input->post('title'),
                     'biography' => $this->input->post('biography'),
+                    'is_active' => $this->input->post('is_active'),
                 );
                 $insert = $this->doctor_model->insert(array_merge($data, $this->author_data));
                 if ($insert) {
@@ -125,6 +126,7 @@ class Doctor extends Admin_Controller{
                     'name' => $this->input->post('name'),
                     'title' => $this->input->post('title'),
                     'biography' => $this->input->post('biography'),
+                    'is_active' => $this->input->post('is_active'),
                 );
                 if ( !empty($_FILES['image']['name']) ) {
                     $data['image'] = $images;

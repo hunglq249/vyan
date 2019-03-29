@@ -103,7 +103,6 @@
                             echo form_textarea('description', set_value('description'), 'class="form-control tinymce-area" id="description"');
                             ?>
                         </div>
-
                         <div class="form-group col-xs-12">
                             <a href="javascript:history.back()" class="btn btn-default">Quay lại</a>
                             <?php echo form_submit('submit', 'Thêm mới', 'class="btn btn-primary pull-right margin-right-xs" '); ?>

@@ -81,6 +81,7 @@ class Service_category_sub_1 extends Admin_Controller{
                     'meta_keywords' => $this->input->post('meta_keywords'),
                     'meta_description' => $this->input->post('meta_description'),
                     'description' => $this->input->post('description'),
+                    'is_active' => $this->input->post('is_active'),
                 );
                 $insert = $this->service_category_model->insert(array_merge($data, $this->author_data));
                 if ($insert) {
@@ -149,6 +150,12 @@ class Service_category_sub_1 extends Admin_Controller{
                         $images = $this->upload_image('image', 'assets/upload/service_category_sub_1/' . $unique_slug, $_FILES['image']['name']);
                     }
 
+                    $number_service = $this->service_model->find_row_array(array('category_id' => $id,'is_deleted' => 0,'is_active' => 1));
+                    if($number_service > 0 && $this->input->post('is_active') == 0){
+                        $this->session->set_flashdata('message_error', MESSAGE_EDIT_ERROR_ACTIVE);
+                        redirect('admin/service_category_sub_1/edit/' . $id);
+                    }
+                
                     $data = array(
                         'slug' => $unique_slug,
 	                    'title' => $this->input->post('title'),
@@ -157,6 +164,7 @@ class Service_category_sub_1 extends Admin_Controller{
 	                    'meta_keywords' => $this->input->post('meta_keywords'),
 	                    'meta_description' => $this->input->post('meta_description'),
 	                    'description' => $this->input->post('description'),
+                        'is_active' => $this->input->post('is_active'),
                     );
                     $parent_detail = $this->service_category_model->get_by_id($this->input->post('parent_id'));
                     $data['node_path'] = $parent_detail['node_path'] . $id . '/';
@@ -183,6 +191,13 @@ class Service_category_sub_1 extends Admin_Controller{
     public function deactive(){
         $id = $this->input->get('id');
         $detail = $this->service_category_model->get_by_id($id);
+
+        $number_about = $this->service_model->find_row_array(array('category_id' => $id,'is_deleted' => 0,'is_active' => 1));
+        if($number_about > 0 && $this->input->post('is_active') == 0){
+            $this->session->set_flashdata('message_error', MESSAGE_EDIT_ERROR_ACTIVE);
+            redirect('admin/service_category_sub_1/index', 'refresh');
+        }
+
         switch ($detail['level']) {
             case 1:
                 $category = $this->service_category_model->get_by_node_path($id, array(2, 3));
@@ -208,6 +223,8 @@ class Service_category_sub_1 extends Admin_Controller{
         foreach ($ids as $key => $value) {
             $this->service_category_model->update($value, $data);
         }
+        $this->session->set_flashdata('message_success', MESSAGE_SUCCESS_TURN_OFF);
+        redirect('admin/service_category_sub_1/index', 'refresh');
     }
 
     public function active(){
@@ -216,7 +233,8 @@ class Service_category_sub_1 extends Admin_Controller{
             'is_active' => 1
         );
         $this->service_category_model->update($id, $data);
-
+        $this->session->set_flashdata('message_success', MESSAGE_SUCCESS_TURN_ON);
+        redirect('admin/service_category_sub_1/index', 'refresh');
     }
 
     public function remove(){

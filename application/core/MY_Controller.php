@@ -195,6 +195,8 @@ class Public_Controller extends MY_Controller {
         $this->load->model('about_model');
         $this->load->model('news_model');
         $this->load->model('service_model');
+        $this->load->model('contact_model');
+        $this->data['contact'] = $this->contact_model->get_by_id(1);
         date_default_timezone_set('Asia/Ho_Chi_Minh');
 
         $this->langAbbreviation = $this->session->userdata('langAbbreviation') ? $this->session->userdata('langAbbreviation') : 'vi';

@@ -66,6 +66,15 @@
                             echo form_textarea('description', set_value('description'), 'class="form-control" id="description"');
                             ?>
                         </div>
+
+                        <div class="form-group col-md-12">
+                            <?php
+                            echo form_label('Trạng thái', 'is_active');
+                            echo form_error('is_active', '<div class="error">', '</div>');
+                            echo form_dropdown('is_active', array('Chưa kích hoạt', 'Kích hoạt'), 0, 'class="form-control" id="is_active"');
+                            ?>
+                        </div>
+                        
                         <?php echo form_submit('submit_shared', 'OK', 'class="btn btn-primary"'); ?>
                         <?php echo form_close(); ?>
                     </div>

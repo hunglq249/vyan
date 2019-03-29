@@ -89,6 +89,7 @@ class Service_category_sub_2 extends Admin_Controller{
                     'meta_keywords' => $this->input->post('meta_keywords'),
                     'meta_description' => $this->input->post('meta_description'),
                     'description' => $this->input->post('description'),
+                    'is_active' => $this->input->post('is_active'),
                 );
                 $insert = $this->service_category_model->insert(array_merge($data, $this->author_data));
                 if ($insert) {

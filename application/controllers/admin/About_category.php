@@ -67,6 +67,7 @@ class About_category extends Admin_Controller{
                     'meta_keywords' => $this->input->post('meta_keywords'),
                     'meta_description' => $this->input->post('meta_description'),
                     'description' => $this->input->post('description'),
+                    'is_active' => $this->input->post('is_active'),
                 );
                 $insert = $this->about_category_model->insert(array_merge($data, $this->author_data));
                 if ($insert) {
@@ -124,12 +125,18 @@ class About_category extends Admin_Controller{
                     $images = $this->upload_image('image', 'assets/upload/about_category/' . $unique_slug, $_FILES['image']['name']);
                 }
 
+                $number_about = $this->about_model->find_row_array(array('category_id' => $id,'is_deleted' => 0,'is_active' => 1));
+                if($number_about > 0 && $this->input->post('is_active') == 0){
+                    $this->session->set_flashdata('message_error', MESSAGE_EDIT_ERROR_ACTIVE);
+                    redirect('admin/about_category/edit/' . $id);
+                }
                 $data = array(
                     'slug' => $unique_slug,
                     'title' => $this->input->post('title'),
                     'meta_keywords' => $this->input->post('meta_keywords'),
                     'meta_description' => $this->input->post('meta_description'),
                     'description' => $this->input->post('description'),
+                    'is_active' => $this->input->post('is_active'),
                 );
                 if ( !empty($_FILES['image']['name']) ) {
                     $data['image'] = $images;

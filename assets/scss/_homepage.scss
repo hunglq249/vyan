@@ -234,6 +234,11 @@
                 .left{
                     position: relative;
 
+					.video-js{
+						width: 100%;
+						height: 100%;
+					}
+
                     .mask{
                         width: 100%;
                         height: 100%;

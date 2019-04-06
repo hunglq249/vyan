@@ -42,7 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 
 <body>
-
+<!--
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
@@ -52,9 +52,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
 
+
 <div style="position:fixed; z-index:9999999; right:10px; bottom:10px;" class="fb-page" data-tabs="messages"
      data-href="https://www.facebook.com/Vyanspa/" data-width="250" data-height="300"
-     data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"></div>
+     data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false">
+</div>
+-->
+
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.2"></script>
+<div class="fb-page-header">
+	<a href="#" id="expandFbChat">
+		<p>Messenger</p>
+
+		<!--<span>Mở rộng</span>--> <i class="fas fa-caret-up"></i>
+	</a>
+</div>
+<div class="fb-page" data-href="https://www.facebook.com/Vyanspa/" data-tabs="messages" data-width="250" data-height="300"
+	 data-small-header="true" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="true">
+	<blockquote cite="https://www.facebook.com/Vyanspa/" class="fb-xfbml-parse-ignore">
+		<a href="https://www.facebook.com/Vyanspa/">Vy An Spa</a>
+	</blockquote>
+</div>
 
 <header class="">
 	<div class="container">
@@ -118,7 +137,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <ul>
                         <li>
                             <a href="#" class="back">
-                                <i class="fas fa-caret-left"></i> Back
+                                <i class="fas fa-caret-left"></i> Trở lại
                             </a>
                         </li>
                         <?php if ( $this->category_about ): ?>
@@ -135,7 +154,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <ul>
                                         <li>
                                             <a href="#" class="back">
-                                                <i class="fas fa-caret-left"></i> Back
+                                                <i class="fas fa-caret-left"></i> Trở lại
                                             </a>
                                         </li>
                                         <!-- Testing Column Height -->
@@ -178,7 +197,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <ul>
                         <li>
                             <a href="#" class="back">
-                                <i class="fas fa-caret-left"></i> Back
+                                <i class="fas fa-caret-left"></i> Trở lại
                             </a>
                         </li>
                         <?php if ( $this->category_by_root_1 ): ?>
@@ -195,7 +214,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <ul>
                                         <li>
                                             <a href="#" class="back">
-                                                <i class="fas fa-caret-left"></i> Back
+                                                <i class="fas fa-caret-left"></i> Trở lại
                                             </a>
                                         </li>
                                         <!-- Testing Column Height -->
@@ -238,7 +257,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <ul>
                         <li>
                             <a href="#" class="back">
-                                <i class="fas fa-caret-left"></i> Back
+                                <i class="fas fa-caret-left"></i> Trở lại
                             </a>
                         </li>
 
@@ -256,7 +275,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <ul>
                                         <li>
                                             <a href="#" class="back">
-                                                <i class="fas fa-caret-left"></i> Back
+                                                <i class="fas fa-caret-left"></i> Trở lại
                                             </a>
                                         </li>
                                         <!-- Testing Column Height -->
@@ -298,7 +317,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <ul>
                         <li>
                             <a href="#" class="back">
-                                <i class="fas fa-caret-left"></i> Back
+                                <i class="fas fa-caret-left"></i> Trở lại
                             </a>
                         </li>
 
@@ -316,7 +335,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <ul>
                                         <li>
                                             <a href="#" class="back">
-                                                <i class="fas fa-caret-left"></i> Back
+                                                <i class="fas fa-caret-left"></i> Trở lại
                                             </a>
                                         </li>
                                         <!-- Testing Column Height -->
@@ -354,7 +373,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <ul>
                         <li>
                             <a href="#" class="back">
-                                <i class="fas fa-caret-left"></i> Back
+                                <i class="fas fa-caret-left"></i> Trở lại
                             </a>
                         </li>
                         <?php if ( $this->category_academy ): ?>
@@ -371,7 +390,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <ul>
                                         <li>
                                             <a href="#" class="back">
-                                                <i class="fas fa-caret-left"></i> Back
+                                                <i class="fas fa-caret-left"></i> Trở lại
                                             </a>
                                         </li>
                                         <!-- Testing Column Height -->
@@ -409,7 +428,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <ul>
                         <li>
                             <a href="#" class="back">
-                                <i class="fas fa-caret-left"></i> Back
+                                <i class="fas fa-caret-left"></i> Trở lại
                             </a>
                         </li>
                         <li>
@@ -424,7 +443,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <ul>
                                 <li>
                                     <a href="#" class="back">
-                                        <i class="fas fa-caret-left"></i> Back
+                                        <i class="fas fa-caret-left"></i> Trở lại
                                     </a>
                                 </li>
                                 <!-- Testing Column Height -->
@@ -472,7 +491,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <div class="nav-call">
             <a href="tel:024 2120 2888" class="btn btn-sm btn-light" role="button">
-                Call Now!
+                <div class="icon">
+					<i class="fas fa-flip-horizontal fa-phone"></i>
+				</div>
+				<div class="text">
+					Tư vấn ngay!
+					<h6>
+						024 2120 2888
+					</h6>
+				</div>
             </a>
         </div>
 
@@ -485,7 +512,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!-- Button call Common Modal Advise -->
 
 <button class="btn btn-primary" id="btnAdvise" type="button" data-toggle="modal" data-target="#modalAdvise">
-    <i class="fas fa-phone fa-flip-horizontal"></i> Advise Register
+    <i class="fas fa-phone fa-flip-horizontal"></i> Đăng ký nhận tư vấn
 </button>
 
 <div class="modal fade" id="modalAdvise" tabindex="-1" role="dialog" aria-labelledby="modalAdviseLabel" aria-hidden="true">
@@ -493,7 +520,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalAdviseLabel">
-                    Advise Registeration
+                    Đăng ký nhận tư vấn
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -531,12 +558,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="modal-footer">
                     <div class="left">
                         <p>
-                            Tư vấn trực tiếp 24/7: <a href="tel:1900.1234">1900.1234</a>
+                            Tư vấn trực tiếp 24/7: <a href="tel:024 2120 2888">024 2120 2888</a>
                         </p>
                     </div>
                     <div class="right">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Send</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary">Gửi</button>
                     </div>
                 </div>
             </form>

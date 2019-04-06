@@ -476,17 +476,27 @@
 				.detail-info{
 					width: 50%;
 
-					margin: 50px auto;
+					margin: $padding-double auto;
 
 					.transform-title{
 						font-weight: 700;
 						font-size: 1.5rem;
 
 						margin-bottom: $padding-base;
+
+						&.text-wrapper{
+							max-height: 3em;
+							-webkit-line-clamp: 2;
+						}
 					}
 
 					.transform-intro{
 						color: $gray-lighter;
+
+						&.text-wrapper{
+							height: 4.3em;
+							-webkit-line-clamp: 3;
+						}
 					}
 				}
             }
@@ -625,6 +635,11 @@
                             font-style: italic;
 
                             margin-bottom: $padding-base;
+
+							&.text-wrapper{
+								max-height: 10rem;
+								-webkit-line-clamp: 6;
+							}
                         }
 
                         h6{
@@ -738,6 +753,30 @@
                         background-position: center bottom;
                         background-repeat: no-repeat;
                         background-size: 75%;
+
+						p{
+							font-size: 0.875rem;
+
+							padding: 0 $padding-base $padding-double;
+
+							margin-bottom: $padding-double;
+
+							position: relative;
+
+							&:after{
+								content: '';
+
+								width: 50%;
+								height: 1px;
+								background-color: $gray-lightest;
+
+								position: absolute;
+								top: 100%;
+								left: 50%;
+
+								margin-left: -25%;
+							}
+						}
                     }
 
                     .right{
@@ -870,6 +909,11 @@
             }
 
             &.story{
+				.container{
+					.detail-info {
+						width: 75%;
+					}
+				}
             }
 
             &.testimonial{

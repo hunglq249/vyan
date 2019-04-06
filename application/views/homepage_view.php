@@ -96,12 +96,14 @@
 					Our services at Vyan Beauty Clinic & Spa
 				</h5>
 
+				<!--
 				<p class="wow fadeInUp">
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin condimentum non eros ac luctus. Nulla
 					aliquam lobortis porttitor. Aenean non lobortis nulla. Donec at ligula ut justo pharetra elementum
 					vitae a libero. Proin mattis, ligula quis aliquet posuere, tellus nibh mollis urna, quis dignissim
 					quam diam eget purus.
 				</p>
+				-->
 			</div>
 
 			<div class="owl-carousel services">
@@ -235,8 +237,8 @@
 			</div>
 
 			<div class="detail-info">
-				<p class="transform-title"></p>
-				<p class="transform-intro"></p>
+				<p class="transform-title text-wrapper"></p>
+				<p class="transform-intro text-wrapper"></p>
 			</div>
 
 			<!--
@@ -267,7 +269,7 @@
 								<img src="<?php echo base_url('assets/upload/customer/' . $value['image']) ?>" alt="<?php echo $value['title'] ?>">
 							</div>
 
-							<p>
+							<p class="text-wrapper">
 								<?php echo $value['description'] ?>
 							</p>
 							<h6 class="subtitle-sm">
@@ -335,9 +337,16 @@
             loop: true,
             center: true,
             mouseDrag: false,
-            items: 1,
             nav: true,
-            dots: false
+            dots: false,
+			responsive: {
+				0: {
+					items: 1
+				},
+				768: {
+					items: 2
+				}
+			}
         });
 
         new WOW().init();

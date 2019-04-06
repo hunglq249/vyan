@@ -1,6 +1,8 @@
 $(document).ready(function(){
     expandNav();
 	onScrollNav();
+
+	closeFBChat();
 });
 
 function expandNav(){
@@ -63,4 +65,17 @@ function onScrollNav(){
 			$('header').removeClass('scaled');
 		}
 	});
+}
+
+function closeFBChat(){
+	var $btnOpenChat = $('#expandFbChat');
+
+	$btnOpenChat.on('click', function(e){
+		e.preventDefault();
+
+		$('.fb-page').toggleClass('expanded');
+		$(this).find('i').toggleClass('rotate');
+	})
+
+
 }

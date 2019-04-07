@@ -111,65 +111,56 @@
                 <ul>
                     <li>
                         <a href="<?php echo base_url('/') ?>">
-                            Home
+                            Trang chủ
                         </a>
                     </li>
                     <li>
                         <a href="<?php echo base_url('ve-chung-toi') ?>">
-                            About Us
+                            Về Vyan
                         </a>
                     </li>
                     <li>
                         <a href="<?php echo base_url('dich-vu') ?>">
-                            Services
+                            Dịch vụ
                         </a>
                     </li>
                     <li>
                         <a href="<?php echo base_url('') ?>">
-                            Images
+                            Thư viện
                         </a>
                     </li>
                 </ul>
             </div>
 
             <div class="item col-xs-12 col-md-6 col-lg-3">
-                <h5>Services</h5>
-
+                <h5>Dịch vụ</h5>
                 <ul>
-                    <li>
-                        <a href="<?php echo base_url('dich-vu') ?>">
-                            Service 1
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url('dich-vu') ?>">
-                            Service 2
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url('dich-vu') ?>">
-                            Service 3
-                        </a>
-                    </li>
+                    <?php foreach ($this->category_by_root_1 as $key => $value): ?>
+                        <li>
+                            <a href="<?php echo base_url('dich-vu/' . $value['slug']) ?>">
+                                <?php echo $value['title'] ?>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
                 </ul>
             </div>
 
             <div class="item col-xs-12 col-md-6 col-lg-3">
-                <h5>Keep in touch</h5>
+                <h5>Cộng đồng</h5>
 
                 <ul>
                     <li>
-                        <a href="<?php echo $contact['facebook'] ?>">
+                        <a href="<?php echo $contact['facebook'] ?>" target="_blank">
                             Facebook
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo $contact['instagram'] ?>">
+                        <a href="<?php echo $contact['instagram'] ?>" target="_blank">
                             Instagram
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo $contact['linkedin'] ?>">
+                        <a href="<?php echo $contact['linkedin'] ?>" target="_blank">
                             LinkedIn
                         </a>
                     </li>

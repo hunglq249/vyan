@@ -132,7 +132,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <li>
                     <a href="<?php echo base_url('ve-chung-toi') ?>">
                         <img src="<?php echo site_url('assets/img/') ?>icon/ico-doctor-01.svg" alt="Image About Us">
-                        About Us
+                        Về Vyan
                     </a>
                     <ul>
                         <li>
@@ -368,7 +368,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <li>
                     <a href="<?php echo base_url('hoc-vien-vyan') ?>">
                         <img src="<?php echo site_url('assets/img/') ?>icon/ico-academy-01.svg" alt="Image Academy">
-                        Vyan Academy
+                        Học viện Vyan
                     </a>
                     <ul>
                         <li>
@@ -423,7 +423,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <li>
                     <a href="<?php echo base_url('bai-viet') ?>">
                         <img src="<?php echo site_url('assets/img/') ?>icon/ico-news-01.svg" alt="Image News">
-                        News
+                        Tin tức
                     </a>
                     <ul>
                         <li>
@@ -483,7 +483,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <li>
                     <a href="<?php echo base_url('') ?>">
                         <img src="<?php echo site_url('assets/img/') ?>icon/ico-image-01.svg" alt="Image About Us">
-                        Images & Videos
+                        Thư viện
                     </a>
                 </li>
             </ul>
@@ -531,13 +531,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="row">
                         <div class="form-group col-xs-12 col-md-12 col-lg-12">
                             <?php
-                            echo form_input('register_name', set_value('register_name'), 'class="form-control" id="register_name" placeholder="Fullname (*)"');
+                            echo form_input('register_name', set_value('register_name'), 'class="form-control" id="register_name" placeholder="Họ tên (*)"');
                             echo form_error('register_name');
                             ?>
                         </div>
                         <div class="form-group col-xs-12 col-md-12 col-lg-12">
                             <?php
-                            echo form_input('register_phone', set_value('register_phone'), 'class="form-control" id="register_phone" placeholder="Phone Number (*)"');
+                            echo form_input('register_phone', set_value('register_phone'), 'class="form-control" id="register_phone" placeholder="Số điện thoại (*)"');
                             echo form_error('register_phone');
                             ?>
                         </div>
@@ -549,7 +549,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </div>
                         <div class="form-group col-xs-12 col-md-12 col-lg-12">
                             <?php
-                            echo form_textarea('register_message', set_value('register_message'), 'class="form-control" id="register_message" placeholder="Message ..."');
+                            echo form_textarea('register_message', set_value('register_message'), 'class="form-control" id="register_message" placeholder="Nội dung ..."');
                             echo form_error('register_message');
                             ?>
                         </div>

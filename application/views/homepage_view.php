@@ -35,14 +35,11 @@
 			<div class="left col-xs-12 col-md-6">
 				<div class="section-intro">
 					<h5 class="heading wow fadeInUp">
-						Our Professional Doctors
+						Đội ngũ bác sỹ chuyên nghiệp
 					</h5>
 
 					<p class="wow fadeInUp">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin condimentum non eros ac luctus.
-						Nulla aliquam lobortis porttitor. Aenean non lobortis nulla. Donec at ligula ut justo pharetra
-						elementum vitae a libero. Proin mattis, ligula quis aliquet posuere, tellus nibh mollis urna,
-						quis dignissim quam diam eget purus.
+                        Bệnh Viện Thẩm Mỹ Vyan quy tụ đội ngũ chuyên gia, bác sĩ Việt Nam - Hàn Quốc đầu ngành với nhiều năm kinh nghiệm.
 					</p>
 				</div>
 			</div>
@@ -93,7 +90,7 @@
 		<div class="container">
 			<div class="section-intro">
 				<h5 class="heading wow fadeInUp">
-					Our services at Vyan Beauty Clinic & Spa
+					Các dịch vụ thẩm mỹ & Spa tại Vyan
 				</h5>
 
 				<!--
@@ -125,7 +122,7 @@
 
 			<div class="section-footer">
 				<a href="<?php echo base_url('dich-vu') ?>" class="btn btn-primary" role="button">
-					See all our services
+					Tham khảo tất cả dịch vụ của chúng tôi
 				</a>
 			</div>
 		</div>
@@ -164,17 +161,10 @@
 
 				<div class="wrapper">
 					<div class="row">
-						<div class="title col-xs-12 col-md-6">
+						<div class="title col-xs-12 col-md-12">
 							<h5>
-								Why should chosing us?
+								Tại sao lại chọn chúng tôi?
 							</h5>
-						</div>
-
-						<div class="desc col-xs-12 col-md-6">
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris varius lacus in mollis
-								vestibulum.
-							</p>
 						</div>
 					</div>
 				</div>
@@ -207,7 +197,7 @@
 		<div class="container">
 			<div class="section-intro">
 				<h5 class="heading wow fadeInUp">
-					Customers's Story
+					Câu chuyện khách hàng
 				</h5>
 			</div>
 
@@ -257,7 +247,7 @@
 		<div class="container">
 			<div class="section-intro">
 				<h5 class="heading wow fadeInUp">
-					Testimonial
+					Phản hồi, đánh giá của khách hàng
 				</h5>
 			</div>
 

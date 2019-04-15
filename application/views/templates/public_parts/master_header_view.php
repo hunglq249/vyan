@@ -481,10 +481,56 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				-->
 
                 <li>
-                    <a href="<?php echo base_url('') ?>">
+                    <a href="javascript:void(0)">
                         <img src="<?php echo site_url('assets/img/') ?>icon/ico-image-01.svg" alt="Image About Us">
                         Thư viện
                     </a>
+                    <ul>
+                        <li>
+                            <a href="#" class="back">
+                                <i class="fas fa-caret-left"></i> Trở lại
+                            </a>
+                        </li>
+                        <?php foreach ($this->category_library as $key => $value): ?>
+                            <li>
+                                <a href="<?php echo base_url('thu-vien/' . $value['slug']) ?>">
+                                    <?php echo $value['title'] ?>
+                                </a>
+
+                                <span>
+                                    <i class="fas fa-caret-right"></i>
+                                </span>
+
+                                <ul>
+                                    <li>
+                                        <a href="#" class="back">
+                                            <i class="fas fa-caret-left"></i> Trở lại
+                                        </a>
+                                    </li>
+                                    <!-- Testing Column Height -->
+                                    <?php if ( !empty($value['sub']) ): ?>
+                                        <?php foreach ($value['sub'] as $k => $val): ?>
+                                            <?php if ($k <= 8): ?>
+                                                <li>
+                                                    <a href="<?php echo base_url('thu-vien/' . $value['slug'] . '/' . $val['slug']) ?>">
+                                                        <?php echo $val['title'] ?>
+                                                    </a>
+                                                </li>
+                                            <?php endif ?>
+                                            <?php if ($k > 8): ?>
+                                                <li>
+                                                    <a href="<?php echo base_url('thu-vien/' . $value['slug']) ?>">
+                                                        Xem Thêm
+                                                    </a>
+                                                </li>
+                                            <?php endif ?>
+                                        <?php endforeach ?>
+                                    <?php endif ?>
+
+                                </ul>
+                            </li>
+                        <?php endforeach ?>
+                    </ul>
                 </li>
             </ul>
         </div>

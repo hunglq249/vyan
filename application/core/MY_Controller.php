@@ -196,6 +196,7 @@ class Public_Controller extends MY_Controller {
         $this->load->model('news_model');
         $this->load->model('service_model');
         $this->load->model('contact_model');
+        $this->load->model('library_model');
         $this->data['contact'] = $this->contact_model->get_by_id(1);
         date_default_timezone_set('Asia/Ho_Chi_Minh');
 
@@ -238,6 +239,23 @@ class Public_Controller extends MY_Controller {
         $this->category_academy = $this->get_menu_academy();
         $this->category_about = $this->get_menu_about();
         $this->category_news = $this->news_model->get_all_with_pagination_search(1,'desc','',0);
+
+
+
+        $this->library_image = $this->library_model->get_all_with_pagination_library(1,'desc',8,0,1);
+        $this->library_video = $this->library_model->get_all_with_pagination_library(1,'desc',8,0,2);
+        $this->category_library = array(
+            array(
+                'title' => 'Hình ảnh',
+                'slug' => 'hinh-anh',
+                'sub' => $this->library_image
+            ),
+            array(
+                'title' => 'Video',
+                'slug' => 'video',
+                'sub' => $this->library_video
+            )
+        );
 
     }
 

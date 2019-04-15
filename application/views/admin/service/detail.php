@@ -70,6 +70,10 @@
                                                 </td>
                                             </tr>
                                             <tr>
+                                                <th>Nổi bật</th>
+                                                <td><i class="fa fa-<?= ($detail['is_hot'] == 0) ? 'times' : 'check' ?>"></i></td>
+                                            </tr>
+                                            <tr>
                                                 <th>Meta Keywords</th>
                                                 <td><?= $detail['meta_keywords'] ?></td>
                                             </tr>

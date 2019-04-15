@@ -82,7 +82,11 @@
                                 </select>
                             </div>
                         </div>
-
+                        <div class="form-group col-xs-12" style="padding-right: 0px;"> 
+                            <div class="checkbox">
+                                <label><input type="checkbox" value="1" name="is_hot">Nội bật</label> 
+                            </div> 
+                        </div>
 
                         <div class="form-group col-xs-12" style="padding-right: 0px;">
                             <div class="form-group col-xs-12" style="padding-right: 0px;">

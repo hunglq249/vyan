@@ -64,3 +64,75 @@ function onScrollNav(){
 		}
 	});
 }
+
+
+
+/*=====================================
+=            Register Form            =
+=====================================*/
+var csrf_hash = $("input[name='csrf_teddy_token']").val();
+
+$(document).ready(function() {
+    $( "#register_form" ).validate({
+        rules: {
+            register_name : {
+                required: true
+            },
+            register_phone : {
+                required: true,
+                number: true
+            },
+            register_email : {
+                required: true,
+                email: true
+            }
+        },
+        messages: {
+            register_name: {
+                required: "Vui lòng nhập Họ tên",
+            },
+            register_phone: {
+                required: "Vui lòng nhập số điện thoại",
+                number: "Vui lòng nhập số",
+            },
+            register_email: {
+                required: "Vui lòng nhập số địa chỉ email",
+                email: "Định dạng email không đúng",
+            },
+        },
+        submitHandler: function (form) {
+            $.ajax({
+                type: "POST",
+                url: form.action,
+                data: $(form).serialize(),
+                success: function (response) {
+                    if (response.status == 200 && response.result == true) {
+                        csrf_hash = response.csrf_hash;
+                        $('#register_name').val('');
+                        $('#register_phone').val('');
+                        $('#register_email').val('');
+                        $('#register_message').val('');
+                        $('#modalAdvise').modal('hide');
+                        alert('Bạn đã đăng ký thành công!');
+                    }else{
+                        alert('Có lỗi trong quá trình đang ký!');
+                    }
+                    
+                }
+            });
+            return false;
+         }
+    });
+
+    // $('#btn_register_send').click(function(e){
+    //     e.preventDefault();
+
+    //     name = $('#register_name').val();
+    //     phone = $('#register_phone').val();
+    //     email = $('#register_email').val();
+    //     message = $('#register_message').val();
+    // });
+});
+
+/*=====  End of Register Form  ======*/
+

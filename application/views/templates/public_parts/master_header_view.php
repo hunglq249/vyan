@@ -31,6 +31,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <!-- jQuery -->
     <script src="<?php echo site_url('node_modules/') ?>jquery/dist/jquery.min.js"></script>
+    <script src="<?php echo site_url('assets/js/jquery.validate.js') ?>"></script>
+    
 
     <!-- Popper js -->
     <script src="<?php echo site_url('node_modules/') ?>popper.js/dist/umd/popper.min.js"></script>
@@ -38,6 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- Bootstrap 4 js -->
     <script src="<?php echo site_url('node_modules/') ?>bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="<?php echo site_url('assets/js/config.js') ?>"></script>
+    
 
 </head>
 
@@ -499,31 +502,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form>
+            <form action="<?php echo base_url('subscribe/register'); ?>" method="post" id="register_form">
+                <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                 <div class="modal-body">
                     <div class="row">
                         <div class="form-group col-xs-12 col-md-12 col-lg-12">
                             <?php
                             echo form_input('register_name', set_value('register_name'), 'class="form-control" id="register_name" placeholder="Fullname (*)"');
-                            echo form_error('register_name');
                             ?>
                         </div>
                         <div class="form-group col-xs-12 col-md-12 col-lg-12">
                             <?php
                             echo form_input('register_phone', set_value('register_phone'), 'class="form-control" id="register_phone" placeholder="Phone Number (*)"');
-                            echo form_error('register_phone');
                             ?>
                         </div>
                         <div class="form-group col-xs-12 col-md-12 col-lg-12">
                             <?php
-                            echo form_input('register_email', set_value('register_email'), 'class="form-control" id="register_email" placeholder="Email"');
-                            echo form_error('register_email');
+                            echo form_input('register_email', set_value('register_email'), 'class="form-control" id="register_email" placeholder="Email (*)"');
                             ?>
                         </div>
                         <div class="form-group col-xs-12 col-md-12 col-lg-12">
                             <?php
                             echo form_textarea('register_message', set_value('register_message'), 'class="form-control" id="register_message" placeholder="Message ..."');
-                            echo form_error('register_message');
                             ?>
                         </div>
                     </div>
@@ -536,7 +536,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                     <div class="right">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Send</button>
+                        <input type="submit" class="btn btn-primary" id="btn_register_send" name="Send">
                     </div>
                 </div>
             </form>

@@ -122,6 +122,11 @@ if($this->ion_auth->logged_in()) {
                         <i class="fa fa-address-book" aria-hidden="true"></i> <span>Thông tin liên hệ</span>
                     </a>
                 </li>
+                <li class="<?php echo ($this->uri->segment(2) == 'subscribe')? 'active' : '' ?>">
+                    <a href="<?php echo base_url('admin/subscribe/index') ?>">
+                        <i class="fa fa-envelope" aria-hidden="true"></i> <span>Subscribe</span>
+                    </a>
+                </li>
                 <li class="header">DOCUMENTATION</li>
                 <li>
                     <a href="<?php echo base_url('admin/user/change_password') ?>">

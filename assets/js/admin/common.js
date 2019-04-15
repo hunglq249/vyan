@@ -269,6 +269,99 @@ function edit_status(controller,id,status){
     }
 }
 
+$('.delete-checkbox input[type="checkbox"]').iCheck({
+    checkboxClass: 'icheckbox_square-blue',
+    radioClass: 'iradio_square-blue'
+});
+
+//Enable check and uncheck all functionality
+$(".checkbox-toggle").click(function () {
+    var clicks = $(this).data('clicks');
+    if (clicks) {
+        //Uncheck all checkboxes
+        $(".delete-checkbox input[type='checkbox']").iCheck("uncheck");
+        $(".fa", this).removeClass("fa-check-square-o").addClass('fa-square-o');
+    } else {
+        //Check all checkboxes
+        $(".delete-checkbox input[type='checkbox']").iCheck("check");
+        $(".fa", this).removeClass("fa-square-o").addClass('fa-check-square-o');
+    }
+    $(this).data("clicks", !clicks);
+});
+
+$('.btn-delete-all').click(function(){
+    url = $(this).data('url');
+    var ids = [];
+    $('.is-delete-all').each(function(){
+        if( $(this).is(':checked') ){
+            ids.push($(this).val())
+        }
+    });
+    if ( ids.length > 0 ) {
+        if(confirm('Chắc chắn xóa các mục đã chọn?')){
+        $.ajax({
+            method: "get",
+            url: url,
+            data: {
+                ids : ids
+            },
+            success: function(response){
+                if ( response.status == 200 && response.isExisted == true ) {
+                    $.each(ids, function(index, id){
+                        $( '.remove-' + id ).fadeOut();
+                    })
+                    
+                }
+            },
+            error: function(jqXHR, exception){
+                if(jqXHR.status == 404 && jqXHR.responseJSON.message != 'undefined'){
+                    alert(jqXHR.responseJSON.message);
+                    location.reload();
+                }else{
+                    console.log(errorHandle(jqXHR, exception));
+                }
+            }
+        });
+    }
+    }
+});
+
+$('.btn-send-email-all').click(function(){
+    url = $(this).data('url');
+    var ids = [];
+    $('.is-delete-all').each(function(){
+        if( $(this).is(':checked') ){
+            ids.push($(this).val())
+        }
+    });
+    if ( ids.length > 0 ) {
+        
+        if(confirm('Chắc chắn gửi email?')){
+            $(this).prop('disabled', true);
+            $.ajax({
+                method: "get",
+                url: url,
+                data: {
+                    ids : ids
+                },
+                success: function(response){
+                    location.reload();
+                },
+                error: function(jqXHR, exception){
+                    if(jqXHR.status == 404 && jqXHR.responseJSON.message != 'undefined'){
+                        alert(jqXHR.responseJSON.message);
+                        location.reload();
+                    }else{
+                        console.log(errorHandle(jqXHR, exception));
+                    }
+                }
+            });
+        }else{
+            $(this).prop('disabled', false);
+        }
+    }
+});
+
 
 
 /*function edit_status(controller,id,status){

@@ -5,12 +5,12 @@
         <h1>
             Danh sách
             <small>
-                Danh mục dịch vụ
+                Dịch vụ
             </small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="<?= base_url('admin') ?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="<?= base_url('admin/service') ?>"><i class="fa fa-dashboard"></i> Danh sách danh mục dịch vụ</a></li>
+            <li><a href="<?= base_url('admin/service') ?>"><i class="fa fa-dashboard"></i> Danh sách dịch vụ</a></li>
         </ol>
     </section>
 

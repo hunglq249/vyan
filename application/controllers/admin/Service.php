@@ -136,6 +136,7 @@ class Service extends Admin_Controller{
                 $node_path = $root['id'] . '/' .$this->input->post('parent_id');
                 $data = array(
                     'image' => $images,
+                    'is_hot' => !empty($this->input->post('is_hot')) ? 1 : 0,
                     'image_homepage' => $image_homepage,
                     'slug' => $unique_slug,
                     'title' => $this->input->post('title'),
@@ -258,6 +259,7 @@ class Service extends Admin_Controller{
                 $data = array(
                     'slug' => $unique_slug,
                     'title' => $this->input->post('title'),
+                    'is_hot' => !empty($this->input->post('is_hot')) ? 1 : 0,
                     'category_id' => $this->input->post('parent_id'),
                     'node_path' => $node_path,
                     'tag' => $tag,

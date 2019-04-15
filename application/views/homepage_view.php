@@ -111,10 +111,11 @@
 								<img src="<?php echo base_url('assets/upload/service/' . $value['slug'] . '/homepage/' . $value['image_homepage']) ?>"
 									 alt="<?php echo $value['title'] ?>">
 							</div>
-
-							<p>
-								<?php echo $value['title'] ?>
-							</p>
+							<a href="<?php echo base_url('dich-vu/' . $value['category_slug'] . '/' . $value['slug']) ?>">
+								<p>
+									<?php echo $value['title'] ?>
+								</p>
+							</a>
 						</div>
 					<?php endforeach ?>
 				<?php endif ?>

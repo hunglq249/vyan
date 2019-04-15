@@ -51,6 +51,16 @@
                             </div>
                             <br>
                         </div>
+                        <div class="form-group col-xs-12" style="padding-right: 0px;">
+                            <div class="form-group col-xs-12" style="padding-right: 0px;">
+                                <?php
+                                echo form_label('Hình ảnh trang chủ (Dung lượng ảnh phải nhỏ hơn 1.2Mb)', 'image_homepage');
+                                echo form_error('image_homepage', '<div class="error">', '</div>');
+                                echo form_upload('image_homepage', set_value('image_homepage'), 'class="form-control"');
+                                ?>
+                            </div>
+                            <br>
+                        </div>
 
                         <div class="form-group col-xs-12" style="padding-right: 0px;">
                             <div class="form-group col-xs-12" style="padding-right: 0px;">

@@ -7,7 +7,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Thêm mới
+            Cập nhật
             <small>
                 Dịch vụ
             </small>
@@ -46,7 +46,7 @@
                             <div class="form-group col-xs-12">
                                 <label for="image">Hình ảnh đang sử dụng</label><br />
                                 <?php if ( $detail['image'] ): ?>
-                                    <img src="<?php echo base_url('assets/upload/service/' . $detail['slug'] . '/' . $detail['image']) ?>" width="150">
+                                    <img src="<?php echo base_url('assets/upload/service/' . $detail['slug'] . '/' . $detail['image']) ?>" width="300">
                                 <?php else: ?>
                                     Hiện chưa có hình ảnh
                                 <?php endif ?>
@@ -59,6 +59,28 @@
                                     echo form_label('Hình ảnh (Dung lượng ảnh phải nhỏ hơn 1.2Mb)', 'image');
                                     echo form_error('image', '<div class="error">', '</div>');
                                     echo form_upload('image', set_value('image'), 'class="form-control"');
+                                ?>
+                            </div>
+                            <br>
+                        </div>
+
+                        <div class="form-group col-xs-12">
+                            <div class="form-group col-xs-12">
+                                <label for="image_homepage">Hình ảnh trang chủ đang sử dụng</label><br />
+                                <?php if ( $detail['image_homepage'] ): ?>
+                                    <img src="<?php echo base_url('assets/upload/service/' . $detail['slug'] . '/homepage/' . $detail['image_homepage']) ?>" width="300">
+                                <?php else: ?>
+                                    Hiện chưa có hình ảnh
+                                <?php endif ?>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-xs-12" style="padding-right: 0px;">
+                            <div class="form-group col-xs-12" style="padding-right: 0px;">
+                                <?php
+                                echo form_label('Hình ảnh trang chủ (Dung lượng ảnh phải nhỏ hơn 1.2Mb)', 'image_homepage');
+                                echo form_error('image_homepage', '<div class="error">', '</div>');
+                                echo form_upload('image_homepage', set_value('image_homepage'), 'class="form-control"');
                                 ?>
                             </div>
                             <br>

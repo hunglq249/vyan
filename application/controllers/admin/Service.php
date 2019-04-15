@@ -102,6 +102,27 @@ class Service extends Admin_Controller{
                     chmod('assets/upload/service/' . $unique_slug, 0777);
                     $images = $this->upload_image('image', 'assets/upload/service/' . $unique_slug, $_FILES['image']['name']);
                 }
+
+
+
+
+                if(!empty($_FILES['image_homepage']['name'])){
+                    $this->check_img($_FILES['image_homepage']['name'], $_FILES['image_homepage']['size']);
+                }
+                $slug = $this->input->post('slug');
+                $unique_slug = $this->service_model->build_unique_slug($slug);
+                if(!file_exists('assets/upload/service/' . $unique_slug . '/homepage')){
+                    mkdir('assets/upload/service/' . $unique_slug . '/homepage', 0777);
+                }
+                if ( !empty($_FILES['image_homepage']['name']) ) {
+                    chmod('assets/upload/service/' . $unique_slug . '/homepage', 0777);
+                    $image_homepage = $this->upload_image('image_homepage', 'assets/upload/service/' . $unique_slug . '/homepage', $_FILES['image_homepage']['name']);
+                }
+
+
+
+
+
                 $tag = $this->input->post('tag');
                 if ( !empty($tag) && strpos($tag, ',') ) {
                 	$tag = explode(',', $tag);
@@ -115,6 +136,7 @@ class Service extends Admin_Controller{
                 $node_path = $root['id'] . '/' .$this->input->post('parent_id');
                 $data = array(
                     'image' => $images,
+                    'image_homepage' => $image_homepage,
                     'slug' => $unique_slug,
                     'title' => $this->input->post('title'),
                     'category_id' => $this->input->post('parent_id'),
@@ -194,6 +216,34 @@ class Service extends Admin_Controller{
                     chmod('assets/upload/service/' . $unique_slug, 0777);
                     $images = $this->upload_image('image', 'assets/upload/service/' . $unique_slug, $_FILES['image']['name']);
                 }
+
+
+
+
+                if(!empty($_FILES['image_homepage']['name'])){
+                    $this->check_img($_FILES['image_homepage']['name'], $_FILES['image_homepage']['size']);
+                }
+
+                $slug = $this->input->post('slug');
+                $unique_slug = $detail['slug'];
+                if ($slug != $unique_slug) {
+                    $unique_slug = $this->service_model->build_unique_slug($slug);
+                    if(file_exists('assets/upload/service/' . $detail['slug'] . '/homepage')) {
+                        chmod('assets/upload/service/' . $detail['slug'] . '/homepage', 0777);
+                        rename('assets/upload/service/' . $detail['slug'] . '/homepage', 'assets/upload/service/' . $unique_slug . '/homepage');
+                    }
+                }
+                if(!file_exists('assets/upload/service/' . $unique_slug . '/homepage')){
+                    mkdir('assets/upload/service/' . $unique_slug . '/homepage', 0777);
+                }
+                if ( !empty($_FILES['image_homepage']['name']) ) {
+                    chmod('assets/upload/service/' . $unique_slug . '/homepage', 0777);
+                    $image_homepage = $this->upload_image('image_homepage', 'assets/upload/service/' . $unique_slug . '/homepage', $_FILES['image_homepage']['name']);
+                }
+
+
+
+
                 $tag = $this->input->post('tag');
                 if ( !empty($tag) && strpos($tag, ',') ) {
                 	$tag = explode(',', $tag);
@@ -221,11 +271,17 @@ class Service extends Admin_Controller{
                 if ( !empty($_FILES['image']['name']) ) {
                     $data['image'] = $images;
                 }
+                if ( !empty($_FILES['image_homepage']['name']) ) {
+                    $data['image_homepage'] = $image_homepage;
+                }
                 $update = $this->service_model->update($id,array_merge($data, $this->author_data));
                 if ($update) {
                     $this->session->set_flashdata('message_success', MESSAGE_EDIT_SUCCESS);
                     if(isset($images) && $images != $detail['image'] && file_exists('assets/upload/service/'.$unique_slug.'/'.$detail['image'])){
                         unlink('assets/upload/service/'.$unique_slug.'/'.$detail['image']);
+                    }
+                    if(isset($images) && $images != $detail['image_homepage'] && file_exists('assets/upload/service/'.$unique_slug.'/homepage/'.$detail['image_homepage'])){
+                        unlink('assets/upload/service/'.$unique_slug.'/homepage/'.$detail['image_homepage']);
                     }
                     redirect('admin/service/index', 'refresh');
                 }else{

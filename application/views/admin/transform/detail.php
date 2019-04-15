@@ -61,8 +61,8 @@
                                         <table class="table table-striped">
                                             <tbody>
                                                 <tr>
-                                                    <th style="width: 30%">Tuổi</th>
-                                                    <td><?= $detail['age'] ?></td>
+                                                    <th style="width: 30%">Dịch vụ</th>
+                                                    <td><?= $detail['service'] ?></td>
                                                 </tr>
                                                 <tr>
                                                     <th>Slug</th>

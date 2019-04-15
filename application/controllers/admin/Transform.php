@@ -46,7 +46,8 @@ class Transform extends Admin_Controller{
         $this->load->library('form_validation');
 
         $this->form_validation->set_rules('name', 'Họ tên', 'required');
-        $this->form_validation->set_rules('age', 'Tuổi', 'required|numeric|max_length[3]');
+//        $this->form_validation->set_rules('age', 'Tuổi', 'required|numeric|max_length[3]');
+        $this->form_validation->set_rules('service', 'Dịch vụ', 'required');
         $this->form_validation->set_rules('title_basic', 'Tiêu đề', 'required');
         $this->form_validation->set_rules('title_advanced', 'Tiêu đề', 'required');
         $this->form_validation->set_rules('is_active', 'Trạng thái', 'required');
@@ -87,7 +88,8 @@ class Transform extends Admin_Controller{
 
                 $data = array(
                 	'name' => $this->input->post('name'),
-                	'age' => $this->input->post('age'),
+                	'service' => $this->input->post('service'),
+                	'age' => 0,
                     'image_before' => $image_before,
                     'image_after' => $image_after,
                     'slug' => $unique_slug,
@@ -121,7 +123,8 @@ class Transform extends Admin_Controller{
         $this->data['detail'] = $detail;
 
         $this->form_validation->set_rules('name', 'Họ tên', 'required');
-        $this->form_validation->set_rules('age', 'Tuổi', 'required|numeric|max_length[3]');
+//        $this->form_validation->set_rules('age', 'Tuổi', 'required|numeric|max_length[3]');
+        $this->form_validation->set_rules('service', 'Dịch vụ', 'required');
         $this->form_validation->set_rules('title_basic', 'Tiêu đề', 'required');
         $this->form_validation->set_rules('title_advanced', 'Tiêu đề', 'required');
         $this->form_validation->set_rules('is_active', 'Trạng thái', 'required');
@@ -160,7 +163,8 @@ class Transform extends Admin_Controller{
 
                 $data = array(
                 	'name' => $this->input->post('name'),
-                	'age' => $this->input->post('age'),
+                	'service' => $this->input->post('service'),
+                	'age' => 0,
                     'slug' => $unique_slug,
                     'title_basic' => $this->input->post('title_basic'),
                     'description_basic' => $this->input->post('description_basic'),

@@ -23,6 +23,7 @@ class Contact extends Admin_Controller {
                     'phone' => $this->input->post('phone'),
                     'address' => $this->input->post('address'),
                     'email' => $this->input->post('email'),
+                    'certificate' => $this->input->post('certificate'),
                     'facebook' => $this->input->post('facebook'),
                     'instagram' => $this->input->post('instagram'),
                     'linkedin' => $this->input->post('linkedin')
@@ -52,6 +53,7 @@ class Contact extends Admin_Controller {
                     'phone' => $this->input->post('phone'),
                     'address' => $this->input->post('address'),
                     'email' => $this->input->post('email'),
+                    'certificate' => $this->input->post('certificate'),
                     'facebook' => $this->input->post('facebook'),
                     'instagram' => $this->input->post('instagram'),
                     'linkedin' => $this->input->post('linkedin')

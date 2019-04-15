@@ -34,16 +34,20 @@
                                     <table class="table table-striped">
                                         <tbody>
                                             <tr>
-                                                <th>Email</th>
-                                                <td><?= $detail['email'] ?></td>
-                                            </tr>
-                                            <tr>
                                                 <th>Địa chỉ</th>
                                                 <td><?= $detail['address'] ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Số điện thoại</th>
                                                 <td><?= $detail['phone'] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Email</th>
+                                                <td><?= $detail['email'] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Giấy phép hoạt động</th>
+                                                <td><?= $detail['certificate'] ?></td>
                                             </tr>
                                             <tr>
                                                 <th>Link Facebook</th>

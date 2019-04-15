@@ -15,7 +15,7 @@ $(document).ready(function(){
             "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
             "save table contextmenu directionality emoticons template paste textcolor responsivefilemanager"
         ],
-        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | responsivefilemanager | print preview media fullpage | forecolor backcolor emoticons",
+        toolbar: "insertfile undo redo | fontselect | styleselect | fontsizeselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | responsivefilemanager | print preview media fullpage | forecolor backcolor emoticons",
         style_formats: [
             {title: "Bold text", inline: "b"},
             {title: "Red text", inline: "span", styles: {color: "#ff0000"}},

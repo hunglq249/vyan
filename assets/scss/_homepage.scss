@@ -289,76 +289,77 @@
                     .row{
                         height: 100%;
 
+						overflow: hidden;
+
                         .item{
                             height: 50%;
 
-                            a{
-                                width: 100%;
-                                height: 100%;
+							position: relative;
 
-								color: $primary-base;
+							.blur{
+								width: 100%;
+								height: 100%;
 
-                                @include d-flex(row, center, center);
+								position: absolute;
+								top: 0;
+								left: 0;
+								z-index: 1;
 
-                                @include transition(300ms);
+								overflow: hidden;
 
-                                .content{
-                                    width: 50%;
+								img{
+									width: 100%;
+									height: 100%;
 
-                                    text-align: center;
+									object-fit: cover;
 
-                                    svg{
-                                        width: 50px;
-                                        height: 50px;
+									filter: blur(3px);
+									-webkit-filter: blur(3px);
 
-                                        margin-bottom: $padding-base;
+									opacity: 0.25;
 
-                                        path{
-                                            @include transition(300ms);
+									@include transition(300ms);
+								}
+							}
 
-                                            &.line{
-                                                fill: $primary-base;
-                                            }
+                            .content{
+								width: 100%;
+								height: 100%;
 
-                                            &.fill{
-                                                fill: $primary-lightest;
-                                            }
-                                        }
-                                    }
+								position: absolute;
+								top: 0;
+								left: 0;
+								z-index: 2;
 
-                                    p{
-                                        color: $primary-base;
+								a{
+									width: 100%;
+									height: 100%;
 
-                                        @include transition(300ms);
-                                    }
-                                }
+									@include d-flex(column, center, center);
 
-                                &:hover{
-									color: #fff;
+									color: $primary-base;
 
-                                    background-color: $primary-base;
+									@include transition(300ms);
+								}
+							}
 
-                                    @include transition(300ms);
+							&:hover{
+								.blur{
+									img{
+										opacity: 0.85;
 
-                                    .content{
-                                        svg{
-                                            path{
-                                                &.line, &.fill{
-                                                    fill: #fff;
+										@include transition(300ms);
+									}
+								}
 
-                                                    @include transition(300ms);
-                                                }
-                                            }
-                                        }
+								.content{
+									a{
+										color: #fff;
 
-                                        p{
-                                            color: #fff;
-
-                                            @include transition(300ms);
-                                        }
-                                    }
-                                }
-                            }
+										@include transition(300ms);
+									}
+								}
+							}
                         }
                     }
                 }
@@ -747,7 +748,7 @@
                     //height: 100%;
 
                     .left{
-                        padding-bottom: 150px;
+                        padding-bottom: 30vh;
 
                         background-image: url("../img/aboutus-doctors.png");
                         background-position: center bottom;
@@ -902,6 +903,19 @@
                             .item{
                                 width: 50% !important;
                                 height: 50%;
+
+								.blur{
+									img{
+										opacity: 0.75;
+									}
+								}
+
+								.content{
+									a{
+										color: #fff;
+										background-color: rgba(0,0,0,0.125);
+									}
+								}
                             }
                         }
                     }

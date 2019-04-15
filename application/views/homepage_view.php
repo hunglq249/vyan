@@ -108,7 +108,7 @@
 					<?php foreach ($list_service as $key => $value): ?>
 						<div class="item">
 							<div class="mask mask-circle">
-								<img src="<?php echo base_url('assets/upload/service/' . $value['slug'] . '/' . $value['image']) ?>"
+								<img src="<?php echo base_url('assets/upload/service/' . $value['slug'] . '/homepage/' . $value['image_homepage']) ?>"
 									 alt="<?php echo $value['title'] ?>">
 							</div>
 

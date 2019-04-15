@@ -79,3 +79,38 @@ function closeFBChat(){
 
 
 }
+
+$('#send-register').on('click',function(){
+    ingredient_form = $('form [id^="register_"]');
+    var csrf = $('#resgiterForm [name="csrf_teddy_token"]').val();
+    $('#message-register').html('');
+    $('#message-register').css('display','none');
+    for (var i = 0; i < ingredient_form.length; i++) {
+        if(ingredient_form[i].value.length == 0){
+            $('#message-register').html('Bạn phải điền đầy đủ thông tin');
+            $('#message-register').css('display','block');
+            return false;
+        }
+    }
+    $.ajax({
+        method: "post",
+        url: HOSTNAME + 'message/register',
+        data: {
+            data : $('#resgiterForm').serializeArray(), csrf_teddy_token: csrf
+        },
+        success: function(response){
+            if(response.status == 200){
+                alert('Đăng ký thành công');
+            }else{
+                alert('Đăng ký thất bại');
+            }
+            location.reload();
+        },
+        error: function(jqXHR, exception){
+            console.log(errorHandle(jqXHR, exception));
+            location.reload();
+        }
+    });
+});
+
+

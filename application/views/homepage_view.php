@@ -32,14 +32,14 @@
 
 	<div class="section about">
 		<div class="row no-gutters">
-			<div class="left col-xs-12 col-md-6">
+			<div class="left col-xs-12 col-md-6" style="background-image:url(<?= base_url('assets/upload/config/'.$config_doctor['image']) ?>); ">
 				<div class="section-intro">
 					<h5 class="heading wow fadeInUp">
-						Đội ngũ bác sỹ chuyên nghiệp
+						<?= $config_doctor['title'] ?>
 					</h5>
 
 					<p class="wow fadeInUp">
-                        Bệnh Viện Thẩm Mỹ Vyan quy tụ đội ngũ chuyên gia, bác sĩ Việt Nam - Hàn Quốc đầu ngành với nhiều năm kinh nghiệm.
+                        <?= $config_doctor['description'] ?>
 					</p>
 				</div>
 			</div>

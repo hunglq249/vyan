@@ -53,6 +53,12 @@
                                         echo form_error('email');
                                         echo form_input('email', $detail['email'], 'class="form-control" ');
                                     ?>
+                                </div><div class="col-xs-12" style="margin-bottom: 5px;">
+                                    <?php
+                                    echo form_label("Giấy phép hoạt động", 'certificate');
+                                    echo form_error('certificate');
+                                    echo form_input('certificate', $detail['certificate'], 'class="form-control" ');
+                                    ?>
                                 </div>
                                 <div class="col-xs-12" style="margin-bottom: 5px;">
                                     <?php

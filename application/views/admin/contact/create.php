@@ -56,6 +56,13 @@
                                 </div>
                                 <div class="col-xs-12" style="margin-bottom: 5px;">
                                     <?php
+                                    echo form_label("Giấy phép hoạt động", 'certificate');
+                                    echo form_error('certificate');
+                                    echo form_input('certificate', set_value('certificate'), 'class="form-control" ');
+                                    ?>
+                                </div>
+                                <div class="col-xs-12" style="margin-bottom: 5px;">
+                                    <?php
                                         echo form_label("Link Facebook", 'facebook');
                                         echo form_error('facebook');
                                         echo form_input('facebook', set_value('facebook'), 'class="form-control" ');

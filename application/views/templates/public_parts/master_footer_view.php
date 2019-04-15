@@ -88,6 +88,12 @@
 
                 <ul>
                     <li>
+                        <a href="javascript:void(0);">
+                            Giấy phép hoạt động số:
+                            <i class="fas fa-text"></i> <?php echo $contact['certificate'] ?>
+                        </a>
+                    </li>
+                    <li>
                         <a href="mailto:info@vyan.vn">
                             <i class="fas fa-envelope"></i> <?php echo $contact['email'] ?>
                         </a>

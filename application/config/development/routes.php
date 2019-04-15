@@ -72,6 +72,11 @@ $route['dich-vu'] = 'service/list_all';
 $route['bai-viet'] = 'news/list_all';
 $route['bai-viet/([a-zA-Z0-9-_]+)'] = 'news/index/$1';
 
+// library
+$route['thu-vien/([a-zA-Z0-9-_]+)/([a-zA-Z0-9-_]+)'] = 'library/index/$1/$2';
+$route['thu-vien/([a-zA-Z0-9-_]+)'] = 'library/list/$1';
+// $route['thu-vien'] = 'library/list_all';
+
 //transform
 $route['ket-qua/([a-zA-Z0-9-_]+)'] = 'transform/index/$1';
 

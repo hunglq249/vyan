@@ -526,30 +526,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form>
+            <?php
+                echo form_open_multipart('', array('class' => 'form-horizontal','id' => 'resgiterForm', 'onsubmit' => 'return false'));
+            ?>
                 <div class="modal-body">
                     <div class="row">
                         <div class="form-group col-xs-12 col-md-12 col-lg-12">
+                            <div id="message-register" class=" alert alert-warning" style="display: none"></div>
+                        </div>
+                        <div class="form-group col-xs-12 col-md-12 col-lg-12">
                             <?php
-                            echo form_input('register_name', set_value('register_name'), 'class="form-control" id="register_name" placeholder="Họ tên (*)"');
+                            echo form_input('register_name', set_value('register_name'), 'class="form-control" required id="register_name" placeholder="Họ tên (*)"');
                             echo form_error('register_name');
                             ?>
                         </div>
                         <div class="form-group col-xs-12 col-md-12 col-lg-12">
                             <?php
-                            echo form_input('register_phone', set_value('register_phone'), 'class="form-control" id="register_phone" placeholder="Số điện thoại (*)"');
+                            echo form_input('register_phone', set_value('register_phone'), 'class="form-control" required id="register_phone" placeholder="Số điện thoại (*)"');
                             echo form_error('register_phone');
                             ?>
                         </div>
                         <div class="form-group col-xs-12 col-md-12 col-lg-12">
                             <?php
-                            echo form_input('register_email', set_value('register_email'), 'class="form-control" id="register_email" placeholder="Email"');
+                            echo form_input('register_email', set_value('register_email'), 'class="form-control" required id="register_email" placeholder="Email"');
                             echo form_error('register_email');
                             ?>
                         </div>
                         <div class="form-group col-xs-12 col-md-12 col-lg-12">
                             <?php
-                            echo form_textarea('register_message', set_value('register_message'), 'class="form-control" id="register_message" placeholder="Nội dung ..."');
+                            echo form_textarea('register_message', set_value('register_message'), 'class="form-control" required id="register_message" placeholder="Nội dung ..."');
                             echo form_error('register_message');
                             ?>
                         </div>
@@ -563,7 +568,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                     <div class="right">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                        <button type="submit" class="btn btn-primary">Gửi</button>
+                        <button type="submit" id="send-register" class="btn btn-primary" >Gửi</button>
                     </div>
                 </div>
             </form>

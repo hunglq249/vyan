@@ -213,7 +213,7 @@
 										<h6>
 											<?php echo $value['name'] ?>
 										</h6>
-										<p><?php echo $value['age'] ?></p>
+										<p><?php echo $value['service'] ?></p>
 									</div>
 								</div>
 

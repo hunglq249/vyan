@@ -66,9 +66,9 @@
                             <div class="form-group col-xs-12" style="padding-right: 0px;">
                                 <div class="form-group col-xs-12" style="padding-right: 0px;">
                                     <?php
-                                    echo form_label('Tuổi', 'age');
-                                    echo form_error('age', '<div class="error">', '</div>');
-                                    echo form_input('age', $detail['age'], 'class="form-control" id="age"');
+                                    echo form_label('Dịch vụ', 'service');
+                                    echo form_error('service', '<div class="error">', '</div>');
+                                    echo form_input('service', $detail['service'], 'class="form-control" id="service"');
                                     ?>
                                 </div>
                             </div>

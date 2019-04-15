@@ -63,7 +63,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.2"></script>
 <div class="fb-page-header">
 	<a href="#" id="expandFbChat">
-		<p>Messenger</p>
+		<p>Chat với Vyan</p>
 
 		<!--<span>Mở rộng</span>--> <i class="fas fa-caret-up"></i>
 	</a>

@@ -12,47 +12,83 @@ class Config extends Admin_Controller {
         $this->author_data = handle_author_common_data();
     }
     public function edit($key = 'doctor'){
-        $detail = $this->config_model->get_by_key($key);
-        $this->data['detail'] = json_decode($detail['value'],true);
         $this->load->helper('form');
         $this->load->library('form_validation');
-        if($this->input->post()){
-            $this->form_validation->set_rules('title', 'Tiêu đề', 'required');
-            $this->form_validation->set_rules('description', 'Mô tả', 'required');
-            if($this->form_validation->run() === true){
-                if(!empty($_FILES['image']['name'])){
-                    $this->check_img($_FILES['image']['name'], $_FILES['image']['size']);
-                    $image = $this->upload_image('image', 'assets/upload/'.$this->data['controller'], $_FILES['image']['name']);
-                }
-                $data = array(
-                    'title' => $this->input->post('title'),
-                    'description' => $this->input->post('description'),
-                );
-                if(isset($image)){
-                    $data['image'] = $image;
-                }else{
-                    $data['image'] = $this->data['detail']['image'];
-                }
-                $update = $this->config_model->update($detail['id'],array('value' => json_encode(array_merge($data, $this->author_data))));
-                if ($update) {
-                    $this->session->set_flashdata('message_success', MESSAGE_EDIT_SUCCESS);
-                    if(isset($image) && file_exists('assets/upload/config/'.$this->data['detail']['image'])){
-                        unlink('assets/upload/config/'.$this->data['detail']['image']);
+        $detail = $this->config_model->get_by_key($key);
+        if($detail){
+            $this->data['detail'] = json_decode($detail['value'],true);
+            if($this->input->post()){
+                $this->form_validation->set_rules('title', 'Tiêu đề', 'required');
+                $this->form_validation->set_rules('description', 'Mô tả', 'required');
+                if($this->form_validation->run() === true){
+                    if(!empty($_FILES['image']['name'])){
+                        $this->check_img($_FILES['image']['name'], $_FILES['image']['size']);
+                        $image = $this->upload_image('image', 'assets/upload/'.$this->data['controller'], $_FILES['image']['name']);
                     }
-                    redirect('admin/config/detail', 'refresh');
-                }else{
-                    $this->session->set_flashdata('message_error', MESSAGE_EDIT_ERROR);
-                    redirect('admin/config/edit/' . $key);
+                    $data = array(
+                        'title' => $this->input->post('title'),
+                        'description' => $this->input->post('description'),
+                    );
+                    if(isset($image)){
+                        $data['image'] = $image;
+                    }else{
+                        $data['image'] = $this->data['detail']['image'];
+                    }
+                    $update = $this->config_model->update($detail['id'],array('value' => json_encode(array_merge($data, $this->author_data))));
+                    if ($update) {
+                        $this->session->set_flashdata('message_success', MESSAGE_EDIT_SUCCESS);
+                        if(isset($image) && file_exists('assets/upload/config/'.$this->data['detail']['image'])){
+                            unlink('assets/upload/config/'.$this->data['detail']['image']);
+                        }
+                        redirect('admin/config/detail', 'refresh');
+                    }else{
+                        $this->session->set_flashdata('message_error', MESSAGE_EDIT_ERROR);
+                        redirect('admin/config/edit/' . $key);
+                    }
                 }
             }
+            $this->render('admin/config/edit');
+        }else{
+            if($this->input->post()){
+                $this->form_validation->set_rules('title', 'Tiêu đề', 'required');
+                $this->form_validation->set_rules('description', 'Mô tả', 'required');
+                if($this->form_validation->run() === true){
+                    if(!empty($_FILES['image']['name'])){
+                        $this->check_img($_FILES['image']['name'], $_FILES['image']['size']);
+                        $image = $this->upload_image('image', 'assets/upload/'.$this->data['controller'], $_FILES['image']['name']);
+                    }
+                    $data = array(
+                        'title' => $this->input->post('title'),
+                        'description' => $this->input->post('description'),
+                    );
+                    if(isset($image)){
+                        $data['image'] = $image;
+                    }else{
+                        $data['image'] = $this->data['detail']['image'];
+                    }
+                    $insert = $this->config_model->insert(array('my_key' => 'doctor', 'value' => json_encode(array_merge($data, $this->author_data))));
+                    if ($insert) {
+                        $this->session->set_flashdata('message_success', MESSAGE_EDIT_SUCCESS);
+                        redirect('admin/config/detail', 'refresh');
+                    }else{
+                        $this->session->set_flashdata('message_error', MESSAGE_EDIT_ERROR);
+                        redirect('admin/config/edit/' . $key);
+                    }
+                }
+            }
+            $this->render('admin/config/edit');
         }
-        $this->render('admin/config/edit');
+
     }
     public function detail($key = 'doctor'){
         $detail = $this->config_model->get_by_key($key);
-        $this->data['detail'] = json_decode($detail['value'],true);
-        $this->data['detail']['id'] = $detail['id'];
-        $this->render('admin/config/detail');
+        if($detail){
+            $this->data['detail'] = json_decode($detail['value'],true);
+            $this->data['detail']['id'] = $detail['id'];
+            $this->render('admin/config/detail');
+        }else{
+            redirect('admin/config/edit/' . $key);
+        }
     }
     protected function check_img($filename, $filesize){
         $reponse = array(

@@ -36,7 +36,7 @@
                                 <div class="form-group col-xs-12">
                                     <div class="form-group col-xs-12">
                                         <label for="image">Hình ảnh đang sử dụng</label><br />
-                                        <?php if ( $detail['image'] ): ?>
+                                        <?php if ( isset($detail['image']) ): ?>
                                             <img src="<?php echo base_url('assets/upload/config/' . $detail['image']) ?>" width="450">
                                         <?php else: ?>
                                             Hiện chưa có hình ảnh
@@ -58,14 +58,14 @@
                                     <?php
                                         echo form_label("Tiêu đề", 'title');
                                         echo form_error('title');
-                                        echo form_input('title', $detail['title'], 'class="form-control" ');
+                                        echo form_input('title', isset($detail['title']) ? $detail['title'] : '', 'class="form-control" ');
                                     ?>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <?php
                                     echo form_label('Giới thiệu', 'description');
                                     echo form_error('description', '<div class="error">', '</div>');
-                                    echo form_textarea('description', $detail['description'], 'class="form-control" id="description"');
+                                    echo form_textarea('description', isset($detail['description']) ? $detail['description'] : '', 'class="form-control" id="description"');
                                     ?>
                                 </div>
                             </div>

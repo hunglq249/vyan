@@ -38,10 +38,23 @@ if($this->ion_auth->logged_in()) {
                         <i class="fa fa-newspaper-o"></i> <span>Quản lý news</span>
                     </a>
                 </li>
-                <li class="<?php echo ($this->uri->segment(2) == 'doctor')? 'active' : '' ?>">
-                    <a href="<?php echo base_url('admin/doctor') ?>">
-                        <i class="fa fa-user-md" aria-hidden="true"></i> <span>Quản lý doctors</span>
+                <!-- Show slide About -->
+                <li class="treeview <?php echo ($this->uri->segment(2) == 'doctor' || $this->uri->segment(2) == 'config' )? 'active' : '' ?>" style="border-bottom: none;">
+                    <a href="">
+                        <i class="fa fa-bars"></i>
+                        <span>Quản lý doctors</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
                     </a>
+                    <ul class="treeview-menu">
+                        <li class="<?php echo ( $this->uri->segment(2) == 'doctor' )? 'active' : '' ?>" >
+                            <a href="<?php echo base_url('admin/doctor') ?>"><i class="fa fa-user-md" aria-hidden="true"></i><span>Danh sách</span></a>
+                        </li>
+                        <li class="<?php echo ( $this->uri->segment(2) == 'config' )? 'active' : '' ?>" >
+                            <a href="<?php echo base_url('admin/config/detail') ?>"><i class="fa fa-exchange" aria-hidden="true"></i> <span>Thông tin chung</span></a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="<?php echo ($this->uri->segment(2) == 'transform')? 'active' : '' ?>">
                     <a href="<?php echo base_url('admin/transform') ?>">
@@ -125,6 +138,11 @@ if($this->ion_auth->logged_in()) {
                 <li class="<?php echo ($this->uri->segment(2) == 'message')? 'active' : '' ?>">
                     <a href="<?php echo base_url('admin/message') ?>">
                         <i class="fa fa-envelope" aria-hidden="true"></i> <span>Tin nhắn</span>
+                    </a>
+                </li>
+                <li class="<?php echo ($this->uri->segment(2) == 'library')? 'active' : '' ?>">
+                    <a href="<?php echo base_url('admin/library') ?>">
+                        <i class="fa fa-picture-o" aria-hidden="true"></i><i class="fa fa-file-video-o" aria-hidden="true"></i> <span>Thư viện</span>
                     </a>
                 </li>
                 <li class="header">DOCUMENTATION</li>

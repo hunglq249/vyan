@@ -242,6 +242,12 @@ class Public_Controller extends MY_Controller {
 
 
 
+        /**
+        *
+        *
+        *Get Library for menu
+        *
+        */
         $this->library_image = $this->library_model->get_all_with_pagination_library(1,'desc',8,0,1);
         $this->library_video = $this->library_model->get_all_with_pagination_library(1,'desc',8,0,2);
         $this->category_library = array(

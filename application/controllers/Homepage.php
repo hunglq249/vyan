@@ -11,6 +11,7 @@ class Homepage extends Public_Controller {
         $this->load->model('customer_model');
         $this->load->model('why_model');
         $this->load->model('commercial_model');
+        $this->load->model('config_model');
         $this->load->library('session');
 	}
 
@@ -23,6 +24,7 @@ class Homepage extends Public_Controller {
         $this->data['customer'] = $this->customer_model->get_by_all_when_active();
         $this->data['why'] = $this->why_model->get_all_with_pagination_search(1, 'desc', 4);
         $this->data['commercial'] = $this->commercial_model->get_by_id(1);
+        $this->data['config_doctor'] = json_decode($this->config_model->get_by_key('doctor')['value'],true);
         // echo '<pre>';
         // print_r($this->data['commercial']);die;
         

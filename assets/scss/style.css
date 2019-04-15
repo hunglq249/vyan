@@ -976,68 +976,65 @@ footer {
         #homepage .section.whyus > .row .left .wrapper .row {
           color: #fff; }
     #homepage .section.whyus > .row .right .row {
-      height: 100%; }
+      height: 100%;
+      overflow: hidden; }
       #homepage .section.whyus > .row .right .row .item {
-        height: 50%; }
-        #homepage .section.whyus > .row .right .row .item a {
+        height: 50%;
+        position: relative; }
+        #homepage .section.whyus > .row .right .row .item .blur {
           width: 100%;
           height: 100%;
-          color: #97D4CA;
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          align-items: center;
-          -webkit-transition: all ease-in-out 300ms;
-          -moz-transition: all ease-in-out 300ms;
-          -ms-transition: all ease-in-out 300ms;
-          -o-transition: all ease-in-out 300ms;
-          transition: all ease-in-out 300ms; }
-          #homepage .section.whyus > .row .right .row .item a .content {
-            width: 50%;
-            text-align: center; }
-            #homepage .section.whyus > .row .right .row .item a .content svg {
-              width: 50px;
-              height: 50px;
-              margin-bottom: 15px; }
-              #homepage .section.whyus > .row .right .row .item a .content svg path {
-                -webkit-transition: all ease-in-out 300ms;
-                -moz-transition: all ease-in-out 300ms;
-                -ms-transition: all ease-in-out 300ms;
-                -o-transition: all ease-in-out 300ms;
-                transition: all ease-in-out 300ms; }
-                #homepage .section.whyus > .row .right .row .item a .content svg path.line {
-                  fill: #97D4CA; }
-                #homepage .section.whyus > .row .right .row .item a .content svg path.fill {
-                  fill: #F0FCFA; }
-            #homepage .section.whyus > .row .right .row .item a .content p {
-              color: #97D4CA;
-              -webkit-transition: all ease-in-out 300ms;
-              -moz-transition: all ease-in-out 300ms;
-              -ms-transition: all ease-in-out 300ms;
-              -o-transition: all ease-in-out 300ms;
-              transition: all ease-in-out 300ms; }
-          #homepage .section.whyus > .row .right .row .item a:hover {
-            color: #fff;
-            background-color: #97D4CA;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 1;
+          overflow: hidden; }
+          #homepage .section.whyus > .row .right .row .item .blur img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(3px);
+            -webkit-filter: blur(3px);
+            opacity: 0.25;
             -webkit-transition: all ease-in-out 300ms;
             -moz-transition: all ease-in-out 300ms;
             -ms-transition: all ease-in-out 300ms;
             -o-transition: all ease-in-out 300ms;
             transition: all ease-in-out 300ms; }
-            #homepage .section.whyus > .row .right .row .item a:hover .content svg path.line, #homepage .section.whyus > .row .right .row .item a:hover .content svg path.fill {
-              fill: #fff;
-              -webkit-transition: all ease-in-out 300ms;
-              -moz-transition: all ease-in-out 300ms;
-              -ms-transition: all ease-in-out 300ms;
-              -o-transition: all ease-in-out 300ms;
-              transition: all ease-in-out 300ms; }
-            #homepage .section.whyus > .row .right .row .item a:hover .content p {
-              color: #fff;
-              -webkit-transition: all ease-in-out 300ms;
-              -moz-transition: all ease-in-out 300ms;
-              -ms-transition: all ease-in-out 300ms;
-              -o-transition: all ease-in-out 300ms;
-              transition: all ease-in-out 300ms; }
+        #homepage .section.whyus > .row .right .row .item .content {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 2; }
+          #homepage .section.whyus > .row .right .row .item .content a {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #97D4CA;
+            -webkit-transition: all ease-in-out 300ms;
+            -moz-transition: all ease-in-out 300ms;
+            -ms-transition: all ease-in-out 300ms;
+            -o-transition: all ease-in-out 300ms;
+            transition: all ease-in-out 300ms; }
+        #homepage .section.whyus > .row .right .row .item:hover .blur img {
+          opacity: 0.85;
+          -webkit-transition: all ease-in-out 300ms;
+          -moz-transition: all ease-in-out 300ms;
+          -ms-transition: all ease-in-out 300ms;
+          -o-transition: all ease-in-out 300ms;
+          transition: all ease-in-out 300ms; }
+        #homepage .section.whyus > .row .right .row .item:hover .content a {
+          color: #fff;
+          -webkit-transition: all ease-in-out 300ms;
+          -moz-transition: all ease-in-out 300ms;
+          -ms-transition: all ease-in-out 300ms;
+          -o-transition: all ease-in-out 300ms;
+          transition: all ease-in-out 300ms; }
 #homepage .section.story .container .slicker .item {
   height: 500px;
   position: relative; }
@@ -1267,7 +1264,7 @@ footer {
   #homepage .section.about {
     height: auto; }
     #homepage .section.about .row .left {
-      padding-bottom: 150px;
+      padding-bottom: 30vh;
       background-image: url("../img/aboutus-doctors.png");
       background-position: center bottom;
       background-repeat: no-repeat;
@@ -1358,6 +1355,11 @@ footer {
         #homepage .section.whyus > .row .right .row .item {
           width: 50% !important;
           height: 50%; }
+          #homepage .section.whyus > .row .right .row .item .blur img {
+            opacity: 0.75; }
+          #homepage .section.whyus > .row .right .row .item .content a {
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.125); }
   #homepage .section.story .container .detail-info {
     width: 75%; } }
 

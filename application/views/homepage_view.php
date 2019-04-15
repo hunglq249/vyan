@@ -176,16 +176,18 @@
 					<?php if ($why): ?>
 						<?php foreach ($why as $key => $value): ?>
 							<div class="item col-xs-12 col-md-6">
-								<a href="<?php echo base_url('tai-sao-chon-vyan/' . $value['slug']) ?>">
-									<div class="content">
-										<!-- Replace by a 50x50px png image later -->
+								<div class="blur">
+									<img src="<?php echo site_url('assets/upload/why/' . $value['slug'] . '/' . $value['image']) ?>" alt="Image of whyus <?php echo $key ?>">
+								</div>
+								<div class="content">
+									<a href="<?php echo base_url('tai-sao-chon-vyan/' . $value['slug']) ?>">
 										<i class="fa fa-3x <?php echo $value['icon'] ?>" aria-hidden="true"></i>
 
 										<p>
 											<?php echo $value['title'] ?>
 										</p>
-									</div>
-								</a>
+									</a>
+								</div>
 							</div>
 						<?php endforeach ?>
 					<?php endif ?>

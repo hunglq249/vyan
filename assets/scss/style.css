@@ -1360,6 +1360,12 @@ footer {
           #homepage .section.whyus > .row .right .row .item .content a {
             color: #fff;
             background-color: rgba(0, 0, 0, 0.125); }
+            #homepage .section.whyus > .row .right .row .item .content a i.fa-3x {
+              font-size: 2rem; }
+            #homepage .section.whyus > .row .right .row .item .content a p {
+              text-align: center;
+              font-size: 0.875rem;
+              margin-top: 7.5px; }
   #homepage .section.story .container .detail-info {
     width: 75%; } }
 

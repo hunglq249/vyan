@@ -914,6 +914,19 @@
 									a{
 										color: #fff;
 										background-color: rgba(0,0,0,0.125);
+
+										i{
+											&.fa-3x{
+												font-size: 2rem;
+											}
+										}
+
+										p{
+											text-align: center;
+											font-size: 0.875rem;
+
+											margin-top: $padding-half;
+										}
 									}
 								}
                             }

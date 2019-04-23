@@ -239,6 +239,25 @@
 						height: 100%;
 					}
 
+					.video{
+						width: 100%;
+						height: 100%;
+
+						position: relative;
+						overflow: hidden;
+
+						iframe{
+							width: 150%;
+							height: 150%;
+
+							position: absolute;
+							top: 50%;
+							left: 50%;
+
+							@include translate(-50%, -50%);
+						}
+					}
+
                     .mask{
                         width: 100%;
                         height: 100%;
@@ -277,11 +296,12 @@
                         padding-left: $padding-double;
                         padding-right: $padding-double;
 
-                        @include d-flex(row, normal, center);
+                        @include d-flex(row, center, center);
 
-                        .row{
-                            color: #fff;
-                        }
+						h5{
+							color: #fff;
+							text-align: center;
+						}
                     }
                 }
 
@@ -337,9 +357,13 @@
 
 									@include d-flex(column, center, center);
 
-									color: $primary-base;
+									color: $primary-darker;
 
 									@include transition(300ms);
+
+									p{
+										text-align: center;
+									}
 								}
 							}
 
@@ -355,6 +379,8 @@
 								.content{
 									a{
 										color: #fff;
+
+										text-shadow: 2px 4px 7px rgba(0,0,0,0.3);
 
 										@include transition(300ms);
 									}
@@ -922,7 +948,6 @@
 										}
 
 										p{
-											text-align: center;
 											font-size: 0.875rem;
 
 											margin-top: $padding-half;

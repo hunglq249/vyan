@@ -38,9 +38,11 @@
 						<?= $config_doctor['title'] ?>
 					</h5>
 
+					<!--
 					<p class="wow fadeInUp">
                         <?= $config_doctor['description'] ?>
 					</p>
+					-->
 				</div>
 			</div>
 
@@ -144,16 +146,21 @@
 							</div>
 						<?php endif ?>
 					<?php else: ?>
-						<video
-							id="vid1"
-							class="video-js vjs-default-skin"
-							autoplay
-							muted
-							loop
-							width="100%" height="100%"
-							data-setup='{ "techOrder": ["youtube"], "sources": [{ "type": "video/youtube", "src": "<?php echo $commercial['iframe'] ?>"}] }'
-						>
-						</video>
+<!--						<video-->
+<!--							id="vid1"-->
+<!--							class="video-js vjs-default-skin vjs-big-play-centered"-->
+<!--							autoplay-->
+<!--							muted-->
+<!--							loop-->
+<!--							width="100%" height="100%"-->
+<!--							showinfo="0" rel="0"-->
+<!--							data-setup='{ "fluid": true, "techOrder": ["youtube"], "sources": [{ "type": "video/youtube", "src": "--><?php //echo $commercial['iframe'] ?><!--&rel=0"}] }'-->
+<!--						>-->
+<!--						</video>-->
+<!--						<div class="video-bg" data-vide-bg="--><?php //echo site_url('assets/img/ocean.mp4') ?><!--" data-vide-options="loop: true, muted: true, position: 0% 0%"></div>-->
+						<div class="video">
+							<iframe src="https://www.youtube.com/embed/<?php echo $commercial['iframe'] ?>?rel=0&amp;controls=0&amp;showinfo=0;autoplay=1;loop=1&mute=1&" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						</div>
 					<?php endif ?>
 					
 				<?php endif ?>
@@ -161,13 +168,9 @@
 				<div class="overlay"></div>
 
 				<div class="wrapper">
-					<div class="row">
-						<div class="title col-xs-12 col-md-12">
-							<h5>
-								Tại sao lại chọn chúng tôi?
-							</h5>
-						</div>
-					</div>
+					<h5>
+						Tại sao lại chọn chúng tôi?
+					</h5>
 				</div>
 			</div>
 			<div class="right col-xs-12 col-md-6">
@@ -302,6 +305,8 @@
 <!-- video.js -->
 <script src="<?php echo site_url('node_modules/') ?>video.js/dist/video.js"></script>
 <script src="<?php echo site_url('node_modules/') ?>videojs-youtube/dist/Youtube.js"></script>
+
+<script src="<?php echo site_url('assets/js/') ?>jquery.vide.js"></script>
 
 <script>
     $(document).ready(function () {

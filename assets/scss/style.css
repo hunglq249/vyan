@@ -954,21 +954,18 @@ footer {
     #homepage .section.whyus .top .mask {
       width: 100%;
       height: 50vh; }
-    #homepage .section.whyus .top .video {
+    #homepage .section.whyus .top #tvc {
       width: 100%;
       height: 100%;
-      position: relative; }
-      #homepage .section.whyus .top .video #btnMute {
+      overflow: hidden;
+      position: relative;
+      background-color: transparent; }
+      #homepage .section.whyus .top #tvc .ytplayer-container {
         position: absolute;
-        bottom: 15px;
-        left: 15px;
-        z-index: 99;
-        background-color: transparent;
-        border: none;
-        color: #fff;
-        text-shadow: 0 0 4px rgba(0, 0, 0, 0.5); }
-        #homepage .section.whyus .top .video #btnMute:hover {
-          cursor: pointer; }
+        top: 0;
+        left: 50%;
+        margin-left: -50%;
+        z-index: -1; }
   #homepage .section.whyus .bottom .row {
     height: 300px;
     overflow: hidden; }

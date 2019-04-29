@@ -133,11 +133,9 @@
 
 	<div class="section whyus">
 		<div class="top">
-			<div class="wrapper">
-				<h5>
-					Tại sao lại chọn chúng tôi?
-				</h5>
-			</div>
+			<h5>
+				Tại sao lại chọn chúng tôi?
+			</h5>
 			<?php if ( $commercial ): ?>
 				<?php if ( $commercial['is_active'] == 0 ): ?>
 					<?php if ( $commercial['image'] && file_exists('assets/upload/why/commercial/' . $commercial['image']) && is_file('assets/upload/why/commercial/' . $commercial['image']) ): ?>
@@ -150,7 +148,7 @@
 						</div>
 					<?php endif ?>
 				<?php else: ?>
-						<div class="video" id="tvc"></div>
+						<div id="tvc"></div>
 				<?php endif ?>
 
 			<?php endif ?>
@@ -461,5 +459,12 @@
 	            }
 	        });
         });
+
+		$('#tvc').YTPlayer({
+			ratio: 16/9,
+			fitToBackground: true,
+			videoId: '<?php echo $commercial['iframe'] ?>',
+			mute: false
+		});
     });
 </script>

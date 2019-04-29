@@ -132,8 +132,54 @@
 	</div>
 
 	<div class="section whyus">
+		<div class="top">
+			<div class="wrapper">
+				<h5>
+					Tại sao lại chọn chúng tôi?
+				</h5>
+			</div>
+			<?php if ( $commercial ): ?>
+				<?php if ( $commercial['is_active'] == 0 ): ?>
+					<?php if ( $commercial['image'] && file_exists('assets/upload/why/commercial/' . $commercial['image']) && is_file('assets/upload/why/commercial/' . $commercial['image']) ): ?>
+						<div class="mask">
+							<img src="<?php echo base_url('assets/upload/why/commercial/' . $commercial['image']) ?>" alt="Background for Whyus Cover">
+						</div>
+					<?php else: ?>
+						<div class="mask">
+							<img src="<?php echo base_url('assets/video/tvc.jpg') ?>" alt="Background for Whyus Cover">
+						</div>
+					<?php endif ?>
+				<?php else: ?>
+						<div class="video" id="tvc"></div>
+				<?php endif ?>
+
+			<?php endif ?>
+		</div>
+		<div class="bottom">
+			<div class="row no-gutters">
+				<!-- Must be 4 items -->
+				<?php if ($why): ?>
+					<?php foreach ($why as $key => $value): ?>
+						<div class="item col-xs-12 col-md-3">
+							<div class="blur">
+								<img src="<?php echo site_url('assets/upload/why/' . $value['slug'] . '/' . $value['image']) ?>" alt="Image of whyus <?php echo $key ?>">
+							</div>
+							<div class="content">
+								<a href="<?php echo base_url('tai-sao-chon-vyan/' . $value['slug']) ?>">
+									<i class="fa fa-3x <?php echo $value['icon'] ?>" aria-hidden="true"></i>
+									<p>
+										<?php echo $value['title'] ?>
+									</p>
+								</a>
+							</div>
+						</div>
+					<?php endforeach ?>
+				<?php endif ?>
+			</div>
+		</div>
+		<!--
 		<div class="row no-gutters">
-			<div class="left col-xs-12 col-md-6">
+			<div class="left col-xs-12 col-lg-12">
 				<?php if ( $commercial ): ?>
 					<?php if ( $commercial['is_active'] == 0 ): ?>
 						<?php if ( $commercial['image'] && file_exists('assets/upload/why/commercial/' . $commercial['image']) && is_file('assets/upload/why/commercial/' . $commercial['image']) ): ?>
@@ -142,25 +188,21 @@
 							</div>
 						<?php else: ?>
 							<div class="mask">
-								<img src="<?php echo base_url('assets/img/no-image.jpg') ?>" alt="Background for Whyus Cover">
+								<img src="<?php echo base_url('assets/video/tvc.jpg') ?>" alt="Background for Whyus Cover">
 							</div>
 						<?php endif ?>
 					<?php else: ?>
-<!--						<video-->
-<!--							id="vid1"-->
-<!--							class="video-js vjs-default-skin vjs-big-play-centered"-->
-<!--							autoplay-->
-<!--							muted-->
-<!--							loop-->
-<!--							width="100%" height="100%"-->
-<!--							showinfo="0" rel="0"-->
-<!--							data-setup='{ "fluid": true, "techOrder": ["youtube"], "sources": [{ "type": "video/youtube", "src": "--><?php //echo $commercial['iframe'] ?><!--&rel=0"}] }'-->
-<!--						>-->
-<!--						</video>-->
-<!--						<div class="video-bg" data-vide-bg="--><?php //echo site_url('assets/img/ocean.mp4') ?><!--" data-vide-options="loop: true, muted: true, position: 0% 0%"></div>-->
-						<div class="video">
-							<iframe src="https://www.youtube.com/embed/<?php echo $commercial['iframe'] ?>?rel=0&amp;controls=0&amp;showinfo=0;autoplay=1;loop=1&mute=1&" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-						</div>
+						<video
+							id="vid1"
+							class="video-js vjs-default-skin vjs-big-play-centered"
+							autoplay
+							muted
+							loop
+							width="100%" height="100%"
+							showinfo="0" rel="0"
+							data-setup='{ "fluid": true, "techOrder": ["youtube"], "sources": [{ "type": "video/youtube", "src": "<?php echo $commercial['iframe'] ?>&rel=0"}] }'
+						>
+						</video>
 					<?php endif ?>
 					
 				<?php endif ?>
@@ -173,19 +215,18 @@
 					</h5>
 				</div>
 			</div>
-			<div class="right col-xs-12 col-md-6">
+			<div class="right col-xs-12 col-lg-12">
 				<div class="row no-gutters">
-					<!-- Must be 4 items -->
+
 					<?php if ($why): ?>
 						<?php foreach ($why as $key => $value): ?>
-							<div class="item col-xs-12 col-md-6">
+							<div class="item col-xs-12 col-md-3">
 								<div class="blur">
 									<img src="<?php echo site_url('assets/upload/why/' . $value['slug'] . '/' . $value['image']) ?>" alt="Image of whyus <?php echo $key ?>">
 								</div>
 								<div class="content">
 									<a href="<?php echo base_url('tai-sao-chon-vyan/' . $value['slug']) ?>">
 										<i class="fa fa-3x <?php echo $value['icon'] ?>" aria-hidden="true"></i>
-
 										<p>
 											<?php echo $value['title'] ?>
 										</p>
@@ -197,6 +238,7 @@
 				</div>
 			</div>
 		</div>
+		-->
 	</div>
 
 	<div class="section story">
@@ -306,7 +348,8 @@
 <script src="<?php echo site_url('node_modules/') ?>video.js/dist/video.js"></script>
 <script src="<?php echo site_url('node_modules/') ?>videojs-youtube/dist/Youtube.js"></script>
 
-<script src="<?php echo site_url('assets/js/') ?>jquery.vide.js"></script>
+<script src="<?php echo site_url('assets/js/') ?>jquery.vide.min.js"></script>
+<script src="<?php echo site_url('assets/js/') ?>get_video.js"></script>
 
 <script>
     $(document).ready(function () {
@@ -417,9 +460,6 @@
 	                console.log(errorHandle(jqXHR, exception));
 	            }
 	        });
-        })
+        });
     });
-
-$('.slider')
-        
 </script>

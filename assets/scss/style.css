@@ -933,8 +933,104 @@ footer {
   text-align: center;
   padding-bottom: 30px; }
 #homepage .section.whyus {
-  width: 100%;
-  height: 600px; }
+  width: 100%; }
+  #homepage .section.whyus .top {
+    width: 100%;
+    height: 100vh;
+    position: relative; }
+    #homepage .section.whyus .top h5 {
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      z-index: 99;
+      -webkit-transform: translate(-50%, 0);
+      -moz-transform: translate(-50%, 0);
+      -ms-transform: translate(-50%, 0);
+      -o-transform: translate(-50%, 0);
+      transform: translate(-50%, 0);
+      color: #fff;
+      text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+      text-align: center; }
+    #homepage .section.whyus .top .mask {
+      width: 100%;
+      height: 50vh; }
+    #homepage .section.whyus .top .video {
+      width: 100%;
+      height: 100%;
+      position: relative; }
+      #homepage .section.whyus .top .video #btnMute {
+        position: absolute;
+        bottom: 15px;
+        left: 15px;
+        z-index: 99;
+        background-color: transparent;
+        border: none;
+        color: #fff;
+        text-shadow: 0 0 4px rgba(0, 0, 0, 0.5); }
+        #homepage .section.whyus .top .video #btnMute:hover {
+          cursor: pointer; }
+  #homepage .section.whyus .bottom .row {
+    height: 300px;
+    overflow: hidden; }
+    #homepage .section.whyus .bottom .row .item {
+      position: relative; }
+      #homepage .section.whyus .bottom .row .item .blur {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        overflow: hidden; }
+        #homepage .section.whyus .bottom .row .item .blur img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          filter: blur(3px);
+          -webkit-filter: blur(3px);
+          opacity: 0.25;
+          -webkit-transition: all ease-in-out 300ms;
+          -moz-transition: all ease-in-out 300ms;
+          -ms-transition: all ease-in-out 300ms;
+          -o-transition: all ease-in-out 300ms;
+          transition: all ease-in-out 300ms; }
+      #homepage .section.whyus .bottom .row .item .content {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2; }
+        #homepage .section.whyus .bottom .row .item .content a {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          color: #66B3A6;
+          -webkit-transition: all ease-in-out 300ms;
+          -moz-transition: all ease-in-out 300ms;
+          -ms-transition: all ease-in-out 300ms;
+          -o-transition: all ease-in-out 300ms;
+          transition: all ease-in-out 300ms; }
+          #homepage .section.whyus .bottom .row .item .content a p {
+            text-align: center; }
+      #homepage .section.whyus .bottom .row .item:hover .blur img {
+        opacity: 0.85;
+        -webkit-transition: all ease-in-out 300ms;
+        -moz-transition: all ease-in-out 300ms;
+        -ms-transition: all ease-in-out 300ms;
+        -o-transition: all ease-in-out 300ms;
+        transition: all ease-in-out 300ms; }
+      #homepage .section.whyus .bottom .row .item:hover .content a {
+        color: #fff;
+        text-shadow: 2px 4px 7px rgba(0, 0, 0, 0.3);
+        -webkit-transition: all ease-in-out 300ms;
+        -moz-transition: all ease-in-out 300ms;
+        -ms-transition: all ease-in-out 300ms;
+        -o-transition: all ease-in-out 300ms;
+        transition: all ease-in-out 300ms; }
   #homepage .section.whyus > .row {
     height: 100%; }
     #homepage .section.whyus > .row .left {
@@ -1332,7 +1428,18 @@ footer {
     padding-bottom: 30px; }
   #homepage .section.whyus {
     width: 100%;
-    height: 600px; }
+    height: auto; }
+    #homepage .section.whyus .top {
+      width: 100%;
+      height: 50vh; }
+      #homepage .section.whyus .top h5 {
+        width: 100%;
+        top: 15px;
+        font-size: 1.2rem; }
+    #homepage .section.whyus .bottom .row {
+      height: auto; }
+      #homepage .section.whyus .bottom .row .item {
+        height: 200px; }
     #homepage .section.whyus > .row {
       height: 100%; }
       #homepage .section.whyus > .row .left {

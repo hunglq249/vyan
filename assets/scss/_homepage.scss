@@ -226,7 +226,142 @@
 
         &.whyus{
             width: 100%;
-            height: 600px;
+            //height: 100vh;
+
+			.top{
+				width: 100%;
+				height: 100vh;
+
+				position: relative;
+
+				h5{
+					position: absolute;
+					top: $padding-double;
+					left: 50%;
+					z-index: 99;
+
+					@include translate(-50%, 0);
+
+					color: #fff;
+					text-shadow: 0 0 4px rgba(0,0,0,0.5);
+
+					text-align: center;
+				}
+
+				.mask{
+					width: 100%;
+					height: 50vh;
+				}
+
+				.video{
+					width: 100%;
+					height: 100%;
+
+					position: relative;
+
+					#btnMute{
+						position: absolute;
+						bottom: $padding-base;
+						left: $padding-base;
+						z-index: 99;
+
+						background-color: transparent;
+						border: none;
+
+						color: #fff;
+						text-shadow: 0 0 4px rgba(0,0,0,0.5);
+
+						&:hover{
+							cursor: pointer;
+						}
+					}
+				}
+			}
+
+			.bottom{
+				.row{
+					height: 300px;
+
+					overflow: hidden;
+
+					.item{
+						//height: 50%;
+
+						position: relative;
+
+						.blur{
+							width: 100%;
+							height: 100%;
+
+							position: absolute;
+							top: 0;
+							left: 0;
+							z-index: 1;
+
+							overflow: hidden;
+
+							img{
+								width: 100%;
+								height: 100%;
+
+								object-fit: cover;
+
+								filter: blur(3px);
+								-webkit-filter: blur(3px);
+
+								opacity: 0.25;
+
+								@include transition(300ms);
+							}
+						}
+
+						.content{
+							width: 100%;
+							height: 100%;
+
+							position: absolute;
+							top: 0;
+							left: 0;
+							z-index: 2;
+
+							a{
+								width: 100%;
+								height: 100%;
+
+								@include d-flex(column, center, center);
+
+								color: $primary-darker;
+
+								@include transition(300ms);
+
+								p{
+									text-align: center;
+								}
+							}
+						}
+
+						&:hover{
+							.blur{
+								img{
+									opacity: 0.85;
+
+									@include transition(300ms);
+								}
+							}
+
+							.content{
+								a{
+									color: #fff;
+
+									text-shadow: 2px 4px 7px rgba(0,0,0,0.3);
+
+									@include transition(300ms);
+								}
+							}
+						}
+					}
+				}
+			}
 
             > .row{
                 height: 100%;
@@ -868,7 +1003,29 @@
 
             &.whyus{
                 width: 100%;
-                height: 600px;
+                height: auto;
+
+				.top{
+					width: 100%;
+					height: 50vh;
+
+					h5{
+						width: 100%;
+						top: $padding-base;
+
+						font-size: 1.2rem;
+					}
+				}
+
+				.bottom{
+					.row{
+						height: auto;
+
+						.item{
+							height: 200px;
+						}
+					}
+				}
 
                 > .row{
                     height: 100%;

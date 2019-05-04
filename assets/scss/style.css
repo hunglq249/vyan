@@ -1433,6 +1433,12 @@ footer {
         width: 100%;
         top: 15px;
         font-size: 1.2rem; }
+      #homepage .section.whyus .top #tvc .ytplayer-container {
+        width: 100%;
+        height: 100%; }
+        #homepage .section.whyus .top #tvc .ytplayer-container iframe {
+          width: 100% !important;
+          height: 100% !important; }
     #homepage .section.whyus .bottom .row {
       height: auto; }
       #homepage .section.whyus .bottom .row .item {

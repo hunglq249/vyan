@@ -1435,7 +1435,8 @@ footer {
         font-size: 1.2rem; }
       #homepage .section.whyus .top #tvc .ytplayer-container {
         width: 100%;
-        height: 100%; }
+        height: 100%;
+        z-index: 1; }
         #homepage .section.whyus .top #tvc .ytplayer-container iframe {
           width: 100% !important;
           height: 100% !important; }

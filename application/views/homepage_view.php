@@ -465,15 +465,13 @@
 			fitToBackground: true,
 			videoId: '<?php echo $commercial['iframe'] ?>',
 			mute: false,
-			playerVars: {
-				modestbranding: 0,
-				autoplay: 1,
-				controls: 1,
-				showinfo: 0,
-				branding: 0,
-				rel: 0,
-				autohide: 0
-			}
+			modestbranding: 0,
+			autoplay: 1,
+			controls: 1,
+			showinfo: 0,
+			branding: 0,
+			rel: 0,
+			autohide: 0
 		});
     });
 </script>
